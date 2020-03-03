@@ -5,28 +5,28 @@ redirect_from:
 
 <html>
     <head>
-      <title>myPackageNameGoesHere - Example</title>
+      <title>safety-qc-dashboard - Example</title>
       <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
       <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
       <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.min.js'></script>
 
-      <script type = 'text/javascript' src = '../myPackageFunctionGoesHere.js'></script>
+      <script type = 'text/javascript' src = '../safetyQcDashboard.js'></script>
 
       <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
       <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
     </head>
 
     <body>
-      <div id = 'title'>myPackageNameGoesHere</div>
+      <div id = 'title'>safety-qc-dashboard</div>
       <div id = 'subtitle'>Example 1</div>
-      <div id= 'info'>This is a demo page for the interactive myPackageNameGoesHere tool created by the Rho. Code, details and documentation are available on <a href="myPackageURLGoesHere">github</a>.</div>
+      <div id= 'info'>This is a demo page for the interactive safety-qc-dashboard tool created by the Rho. Code, details and documentation are available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
       <div id = 'container'></div>
     </body>
 
     <script type = 'text/javascript'>
-      const chart =myPackageFunctionGoesHere('#container', {});
-      d3.csv('myDataPathGoesHere', function (data) {
+      const chart =safetyQcDashboard('#container', {});
+      d3.csv('https://raw.githubusercontent.com/RhoInc/data-library/master/data/miscellaneous/elements.csv', function (data) {
         chart.init(data);
       });
 </script>
