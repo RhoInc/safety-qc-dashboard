@@ -31,13 +31,20 @@ redirect_from:
      // const chart =safetyQcDashboard('#container', settings);
       d3.json('../../data/repos.json', function (repos) {
           d3.json('../../data/releases.json', function (releases) {
-            const chart = safetyQcDashboard('#container', {"releases":releases});
+              d3.json('../../data/pulls.json', function (pulls) {
+               
+                let safety = ["aeexplorer", "ae-timelines", "safety-histogram", "safety-delta-delta", "safety-outlier-explorer", "safety-results-over-time"]
+                let repos_sub = repos.filter(f => safety.indexOf(f.name) > -1)
+                //let releases_sub = repos.filter(f => releases.indexOf(f.name) > -1)
+                //let pulls_sub = repos.filter(f => pulls.indexOf(f.name) > -1)
+               console.log(releases)
+               console.log(pulls)
+               console.log(repos) 
+            const chart = safetyQcDashboard('#container', {"releases":releases,"pulls":pulls});
 
-          let safety = ["aeexplorer","ae-timelines","safety-histogram","safety-delta-delta","safety-outlier-explorer","safety-results-over-time"]
-          let sub = repos.filter(f=>safety.indexOf(f.name)>-1)
-          console.log(repos)
-          console.log(sub)
-          chart.init(sub);
+      
+          chart.init(repos_sub);
+              });
         });
       })
 </script>
