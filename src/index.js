@@ -1,7 +1,7 @@
 import './util/polyfills';
 import './util/moveTo';
 import configuration from './configuration/index';
-import { createChart, createControls, createTable } from 'webcharts';
+import { createControls, createTable } from 'webcharts';
 import callbacks from './callbacks/index';
 
 //layout and styles
@@ -16,7 +16,7 @@ export default function safetyQcDashboard(element = 'body', settings = {}) {
     //Define chart.
     const mergedSettings = Object.assign(
         {},
-        JSON.parse(JSON.stringify(configuration.settings)),
+        configuration.settings,
         settings
     );
     const syncedSettings = configuration.syncSettings(mergedSettings);
@@ -28,15 +28,15 @@ export default function safetyQcDashboard(element = 'body', settings = {}) {
         location: 'top',
         inputs: syncedControlInputs
     });
-    const chart = createChart(
+    const table = createTable(
         document.querySelector(element).querySelector('#wc-chart'),
         syncedSettings,
-        controls
+        null //controls
     );
 
     //Define chart callbacks.
     for (const callback in callbacks)
-        chart.on(callback.substring(2).toLowerCase(), callbacks[callback]);
+        table.on(callback.substring(2).toLowerCase(), callbacks[callback]);
 
-    return chart;
+    return table;
 }

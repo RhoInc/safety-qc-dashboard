@@ -15,6 +15,7 @@ redirect_from:
 
       <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
       <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
     <body>
@@ -22,12 +23,22 @@ redirect_from:
       <div id = 'subtitle'>Example 1</div>
       <div id= 'info'>This is a demo page for the interactive safety-qc-dashboard tool created by the Rho. Code, details and documentation are available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
       <div id = 'container'></div>
+    
     </body>
 
     <script type = 'text/javascript'>
-      const chart =safetyQcDashboard('#container', {});
-      d3.csv('https://raw.githubusercontent.com/RhoInc/data-library/master/data/miscellaneous/elements.csv', function (data) {
-        chart.init(data);
-      });
+
+     // const chart =safetyQcDashboard('#container', settings);
+      d3.json('../../data/repos.json', function (repos) {
+          d3.json('../../data/releases.json', function (releases) {
+            const chart = safetyQcDashboard('#container', {"releases":releases});
+
+          let safety = ["aeexplorer","ae-timelines","safety-histogram","safety-delta-delta","safety-outlier-explorer","safety-results-over-time"]
+          let sub = repos.filter(f=>safety.indexOf(f.name)>-1)
+          console.log(repos)
+          console.log(sub)
+          chart.init(sub);
+        });
+      })
 </script>
 </html>

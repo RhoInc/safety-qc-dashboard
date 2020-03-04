@@ -1,16 +1,13 @@
-(function(global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined'
-        ? (module.exports = factory(require('d3'), require('webcharts')))
-        : typeof define === 'function' && define.amd
-        ? define(['d3', 'webcharts'], factory)
-        : ((global = global || self),
-          (global.safetyQcDashboard = factory(global.d3, global.webCharts)));
-})(this, function(d3, webcharts) {
-    'use strict';
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('d3'), require('webcharts')) :
+    typeof define === 'function' && define.amd ? define(['d3', 'webcharts'], factory) :
+    (global = global || self, global.safetyQcDashboard = factory(global.d3, global.webCharts));
+}(this, (function (d3$1, webcharts) { 'use strict';
 
     if (typeof Object.assign != 'function') {
         Object.defineProperty(Object, 'assign', {
             value: function assign(target, varArgs) {
+
                 if (target == null) {
                     // TypeError if undefined or null
                     throw new TypeError('Cannot convert undefined or null to object');
@@ -127,21 +124,19 @@
         });
     }
 
-    Math.log10 = Math.log10 =
-        Math.log10 ||
-        function(x) {
-            return Math.log(x) * Math.LOG10E;
-        };
+    Math.log10 = Math.log10 = Math.log10 || function (x) {
+        return Math.log(x) * Math.LOG10E;
+    };
 
     // https://github.com/wbkd/d3-extended
-    d3.selection.prototype.moveToFront = function() {
-        return this.each(function() {
+    d3$1.selection.prototype.moveToFront = function () {
+        return this.each(function () {
             this.parentNode.appendChild(this);
         });
     };
 
-    d3.selection.prototype.moveToBack = function() {
-        return this.each(function() {
+    d3$1.selection.prototype.moveToBack = function () {
+        return this.each(function () {
             var firstChild = this.parentNode.firstChild;
             if (firstChild) {
                 this.parentNode.insertBefore(this, firstChild);
@@ -150,40 +145,79 @@
     };
 
     function rendererSettings() {
-        return {
-            x_col: 'Weight',
-            y_col: 'Boil',
-            id_col: 'Element'
-        };
-    }
-
-    function webchartsSettings() {
-        return {
-            x: {
-                column: null,
-                type: 'linear'
-            },
-            y: {
-                column: null,
-                type: 'linear'
-            },
-            marks: [
-                {
-                    type: 'circle',
-                    per: null
+        var settings = {
+            sortable: false,
+            searchable: false,
+            exportable: false,
+            issue_data: null,
+            metrics: [{
+                label: 'Repo',
+                text: function text(d) {
+                    return d.name;
+                },
+                link: function link(d) {
+                    return d.html_url;
+                },
+                title: function title(d) {
+                    return d.description;
+                },
+                color: function color(d) {
+                    return null;
                 }
-            ],
-            gridlines: 'xy',
-            aspect: 1,
-            max_width: 600
+            }, {
+                label: 'Issues',
+                text: function text(d) {
+                    return d.open_issues_count;
+                },
+                link: function link(d) {
+                    return d.html_url + "/issues";
+                },
+                title: function title(d) {
+                    return null;
+                },
+                color: function color(d) {
+                    return d.has_issues ? "green" : "red";
+                }
+            }, {
+                label: 'Releases',
+                text: function text(d) {
+                    return d.release_count;
+                },
+                link: function link(d) {
+                    return d.html_url + "/releases";
+                },
+                title: function title(d) {
+                    return null;
+                },
+                color: function color(d) {
+                    return d.has_releases ? "green" : "red";
+                }
+            }, {
+                label: 'Days Since Release',
+                text: function text(d) {
+                    return d.days_since_last_release;
+                },
+                link: function link(d) {
+                    return d.last_release_url;
+                },
+                title: function title(d) {
+                    return "Last release was " + d.days_since_last_release + " days ago on " + d3.time.format('%x')(d.last_release);
+                },
+                color: function color(d) {
+                    return d.days_since_last_release < 365 ? "green" : "yellow";
+                }
+            }]
         };
+
+        settings.cols = settings.metrics.map(function (m) {
+            return m.label;
+        });
+        return settings;
     }
 
     function syncSettings(settings) {
         // webcharts settings
-        settings.x.column = settings.x_col;
-        settings.y.column = settings.y_col;
-        settings.marks[0].per = [settings.id_col];
+
         return settings;
     }
 
@@ -197,24 +231,70 @@
 
     var configuration = {
         rendererSettings: rendererSettings,
-        webchartsSettings: webchartsSettings,
-        settings: Object.assign({}, rendererSettings(), webchartsSettings()),
+        settings: Object.assign({}, rendererSettings()),
         syncSettings: syncSettings,
         controlInputs: controlInputs,
         syncControlInputs: syncControlInputs
     };
 
-    function onInit() {}
+    function onInit() {
+        console.log(this);
+        var chart = this;
+        var config = this.config;
+        //merge data from different metrics
+        this.data.releases = d3.merge(this.config.releases) // raw releases is an array of arrays
+        .map(function (release) {
+            release.date = new Date(release.created_at);
+            release.name = release.url.split('/')[5];
+            release.repo_url = 'https://github.com/RhoInc/' + release.repo;
+            // release.html = converter.makeHtml(release.body);
+            return release;
+        });
+
+        this.data.raw.forEach(function (d) {
+            d.releases = chart.data.releases.filter(function (r) {
+                return d.name == r.name;
+            }).sort(function (a, b) {
+                return b.date.getTime() - a.date.getTime();
+            });
+            console.log(d.releases);
+            d.release_count = d.releases.length;
+            d.has_releases = d.release_count > 0;
+            d.last_release = d.releases[0]["date"];
+            d.last_release_url = d.releases[0]["url"];
+            var today = new Date();
+            var seconds_since_last_release = (today - d.last_release) / 1000;
+            d.days_since_last_release = Math.floor(seconds_since_last_release / (60 * 60 * 24));
+        });
+
+        this.data.raw = this.data.raw.map(function (d) {
+            var row_d = {};
+            config.metrics.forEach(function (metric) {
+                var cell_d = {};
+                Object.keys(metric).forEach(function (attribute) {
+                    if (attribute != "label") cell_d[attribute] = metric[attribute](d);
+                });
+                row_d[metric.label] = cell_d;
+            });
+            return row_d;
+        });
+    }
 
     function onLayout() {}
 
-    function onPreprocess() {}
-
-    function onDatatransform() {}
-
-    function onDraw() {}
-
-    function onResize() {}
+    function onDraw() {
+        this.tbody.selectAll("tr").selectAll("td").style("text-align", function (d) {
+            return d.text.color ? "center" : null;
+        }).text('').append("span").attr("class", function (d) {
+            return d.text.color ? 'w3-badge w3-' + d.text.color : "label";
+        }).append("a").text(function (d) {
+            return d.text.text;
+        }).attr("title", function (d) {
+            return d.text.title;
+        }).attr("href", function (d) {
+            return d.text.link;
+        });
+    }
 
     function onDestroy() {
         this.listing.destroy();
@@ -223,23 +303,14 @@
     var callbacks = {
         onInit: onInit,
         onLayout: onLayout,
-        onPreprocess: onPreprocess,
-        onDatatransform: onDatatransform,
         onDraw: onDraw,
-        onResize: onResize,
         onDestroy: onDestroy
     };
 
     function layout(element) {
-        var container = d3.select(element);
-        container
-            .append('div')
-            .classed('wc-component', true)
-            .attr('id', 'wc-controls');
-        container
-            .append('div')
-            .classed('wc-component', true)
-            .attr('id', 'wc-chart');
+        var container = d3$1.select(element);
+        container.append('div').classed('wc-component', true).attr('id', 'wc-controls');
+        container.append('div').classed('wc-component', true).attr('id', 'wc-chart');
     }
 
     function styles() {
@@ -259,35 +330,22 @@
         styles();
 
         //Define chart.
-        var mergedSettings = Object.assign(
-            {},
-            JSON.parse(JSON.stringify(configuration.settings)),
-            settings
-        );
+        var mergedSettings = Object.assign({}, configuration.settings, settings);
         var syncedSettings = configuration.syncSettings(mergedSettings);
-        var syncedControlInputs = configuration.syncControlInputs(
-            configuration.controlInputs(),
-            syncedSettings
-        );
-        var controls = webcharts.createControls(
-            document.querySelector(element).querySelector('#wc-controls'),
-            {
-                location: 'top',
-                inputs: syncedControlInputs
-            }
-        );
-        var chart = webcharts.createChart(
-            document.querySelector(element).querySelector('#wc-chart'),
-            syncedSettings,
-            controls
+        var syncedControlInputs = configuration.syncControlInputs(configuration.controlInputs(), syncedSettings);
+        var controls = webcharts.createControls(document.querySelector(element).querySelector('#wc-controls'), {
+            location: 'top',
+            inputs: syncedControlInputs
+        });
+        var table = webcharts.createTable(document.querySelector(element).querySelector('#wc-chart'), syncedSettings, null //controls
         );
 
         //Define chart callbacks.
         for (var callback in callbacks) {
-            chart.on(callback.substring(2).toLowerCase(), callbacks[callback]);
-        }
-        return chart;
+            table.on(callback.substring(2).toLowerCase(), callbacks[callback]);
+        }return table;
     }
 
     return safetyQcDashboard;
-});
+
+})));
