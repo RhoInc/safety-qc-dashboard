@@ -2,10 +2,10 @@ export default function prepPulls() {
     let chart = this;
     //merge data from different metrics
     this.data.pulls = d3
-        .merge(this.config.pulls) // raw pull is an array of arrays
+        .merge(this.data.raw.map(m => m.raw.pulls)) // raw pulls is an array of arrays
         .map(function(pull) {
             pull.date = new Date(pull.created_at);
-            pull.name = pull.url.split('/')[5];
+            pull.repo = pull.url.split('/')[5];
             pull.repo_url = 'https://github.com/RhoInc/' + pull.repo;
             // release.html = converter.makeHtml(release.body);
             return pull;
@@ -13,7 +13,7 @@ export default function prepPulls() {
 
     this.data.raw.forEach(function(d) {
         d.pulls = chart.data.pulls
-            .filter(r => d.name == r.name)
+            .filter(r => d.repo == r.repo)
             .sort((a, b) => b.date.getTime() - a.date.getTime());
         d.pull_count = d.pulls.length;
         d.has_pulls = d.pulls.length > 0;

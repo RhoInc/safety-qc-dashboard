@@ -29,15 +29,18 @@
         "babel-plugin-external-helpers": "^6.22.0",
         "babel-preset-env": "^1.7.0",
         "babel-register": "^6.26.0",
-        "prettier": "^1.18.2",
-        "rollup": "^1.26.0",
-        "read": "^1.0.7",
         "base-64": "^0.1.0",
+        "node-fetch": "^2.3.0",
+        "prettier": "^1.18.2",
+        "read": "^1.0.7",
+        "rollup": "^1.32.1",
         "rollup-plugin-babel": "^3.0.7",
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-json": "^4.0.0",
         "rollup-plugin-node-resolve": "^5.2.0",
-        "node-fetch": "^2.3.0"
+        "simple-git": "^1.131.0",
+        "showdown": "^1.9.1",
+        "html-pdf": "^2.2.0"
     },
     "repository": {
         "type": "git",

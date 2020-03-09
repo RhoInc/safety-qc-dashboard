@@ -1,0 +1,553 @@
+<html>
+<head>
+    <title>safety-histogram - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">safety-histogram - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for safety-histogram. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/rhoinc/safety-histogram/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h1 id="functionalspecs">Functional Specs</h1>
+<h2 id="filterbymeasure">Filter by Measure</h2>
+<p>This drop-down menu is used to filter the lab variable that is displayed in the chart. The default measure is set to the first variable in the data set, but the default value can be adjusted to any measure upon the project team's request. Users can select any pre-defined measure in this filter.  Selecting a measure will display the range of the measure and the number of observations collected for this variable.</p>
+<h2 id="filterbypreselectedcharacteristics">Filter by Pre-selected Characteristics</h2>
+<p>The chart can be configured to have any number of data filters. Each specified filter has a drop-down menu that is used to filter the visit data that is displayed in the chart.</p>
+<h2 id="totalparticipantsshown">Total Participants Shown</h2>
+<p>Displayed under the header, this statement provides the total number of participants in the data set in integers as well as the percentage of participants shown to one decimal place. In the default view, all participant data is included in the chart, or 100%, unless the project team requests otherwise. When filters are used, the data shown in the histogram is manipulated and the number of participant records shown at the top of the page may increase or decrease, depending on the variable selected. </p>
+<h2 id="normalrangefunction">Normal Range Function</h2>
+<p>This feature highlights the normal ranges for the selected measure by displaying a gray rectangle behind the data. This rectangle represents the normal range for that measure and data that falls within the upper and lower limits of the range contains records of participants who are associated with results that are considered normal. Normal ranges are not shown by default , but the option can be activated by checking the normal ranges check box above the chart. If the data does not cite a normal range for a measure, the option to activate the normal range function is not available and the checkbox disappears.</p>
+<h2 id="setxaxislimits">Set X-axis Limits</h2>
+<p>Users are able to adjust the lower limit of the x-axis by manipulating the input within the Lower Limit box. Users are able to adjust the upper limit of the x-axis by manipulating the input within the Upper Limit box. Each limit box has up and down arrows to adjust the value of the box by 1. Users can select an arrow to change the input or delete the current value in the box and type in a new value. When typing in a value, users must click outside of the box to apply the changes. When a user manipulates an x-axis limit, the x-axis on the chart below the controls will reflect the change.</p>
+<h2 id="resetxaxislimits">Reset X-axis limits</h2>
+<p>Users can change the upper and lower x-axis limits back to the default values for a measure by selecting the "Reset Limits" button. Pressing the button will erase the current values in the upper and lower limit boxes and replace them with defaults. The chart below will also reflect the changes and will show the default axes.</p>
+<h2 id="hover">Hover</h2>
+<p>By moving a mouse cursor over a bar in the chart, users can display metadata for some variables. Hovering the cursor over a particular bar will display the number of records for the measure in that bar's range in a statement below the chart.</p>
+<h2 id="linkedtable">Linked Table</h2>
+<p>Clicking on a bar in the chart will open a table below the chart that contains a detailed listing of participant records. This linked table contains a standard set of default columns that appear consistently across all filters. When a bar is clicked the other available bars lighten, the table header defines the data included in the table, and the records appear in a table below the chart. When a user clicks outside of a bar, the detailed table disappears and the table header will prompt the user to "Click a bar for details."</p>
+<p>Clicking on a bar will perform 3 actions:</p>
+<ul>
+<li>Display the raw data records, including the subject identifier, result, lower limit of normal, and upper limit of normal</li>
+<li>Lighten all of the bars not contained in the table</li>
+<li>Display the number of records for the measure underneath the chart</li>
+</ul>
+<h2 id="regressiontests">Regression Tests</h2>
+<p>Controls</p>
+<ul>
+<li>Confirm that if the Measure filter is changed, the distribution of observations change</li>
+<li>Confirm that different measures reflect different precisions, appropriate to their values</li>
+<li>View x of x participants note at the top of the page: check that it updates when filters are applied</li>
+<li>Confirm the ability to apply normal ranges by checking the Normal Range box: a range rectangle should appear for each participant</li>
+<li>Confirm that applying normal ranges does not change the axes in the chart.</li>
+<li>Confirm that when normal ranges are applied, there is a tooltip displayed beside "Normal Range".</li>
+<li>Confirm that typing in a number into either the lower limit or upper limit control updates the x-axis domain accordingly and the chart is redrawn to match the new limits.</li>
+<li>Confirm that the lower limit cannot be equal to or greater than the upper limit and the upper limit cannot be equal to or less than the lower limit. Entering this condition should cause the limits to flip automatically and always have the larger limit as the Upper Limit.</li>
+<li>Confirm that the Reset Limits button resets the x-axis to the minimum and maximum values in the data.</li>
+<li>Confirm that the y-axis changes when the x-axis controls are modified</li>
+<li>Confirm that other controls (filtering, changing measures, etc.) work logically when using a custom x-axis. Example of an added filter: {"filters":[{"value_col":"SITE","label":"Site"}]}</li>
+<li>Confirm that with a filter added, such as SITE, the x-axis does not change when changing the Site filter but leaving the same Measure selected. The x-axis domain should only change when the measure changes.</li>
+<li>Confirm that if a filter is added for a variable that is not in the data, then a browser console warning is thrown. Add a made up filter such as {"filters":[{"value_col":"SOTE","label":"Sote"}]} and render the chart. Open the browser's developer tools to the Console view and look for the "The [ Sote ] filter has been removed because the variable does not exist." message.</li>
+<li>Confirm that missing or non-numeric values in the dataset are handled and removed, and that the number of missing and non-numeric records appears opposite the number of participants annotation, beneath the controls. View the same Console in the developer tools and look for the "xxxx missing or non-numeric results have been removed." warning message. Download the dataset, remove some numeric values, save the datset, and then upload the new version, and render the chart. The number of missing or non-numeric values shown in the warning message should increment accordingly.</li>
+<li>Confirm that a warning is thrown to the console when the user specifies an invalid starting measure, and that the chart then defaults to the first measure in the data, when sorted alphabetically. (To check: set Initial Medical Sign to an invalid value, render the chart, and view the console).</li>
+<li>Confirm that if you set Initial Medical Sign to an existent value (like IgE) and render, then the chart defaults to the specified measure, but with units attached.</li>
+<li>Confirm that if you set Unit to a non-existent value, then the chart will render, but the units no longer appear beside the Measure names in the filter, or along the x-axis.</li>
+<li>Confirm that specifying a non-existent value for a required field (such as Measure/Medical Sign or Result) and rendering the charts results in a "variable does not exist error" printed to both the console and the container element, and the chart is then destroyed.</li>
+<li>Verify a control labeled Quantity appears in the Bins group of controls.</li>
+<li>Confirm changing the Quantity sets the Algorithm control to Custom and sets the Width input to the range of the data divided by the number of bins</li>
+<li>Confirm that changing the input to a value less than 1 is not valid and get's rounded to 1 when you tab out</li>
+<li>Confirm that when you enter a non-integer and tab out, the input rounds to the nearest integer</li>
+<li>Verify a new control labeled Algorithm appears in the Bins group of controls with these options: Square-root choice, Sturges formula, Rice Rule, Scotts normal reference rule, Freedman-Diaconis choice, Shimazaki and Shinomotos choice, Custom</li>
+<li>Confirm that if you select an algorithm other than "Custom", the following occurs: The algorithm returns the number of bins and the width of each bin, the Quantity and Width inputs update accordingly, the info icon updates with a link to an description of the algorithm</li>
+<li>Confirm the number of bins in the Quantity input matches the number of bars in the chart</li>
+<li>Confirm the width of each bin in the Width input matches the width of the bars in the chart</li>
+<li>Verify that a control labeled X-axis Ticks appears with two radio buttons: linear and bin boundaries</li>
+<li>Confirm that when set to linear, the x-axis ticks should be spaced evenly along the x-axis but not necessarily at the boundaries between the bars/bins</li>
+<li>Confirm that when set to bin boundaries, the x-axis ticks should appear at the boundaries between each bar/bin</li>
+</ul>
+<p>Chart</p>
+<ul>
+<li>Confirm a description of the range and # of records appears below the chart when the user mouses over a bar</li>
+<li>Confirm that you can view a detailed listing of measure records by clicking on a bar in the chart: the number of records for the measure and selected range should appear underneath the chart</li>
+<li>Confirm that the bars are not cut off on either end of the chart</li>
+<li>Confirm that a value representing the lower and upper limit of each bar should appear to the left and right at the bottom of each bar on the x-axis when the bin boundaries radio button is selected.</li>
+<li>Confirm that when using a filter, the number of bins/columns displayed updates depending on the number of records displayed. (To check this: 1. Add a filter for VISIT. 2. Render the chart. 3. Flip through the VISIT dropdown and view the columns in the chart).</li>
+<li>Confirm that when data is filtered by something other than Measure, the Zoom button can be used to set the x-domain to the range of the filtered data.</li>
+<li>Confirm that hovering/clicking anywhere in the chart highlights the bar underneath the mouse vertically, regardless of whether the mouse is over the bar itself.</li>
+<li>Confirm that the custom mark for x domain when drawing the bars with the range of 0 is fixed via the Zoom button. (to test: 1. Add a USUBJID filter. 2. Select 01-021 in the filter dropdown. 3. Hit the zoom button - the bar should be centered on the underlying value (~47) and have a "normal" width, e.g. not too thin, not too thick, but just right.)</li>
+<li>Confirm that when 2 empty bins are next to each, tick labels still appear (Settings you can try to test: Alkaline phosphatase, X-Axis limits 1.62/2.87 Bins: 14/.09, can use linear or bin boundaries)</li>
+<li>Confirm that setting the x-axis limits wider than the defaults still has the bin boundaries extend to the edge of the charting canvas rather than to the edge of the histogram</li>
+<li>Confirm that the linear radio button is checked on default and that the x-axis displays evenly spaced ticks, both in distance and in range</li>
+<li>Confirm that the footnote that appears when hovering over a bar or after clicking a bar should detail the number of records as well as the range of values that bar encompasses (Ex: Click a bar: Table displays 34 records with Alkaline phosphatase (ALP) (μkat/L) values greater than or equal to 1.53 and less than 1.72</li>
+<li>Confirm that when you add a huge outlier to the data, the x-axis tick labels do not overlap (Ex. like 10,000 for Albumin)</li>
+<li>Use these test notes for the following 4 tests <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiYmluX2FsZ29yaXRobSI6ICJTY290dCdzIG5vcm1hbCByZWZlcmVuY2UgcnVsZSIsCiAibm9ybWFsX3JhbmdlIjogdHJ1ZSwKICJkaXNwbGF5X25vcm1hbF9yYW5nZSI6IGZhbHNlLAogImFubm90YXRlX2Jpbl9ib3VuZGFyaWVzIjogZmFsc2UsCiAidGVzdF9ub3JtYWxpdHkiOiB0cnVlLAogImNvbXBhcmVfZGlzdHJpYnV0aW9ucyI6IGZhbHNlCn0=&draw&controls=min">TEST NOTES</a></li>
+<li>Verify an annotation appears in the top right of the chart labeled Normality: with a p-value and an info icon</li>
+<li>Verify hovering over the p-value displays information about the statistical test</li>
+<li>Verify clicking the info icon opens the relevant Wikipedia page</li>
+<li>Verify the p-value updates upon selecting a different measure</li>
+</ul>
+<p>(use these test notes for the following 4 tests and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiZ3JvdXBzIjogWwogIHsKICAgImxhYmVsIjogIlNleCIsCiAgICJ2YWx1ZV9jb2wiOiAiU0VYIgogIH0sCiAgewogICAibGFiZWwiOiAiVHJlYXRtZW50IEdyb3VwIiwKICAgInZhbHVlX2NvbCI6ICJBUk0iCiAgfSwKICB7CiAgICJsYWJlbCI6ICJSYWNlIiwKICAgInZhbHVlX2NvbCI6ICJSQUNFIgogIH0sCiAgewogICAibGFiZWwiOiAiU2l0ZSIsCiAgICJ2YWx1ZV9jb2wiOiAiU0lURSIKICB9CiBdLAogImJpbl9hbGdvcml0aG0iOiAiU2NvdHQncyBub3JtYWwgcmVmZXJlbmNlIHJ1bGUiLAogIm5vcm1hbF9yYW5nZSI6IHRydWUsCiAiZGlzcGxheV9ub3JtYWxfcmFuZ2UiOiBmYWxzZSwKICJhbm5vdGF0ZV9iaW5fYm91bmRhcmllcyI6IGZhbHNlLAogInRlc3Rfbm9ybWFsaXR5IjogZmFsc2UsCiAiY29tcGFyZV9kaXN0cmlidXRpb25zIjogZmFsc2UKfQ==&draw&controls=min">TEST NOTES</a>)</p>
+<ul>
+<li>Verify a dropdown labeled Group by appears to the right of the histogram</li>
+<li>Select an option from the Group by dropdown and verify a histogram appears for each value of the selected option</li>
+<li>Confirm that selecting None from the dropdown makes the grouped histograms disappear</li>
+<li>Verify the grouped histograms update upon selecting a different measure</li>
+</ul>
+<p>(Use these test notes for the following 2 tests and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiYmluX2FsZ29yaXRobSI6ICJTY290dCdzIG5vcm1hbCByZWZlcmVuY2UgcnVsZSIsCiAibm9ybWFsX3JhbmdlIjogdHJ1ZSwKICJkaXNwbGF5X25vcm1hbF9yYW5nZSI6IGZhbHNlLAogImFubm90YXRlX2Jpbl9ib3VuZGFyaWVzIjogZmFsc2UsCiAidGVzdF9ub3JtYWxpdHkiOiBmYWxzZSwKICJjb21wYXJlX2Rpc3RyaWJ1dGlvbnMiOiBmYWxzZQp9&draw&controls=min">TEST NOTES</a>)</p>
+<ul>
+<li>Confirm that the vertical sidebar appears after zooming in.</li>
+<li>Scroll to the bottom and mouse over and out of the chart and verify the page does not re-position on mouse-out.</li>
+</ul>
+<p>(Use these test notes for the following 5 tests and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiZ3JvdXBzIjogWwogIHsKICAgImxhYmVsIjogIlNleCIsCiAgICJ2YWx1ZV9jb2wiOiAiU0VYIgogIH0sCiAgewogICAibGFiZWwiOiAiVHJlYXRtZW50IEdyb3VwIiwKICAgInZhbHVlX2NvbCI6ICJBUk0iCiAgfSwKICB7CiAgICJsYWJlbCI6ICJSYWNlIiwKICAgInZhbHVlX2NvbCI6ICJSQUNFIgogIH0sCiAgewogICAibGFiZWwiOiAiU2l0ZSIsCiAgICJ2YWx1ZV9jb2wiOiAiU0lURSIKICB9CiBdLAogImJpbl9hbGdvcml0aG0iOiAiU2NvdHQncyBub3JtYWwgcmVmZXJlbmNlIHJ1bGUiLAogIm5vcm1hbF9yYW5nZSI6IHRydWUsCiAiZGlzcGxheV9ub3JtYWxfcmFuZ2UiOiBmYWxzZSwKICJhbm5vdGF0ZV9iaW5fYm91bmRhcmllcyI6IGZhbHNlLAogInRlc3Rfbm9ybWFsaXR5IjogZmFsc2UsCiAiY29tcGFyZV9kaXN0cmlidXRpb25zIjogdHJ1ZQp9&draw&controls=min">TEST NOTES</a></p>
+<ul>
+<li>Select an option from the Group by dropdown</li>
+<li>Verify an annotation appears in the top right of the each grouped histogram chart with a p-value and an info icon</li>
+<li>Verify hovering over a p-value displays information about the statistical test</li>
+<li>Verify clicking an info icon opens the relevant Wikipedia page</li>
+<li>Verify the p-values update upon selecting a different measure</li>
+</ul>
+<p>(Use these test notes for the following 9 tests and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiZ3JvdXBzIjogWwogIHsKICAgImxhYmVsIjogIlNleCIsCiAgICJ2YWx1ZV9jb2wiOiAiU0VYIgogIH0sCiAgewogICAibGFiZWwiOiAiVHJlYXRtZW50IEdyb3VwIiwKICAgInZhbHVlX2NvbCI6ICJBUk0iCiAgfSwKICB7CiAgICJsYWJlbCI6ICJSYWNlIiwKICAgInZhbHVlX2NvbCI6ICJSQUNFIgogIH0sCiAgewogICAibGFiZWwiOiAiU2l0ZSIsCiAgICJ2YWx1ZV9jb2wiOiAiU0lURSIKICB9CiBdLAogImJpbl9hbGdvcml0aG0iOiAiU2NvdHQncyBub3JtYWwgcmVmZXJlbmNlIHJ1bGUiLAogIm5vcm1hbF9yYW5nZSI6IHRydWUsCiAiZGlzcGxheV9ub3JtYWxfcmFuZ2UiOiBmYWxzZSwKICJhbm5vdGF0ZV9iaW5fYm91bmRhcmllcyI6IGZhbHNlLAogInRlc3Rfbm9ybWFsaXR5IjogZmFsc2UsCiAiY29tcGFyZV9kaXN0cmlidXRpb25zIjogZmFsc2UKfQ==&draw&controls=min">TEST NOTES</a></p>
+<ul>
+<li>Select an option from Group by dropdown</li>
+<li>Verify hovering over a bar in a grouped histogram highlights the corresponding bar in the main histogram and all other grouped histograms</li>
+<li>Verify hovering over a bar in the main histogram highlights the corresponding bar in all grouped histograms</li>
+<li>Verify hovering over a bar in the grouped histogram displays information about the group in the footnote beneath the main chart</li>
+<li>Verify clicking a bar in a grouped histogram displays a listing of records corresponding to only that group</li>
+<li>Verify clicking a bar in a grouped histogram increases the opacity of the clicked bar and reduces the opacity of all bars in the main chart, in the other grouped charts, and in the clicked chart</li>
+<li>Verify clicking a bar in the main chart after clicking a bar in a grouped chart resets the opacity of the previously clicked bar</li>
+<li>Verify clicking a bar in a grouped chart after clicking a bar in the main chart resets the opacity of the previously clicked bar</li>
+<li>Verify clicking the underlined footnote beneath the main chart resets the opacity of all bars and removes the listing</li>
+</ul>
+<p>(Use this setting for the following test and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiYmluX2FsZ29yaXRobSI6ICJTY290dCdzIG5vcm1hbCByZWZlcmVuY2UgcnVsZSIsCiAibm9ybWFsX3JhbmdlIjogdHJ1ZSwKICJkaXNwbGF5X25vcm1hbF9yYW5nZSI6IGZhbHNlLAogImFubm90YXRlX2Jpbl9ib3VuZGFyaWVzIjogZmFsc2UsCiAidGVzdF9ub3JtYWxpdHkiOiBmYWxzZSwKICJjb21wYXJlX2Rpc3RyaWJ1dGlvbnMiOiBmYWxzZQp9&draw">TEST NOTES</a></p>
+<ul>
+<li>In CAT underneath 3. Customize the Chart, click the radio button labeled text. Verify a setting appears in the settings object named display<em>normal</em>range.</li>
+</ul>
+<p>(Use these test notes for the following 2 tests and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiZ3JvdXBzIjogWwogIHsKICAgImxhYmVsIjogIlNleCIsCiAgICJ2YWx1ZV9jb2wiOiAiU0VYIgogIH0sCiAgewogICAibGFiZWwiOiAiVHJlYXRtZW50IEdyb3VwIiwKICAgInZhbHVlX2NvbCI6ICJBUk0iCiAgfSwKICB7CiAgICJsYWJlbCI6ICJSYWNlIiwKICAgInZhbHVlX2NvbCI6ICJSQUNFIgogIH0sCiAgewogICAibGFiZWwiOiAiU2l0ZSIsCiAgICJ2YWx1ZV9jb2wiOiAiU0lURSIKICB9CiBdLAogImJpbl9hbGdvcml0aG0iOiAiU2NvdHQncyBub3JtYWwgcmVmZXJlbmNlIHJ1bGUiLAogIm5vcm1hbF9yYW5nZSI6IHRydWUsCiAiZGlzcGxheV9ub3JtYWxfcmFuZ2UiOiBmYWxzZSwKICJhbm5vdGF0ZV9iaW5fYm91bmRhcmllcyI6IGZhbHNlLAogInRlc3Rfbm9ybWFsaXR5IjogZmFsc2UsCiAiY29tcGFyZV9kaXN0cmlidXRpb25zIjogZmFsc2UKfQ==&draw&controls=min">TEST NOTES</a> )</p>
+<ul>
+<li>Select an option from the Group by dropdown. Click bars in the grouped charts and in the main chart and try to get two bars highlighted.</li>
+<li>Confirm the 2 bars don't highlight.</li>
+</ul>
+<p>(Use this setting for the following test and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiYmluX2FsZ29yaXRobSI6ICJTY290dCdzIG5vcm1hbCByZWZlcmVuY2UgcnVsZSIsCiAibm9ybWFsX3JhbmdlIjogdHJ1ZSwKICJkaXNwbGF5X25vcm1hbF9yYW5nZSI6IGZhbHNlLAogImFubm90YXRlX2Jpbl9ib3VuZGFyaWVzIjogZmFsc2UsCiAidGVzdF9ub3JtYWxpdHkiOiB0cnVlLAogImdyb3VwX2J5IjogIkFSTSIsCiAiY29tcGFyZV9kaXN0cmlidXRpb25zIjogdHJ1ZQp9&draw&controls=min">TEST NOTES</a> )</p>
+<ul>
+<li>Verify a disclaimer appears in the tooltip of the info icons of the annotated p-values in both the main chart and the grouped histograms with this text: Caution: This graphic has been thoroughly tested, but is not validated.</li>
+</ul>
+<p>(Use these settings for the following 2 tests and make sure the version is dev-v2.5.0 <a href="https://rhoinc.github.io/CAT/?re=c2FmZXR5LWhpc3RvZ3JhbQ==&ve=Z3JvdXAtY29tcGFyaXNvbnM=&de=Y2xpbmljYWwtdHJpYWxzL3JlbmRlcmVyLXNwZWNpZmljL2FkYmRzLmNzdg==&se=ewogIm1lYXN1cmVfY29sIjogIlRFU1QiLAogInZhbHVlX2NvbCI6ICJTVFJFU04iLAogImlkX2NvbCI6ICJVU1VCSklEIiwKICJ1bml0X2NvbCI6ICJTVFJFU1UiLAogIm5vcm1hbF9jb2xfbG93IjogIlNUTlJMTyIsCiAibm9ybWFsX2NvbF9oaWdoIjogIlNUTlJISSIsCiAiYmluX2FsZ29yaXRobSI6ICJTY290dCdzIG5vcm1hbCByZWZlcmVuY2UgcnVsZSIsCiAibm9ybWFsX3JhbmdlIjogdHJ1ZSwKICJkaXNwbGF5X25vcm1hbF9yYW5nZSI6IGZhbHNlLAogImFubm90YXRlX2Jpbl9ib3VuZGFyaWVzIjogZmFsc2UsCiAidGVzdF9ub3JtYWxpdHkiOiB0cnVlLAogImdyb3VwX2J5IjogIkFSTSIsCiAiY29tcGFyZV9kaXN0cmlidXRpb25zIjogdHJ1ZQp9&draw&controls=min">TEST NOTES</a> )</p>
+<ul>
+<li>Select Aminotransferase, alanine (ALT) (pkat/L) from the Measure dropdown.</li>
+<li>Verify in the main chart the p-value is formatted with a less than sign</li>
+<li>Verify in the Treatment B grouped histogram the p-value is formatted with a greater than sign</li>
+</ul>
+<p>Data Listing</p>
+<ul>
+<li>Confirm # of records is visible in data listing header</li>
+<li>Confirm the bottom of the data listing tab has pagination links</li>
+<li>Confirm each default page displays 10 records</li>
+<li>Confirm “&gt;” pagination arrows link data records to the next page</li>
+<li>Confirm “&lt;” pagination arrows link data records to the previous page</li>
+<li>Confirm pagination “&gt;&gt;” double arrows link data to the last pages of the data record</li>
+<li>Confirm pagination “&lt;&lt;” double arrows link data to the first pages of the data record</li>
+<li>Confirm that Search works to filter the data displayed in the listing</li>
+<li>Confirm that Sort works in the listing by clicking on column headers</li>
+<li>Confirm that you can export the displayed data to a csv via via the Export: CSV button</li>
+<li>Confirm data listing resets when a new filter is applied</li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/rhoinc/safety-histogram/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><p>The Safety Histogram accepts <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> data of the format returned by <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/CSV.md"><code>d3.csv()</code></a>. The renderer visualizes clinical medical signs data with <strong>one row per measurement</strong> plus the required variables specified below.</p>
+<h2 id="datastructure">Data structure</h2>
+<p>one record per measurement</p>
+<h2 id="dataspecification">Data specification</h2>
+<p>required and optional variables:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Setting</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Data Type</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:center;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>measure_col</code></td>
+<td style="text-align:left;"><em>TEST</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains the names of each medical sign</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>value_col</code></td>
+<td style="text-align:left;"><em>STRESN</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">a variable that contains the results for each medical sign; non-numeric results are removed with a notification thrown to the log</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>id_col</code></td>
+<td style="text-align:left;"><em>USUBJID</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains IDs for each participant</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>unit_col</code></td>
+<td style="text-align:left;"><em>STRESU</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains the units of each medical sign</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>normal_col_low</code></td>
+<td style="text-align:left;"><em>STNRLO</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">a variable that contains the lower limit of normal of the medical sign</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>normal_col_high</code></td>
+<td style="text-align:left;"><em>STNRHI</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">a variable that contains the upper limit of normal of the medical sign</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>filters[]</code></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"><strong>either</strong></td>
+<td style="text-align:left;">an array of variables and metadata that will appear in the controls as data filters</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>details[]</code></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"><strong>either</strong></td>
+<td style="text-align:left;">an array of variables and metadata that will appear in the data listing</td>
+<td style="text-align:center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="customizedchartwithqueries">Customized Chart with Queries</h2>
+<p>The following data specs and chart settings can be used to create a chart with several custom filters, including Sex, Race and Query Status. A sample chart using this configuration is found <a href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-histogram/">here</a>.</p>
+<h3 id="dataspecification-1">Data Specification</h3>
+<table>
+<thead>
+<tr>
+<th>Settings Variable</th>
+<th>Variable</th>
+<th>Default</th>
+<th>Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_col</td>
+<td>Participant ID</td>
+<td>USUBJID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>measure_col</td>
+<td>Measure</td>
+<td>TEST</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>value_col</td>
+<td>Value</td>
+<td>STRESN</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>unit_col</td>
+<td>Unit</td>
+<td>STRESU</td>
+<td></td>
+</tr>
+<tr>
+<td>normal<em>col</em>low</td>
+<td>Normal Range - Low</td>
+<td>STRNLO</td>
+<td></td>
+</tr>
+<tr>
+<td>normal<em>col</em>high</td>
+<td>Normal Range - High</td>
+<td>STRNHI</td>
+<td></td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Visit</td>
+<td>VISIT</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Site ID</td>
+<td>SITEID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Treatment Arm</td>
+<td>ARM</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Sex</td>
+<td>SEX</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Race</td>
+<td>RACE</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Query Flag ("Y" for yes)</td>
+<td>QUERYFL</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>details</td>
+<td>Query Details</td>
+<td>QUERYDETAILS</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingsobject">Settings Object</h3>
+<pre><code>  {filters:
+                [   {value_col: 'VISIT',    label: 'Visit'},
+                ,   {value_col: 'ARM', label: 'Arm'}
+                ,   {value_col: 'SITEID', label: 'Site ID'}
+                ,   {value_col: 'SEX', label: 'Sex'}
+                ,   {value_col: 'RACE', label: 'Race'}
+                ,   {value_col: 'QUERYFL', label: 'Open Query?'}]
+            ,details: [
+                {value_col: 'USUBJID'     , label: 'Subject ID'},
+                {value_col: 'SITEID'      , label: 'Site ID' },
+                {value_col: 'SEX'         , label: 'Sex'    },
+                {value_col: 'RACE'        , label: 'Race'   },
+                {value_col: 'VISIT'       , label: 'Visit'  },
+                {value_col: 'DY'          , label: 'Study Day' },    
+                {value_col: 'STNRLO'      , label: 'LLN' },
+                {value_col: 'STRESN'      , label: 'Result'}, 
+                {value_col: 'STNRHI'      , label: 'ULN' },
+                {value_col: 'STRESU'      , label: 'Units' },
+                {value_col: 'QUERYDETAILS', label: 'Query Details'}]
+            }
+</code></pre></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/rhoinc/safety-histogram/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="safetyhistogramelementsettings">safetyHistogram(element, settings)</h1>
+<p>a factory to create a custom <a href="https://github.com/RhoInc/Webcharts/wiki/Chart">Webcharts chart</a> object</p>
+<p><strong>returns:</strong> <a href="https://github.com/RhoInc/Webcharts/wiki/Chart"><code>chart</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/rhoinc/safety-histogram/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><p>The most straightforward way to customize the Safety Histogram is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the Safety Histogram is a Webcharts <code>chart</code> object, many default Webcharts settings are set in the <a href="https://github.com/RhoInc/safety-histogram/blob/master/src/configuration/webchartsSettings.js">webchartsSettings.js file</a> as <a href="#webcharts-settings">described below</a>. Refer to the <a href="https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration">Webcharts documentation</a> for more details on these settings.</p>
+<p>In addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the Safety Histogram to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.</p>
+<h1 id="rendererspecificsettings">Renderer-specific settings</h1>
+<p>The sections below describe each safety-histogram setting as of version 2.3.0.</p>
+<h2 id="settingsmeasure_col">settings.measure_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the names of each medical sign</p>
+<p><strong>default:</strong> <code>"TEST"</code></p>
+<h2 id="settingsvalue_col">settings.value_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the results for each medical sign; non-numeric results are removed with a notification thrown to the log</p>
+<p><strong>default:</strong> <code>"STRESN"</code></p>
+<h2 id="settingsid_col">settings.id_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains IDs for each participant</p>
+<p><strong>default:</strong> <code>"USUBJID"</code></p>
+<h2 id="settingsunit_col">settings.unit_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the units of each medical sign</p>
+<p><strong>default:</strong> <code>"STRESU"</code></p>
+<h2 id="settingsnormal_col_low">settings.normal<em>col</em>low</h2>
+<p><code>string</code></p>
+<p>a variable that contains the lower limit of normal of the medical sign</p>
+<p><strong>default:</strong> <code>"STNRLO"</code></p>
+<h2 id="settingsnormal_col_high">settings.normal<em>col</em>high</h2>
+<p><code>string</code></p>
+<p>a variable that contains the upper limit of normal of the medical sign</p>
+<p><strong>default:</strong> <code>"STNRHI"</code></p>
+<h2 id="settingsfilters">settings.filters</h2>
+<p><code>array</code></p>
+<p>an array of variables and metadata that will appear in the controls as data filters</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfilterslabel">settings.filters[].label</h3>
+<p><code>string</code></p>
+<p>a description of the variable</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfiltersvalue_col">settings.filters[].value_col</h3>
+<p><code>string</code></p>
+<p>the name of the variable</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsdetails">settings.details</h2>
+<p><code>array</code></p>
+<p>an array of variables and metadata that will appear in the data listing</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsdetailslabel">settings.details[].label</h3>
+<p><code>string</code></p>
+<p>a description of the variable</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsdetailsvalue_col">settings.details[].value_col</h3>
+<p><code>string</code></p>
+<p>the name of the variable</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsstart_value">settings.start_value</h2>
+<p><code>string</code></p>
+<p>the name of the initially displayed medical sign; defaults to the first measure in the data</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsnormal_range">settings.normal_range</h2>
+<p><code>boolean</code></p>
+<p>a boolean that dictates whether the normal range control will be generated</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h2 id="settingsdisplaynormalrange">settings.displayNormalRange</h2>
+<p><code>boolean</code></p>
+<p>a boolean that dictates whether the normal range will be displayed initially</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h1 id="webchartssettings">Webcharts settings</h1>
+<p>The object below contains Webcharts settings that define the safety-histogram chart as of version 2.3.0 of the Safety Histogram.</p>
+<pre><code>{
+    "x": {
+        "type": "linear",
+        "column": null,
+        "label": null,
+        "domain": [
+            null,
+            null
+        ],
+        "format": null,
+        "bin": null
+    },
+    "y": {
+        "type": "linear",
+        "column": null,
+        "label": "# of Observations",
+        "domain": [
+            0,
+            null
+        ],
+        "format": "1d",
+        "behavior": "flex"
+    },
+    "marks": [
+        {
+            "per": [],
+            "type": "bar",
+            "summarizeY": "count",
+            "summarizeX": "mean",
+            "attributes": {
+                "fill-opacity": 0.75
+            }
+        }
+    ],
+    "aspect": 3
+}
+</code></pre></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>PullRequest</th><th>Requester</th><th>DateRequested</th><th>Branch</th><th>Target</th><th>Title</th><th>ReviewID</th><th>Reviewer</th><th>ReviewDate</th><th>ReviewStatus</th><th>MergedBy</th><th>DateMerged</th><th>ReviewComments</th></tr></thead><tbody><tr><td>0001</td><td>jwildfire</td><td>2016-04-13T19:51:18Z</td><td>reorg</td><td>master</td><td>refactored code to use webcharts-wrapper-boilerplate</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-04-18T13:17:13Z</td><td></td></tr><tr><td>0019</td><td>jwildfire</td><td>2016-05-25T19:50:51Z</td><td>reorg-backup</td><td>master</td><td>Reorg backup</td><td></td><td></td><td></td><td>NONE</td><td>Nathan Bryant</td><td>2016-06-08T15:24:30Z</td><td></td></tr><tr><td>0021</td><td>samussiah</td><td>2016-08-11T22:27:34Z</td><td>customization</td><td>master</td><td>V1.3.0</td><td></td><td></td><td></td><td>NONE</td><td>Spencer</td><td>2016-08-17T18:44:33Z</td><td></td></tr><tr><td>0032</td><td>jwildfire</td><td>2016-12-16T01:36:36Z</td><td>header_bug</td><td>v1.3.0</td><td>clear the header in onDataTransform</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-01-05T16:45:25Z</td><td></td></tr><tr><td>0033</td><td>jwildfire</td><td>2016-12-17T15:53:47Z</td><td>v1.3.0_part2</td><td>master</td><td>Safety Historgram v1.3.0 - Part 2</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td></td><td></td></tr><tr><td>0034</td><td>jwildfire</td><td>2016-12-17T16:12:36Z</td><td>v1.3.0</td><td>master</td><td>Safety Histogram v2.0.0</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-02-16T16:41:23Z</td><td></td></tr><tr><td>0035</td><td>jwildfire</td><td>2017-01-03T23:57:35Z</td><td>new-filter-default</td><td>v1.3.0</td><td>New filter default</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-01-05T23:59:20Z</td><td></td></tr><tr><td>0036</td><td>jwildfire</td><td>2017-01-05T00:25:05Z</td><td>chf-build-fix</td><td>v1.3.0</td><td>Chf build fix</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-01-09T19:10:59Z</td><td></td></tr><tr><td>0039</td><td>samussiah</td><td>2017-01-19T21:37:36Z</td><td>normal-range-bug</td><td>v1.3.0</td><td>Normal range bug</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2017-01-19T21:37:47Z</td><td></td></tr><tr><td>0041</td><td>samussiah</td><td>2017-01-30T20:49:35Z</td><td>dynamic-normal-range-control</td><td>v1.3.0</td><td>Dynamic normal range control</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2017-01-30T20:52:54Z</td><td></td></tr><tr><td>0042</td><td>samussiah</td><td>2017-02-10T22:27:02Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement filter-independent x-axis domain and improve normal range l…</td><td>21565542</td><td>jwildfire</td><td>2017-02-13T17:53:26Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-13T22:40:53Z</td><td>#38 is looking good. ;; x-axis (#22) still seems to be changing for me on filter though. Will look at that more closely in a bit. ;;I'll take your word for it that this works ;);;cute. </td></tr><tr><td>0042</td><td>samussiah</td><td>2017-02-10T22:27:02Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement filter-independent x-axis domain and improve normal range l…</td><td>21584782</td><td>jwildfire</td><td>2017-02-13T18:54:57Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-13T22:40:53Z</td><td>Don't think having this on pre-process is enough. Will only happen once ... maybe if we move to redraw()? Leaning towards just bumping #22 out of v2.0.0. It's pretty low priority for the histogram IMO. </td></tr><tr><td>0042</td><td>samussiah</td><td>2017-02-10T22:27:02Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement filter-independent x-axis domain and improve normal range l…</td><td>21634665</td><td>jwildfire</td><td>2017-02-13T22:39:58Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-13T22:40:53Z</td><td>lets deal with this in v2.1. merging the PR. </td></tr><tr><td>0044</td><td>jwildfire</td><td>2017-02-16T22:50:27Z</td><td>detail_colBug</td><td>master</td><td>use details.col</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-02-16T22:51:01Z</td><td></td></tr><tr><td>0046</td><td>jwildfire</td><td>2017-03-07T02:16:40Z</td><td>v2.0.1</td><td>master</td><td>Don't render filters for variables with 0 or 1 levels. closes #45</td><td>25649470</td><td>samussiah</td><td>2017-03-07T22:26:57Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-03-13T23:37:33Z</td><td>Brilliant!</td></tr><tr><td>0050</td><td>jwildfire</td><td>2017-10-12T17:58:28Z</td><td>v2.0.2-dev</td><td>master</td><td>v2.0.2 dev branch</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td></td><td></td></tr><tr><td>0051</td><td>jwildfire</td><td>2017-10-12T17:59:13Z</td><td>pagination-fix</td><td>v2.0.2-dev</td><td>fix pagination bug. fixes #49</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td></td><td></td></tr><tr><td>0057</td><td>samussiah</td><td>2017-10-19T22:27:38Z</td><td>v2.0.3-dev</td><td>master</td><td>V2.0.3 dev</td><td>70728950</td><td>jwildfire</td><td>2017-10-20T02:07:23Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-10-20T02:11:59Z</td><td></td></tr><tr><td>0063</td><td>mhickle</td><td>2017-12-18T19:41:01Z</td><td>ReadMe</td><td>master</td><td>Read me</td><td></td><td></td><td></td><td>NONE</td><td>mhickle</td><td>2017-12-18T19:42:49Z</td><td></td></tr><tr><td>0065</td><td>jwildfire</td><td>2018-01-18T03:44:43Z</td><td>v2.1.0-dev</td><td>master</td><td>Safety Histogram v2.1.0</td><td>90620700</td><td>dschwentker</td><td>2018-01-22T20:49:30Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-01-23T05:22:55Z</td><td>Regression tests updated and passed.</td></tr><tr><td>0066</td><td>jwildfire</td><td>2018-01-18T03:45:38Z</td><td>interactive-axis</td><td>v2.1.0-dev</td><td>Interactive Axis</td><td>90155085</td><td>samussiah</td><td>2018-01-19T15:59:31Z</td><td>CHANGES_REQUESTED</td><td>jwildfire</td><td>2018-01-23T05:19:41Z</td><td>Works (mostly) as expected, responsive, but there are a few elusive bugs.  Of note when the domain is changed the lower bound of the very first bin is less than the lower limit of the x-domain.  Not sure if that's the renderer or webcharts but as I recall we had to come up with a workaround before for this.;;Bitwise `&` here too.;;Need to convert `f[v]` to numeric here and perhaps replace the bitwise `&` with the standard `&&`.;;Possibly also ensure that `chart.x_dom` contains numbers rather than strings.;;Convert these values to numeric.</td></tr><tr><td>0066</td><td>jwildfire</td><td>2018-01-18T03:45:38Z</td><td>interactive-axis</td><td>v2.1.0-dev</td><td>Interactive Axis</td><td>90206449</td><td>jwildfire</td><td>2018-01-19T18:43:15Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-01-23T05:19:41Z</td><td>👍 on filter logic. I think we're ok on `x_dom` being numeric since we measures that aren't numeric. </td></tr><tr><td>0066</td><td>jwildfire</td><td>2018-01-18T03:45:38Z</td><td>interactive-axis</td><td>v2.1.0-dev</td><td>Interactive Axis</td><td>90219942</td><td>samussiah</td><td>2018-01-19T19:29:43Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-01-23T05:19:41Z</td><td>Perfect!</td></tr><tr><td>0066</td><td>jwildfire</td><td>2018-01-18T03:45:38Z</td><td>interactive-axis</td><td>v2.1.0-dev</td><td>Interactive Axis</td><td>90620495</td><td>dschwentker</td><td>2018-01-22T20:48:50Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-01-23T05:19:41Z</td><td>Issue 59 was tested and closed and was the only issue to be tested in this update.</td></tr><tr><td>0069</td><td>samussiah</td><td>2018-02-27T14:56:51Z</td><td>v2.1.1-dev</td><td>master</td><td>Safety Histogram - v2.1.1</td><td>99866186</td><td>pburnsdata</td><td>2018-02-27T21:41:48Z</td><td>CHANGES_REQUESTED</td><td>samussiah</td><td>2018-03-09T20:26:09Z</td><td>The version wasn't changed in package.json, wasn't sure if it needed to be?</td></tr><tr><td>0069</td><td>samussiah</td><td>2018-02-27T14:56:51Z</td><td>v2.1.1-dev</td><td>master</td><td>Safety Histogram - v2.1.1</td><td>102645010</td><td>pburnsdata</td><td>2018-03-09T13:31:26Z</td><td>APPROVED</td><td>samussiah</td><td>2018-03-09T20:26:09Z</td><td></td></tr><tr><td>0069</td><td>samussiah</td><td>2018-02-27T14:56:51Z</td><td>v2.1.1-dev</td><td>master</td><td>Safety Histogram - v2.1.1</td><td>102769245</td><td>dschwentker</td><td>2018-03-09T19:53:19Z</td><td>APPROVED</td><td>samussiah</td><td>2018-03-09T20:26:09Z</td><td>Tested and passed using webcharts version v1.10.0-dev. Confirmed that there are 0 results when running  d3.selectAll('.wc-controls .control-label') in the console.</td></tr><tr><td>0071</td><td>samussiah</td><td>2018-03-08T22:55:40Z</td><td>v2.2.0-dev</td><td>master</td><td>Safety Histogram - v2.2.0</td><td>112849276</td><td>dschwentker</td><td>2018-04-17T14:57:35Z</td><td>APPROVED</td><td>samussiah</td><td>2018-04-17T16:01:24Z</td><td>Regression testing complete - all items passed.</td></tr><tr><td>0072</td><td>samussiah</td><td>2018-03-10T16:57:30Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td>103051720</td><td>pburnsdata</td><td>2018-03-12T13:56:28Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-02T18:38:37Z</td><td></td></tr><tr><td>0072</td><td>samussiah</td><td>2018-03-10T16:57:30Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td>108176648</td><td>dschwentker</td><td>2018-03-29T19:32:37Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-02T18:38:37Z</td><td>Confirmed there are properties in settings-schema.json that match up with variables in the rendererSpecificSettings section of src/defaultSettings.js.</td></tr><tr><td>0073</td><td>samussiah</td><td>2018-03-10T17:38:23Z</td><td>remove-falsey-results</td><td>v2.2.0-dev</td><td>Remove falsey results</td><td>103061644</td><td>pburnsdata</td><td>2018-03-12T14:20:00Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-04-02T18:38:59Z</td><td>Respect for Grammar</td></tr><tr><td>0073</td><td>samussiah</td><td>2018-03-10T17:38:23Z</td><td>remove-falsey-results</td><td>v2.2.0-dev</td><td>Remove falsey results</td><td>103062532</td><td>pburnsdata</td><td>2018-03-12T14:22:05Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-02T18:38:59Z</td><td></td></tr><tr><td>0073</td><td>samussiah</td><td>2018-03-10T17:38:23Z</td><td>remove-falsey-results</td><td>v2.2.0-dev</td><td>Remove falsey results</td><td>108351888</td><td>dschwentker</td><td>2018-03-30T15:01:48Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-02T18:38:59Z</td><td>Tested and approved</td></tr><tr><td>0075</td><td>samussiah</td><td>2018-03-16T15:53:20Z</td><td>precision</td><td>v2.2.0-dev</td><td>Precision</td><td>105101450</td><td>pburnsdata</td><td>2018-03-19T19:12:31Z</td><td>APPROVED</td><td>emmorris</td><td>2018-04-05T15:51:52Z</td><td>@samussiah I really like this! log10 makes that switch from the ticks to bins really nice. Here are my random thoughts for what they're worth:;; - If the numbers are ever really large (not sure if that ever happens), might make sense to have a case that handles that - maybe one that uses scientific notation? ;; - ~3.16 does seem like a small threshold for switching to integer tick marks - but understand why it's cut off there</td></tr><tr><td>0075</td><td>samussiah</td><td>2018-03-16T15:53:20Z</td><td>precision</td><td>v2.2.0-dev</td><td>Precision</td><td>109417877</td><td>dschwentker</td><td>2018-04-04T17:07:38Z</td><td>APPROVED</td><td>emmorris</td><td>2018-04-05T15:51:52Z</td><td>Tested and passed in all browsers.</td></tr><tr><td>0082</td><td>pburnsdata</td><td>2018-04-26T16:56:31Z</td><td>fix-readme</td><td>master</td><td>Fix readme</td><td></td><td></td><td></td><td>NONE</td><td>Preston Burns</td><td></td><td></td></tr><tr><td>0083</td><td>brittsikora</td><td>2018-04-26T17:11:17Z</td><td>brittsikora-patch-1</td><td>master</td><td>Updated example link to go to new test page</td><td></td><td></td><td></td><td>NONE</td><td>Britt Sikora</td><td></td><td></td></tr><tr><td>0086</td><td>rtbailey</td><td>2018-08-09T19:38:03Z</td><td>rtbailey-patch-1</td><td>master</td><td>Update LICENSE.md</td><td></td><td></td><td></td><td>NONE</td><td>Ryan Bailey</td><td></td><td></td></tr><tr><td>0087</td><td>samussiah</td><td>2018-10-23T18:56:05Z</td><td>v2.2.1-dev</td><td>master</td><td>Safety Histogram v2.2.1</td><td>167731423</td><td>jwildfire</td><td>2018-10-24T05:09:13Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-10-24T15:53:43Z</td><td>💯 </td></tr><tr><td>0088</td><td>jwildfire</td><td>2018-10-24T16:17:05Z</td><td>v2.2.2-dev</td><td>master</td><td>Safety Histogram v2.2.2</td><td>168004078</td><td>samussiah</td><td>2018-10-24T16:30:19Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-10-24T16:30:49Z</td><td>nice find!</td></tr><tr><td>0090</td><td>pburnsdata</td><td>2019-01-08T21:11:50Z</td><td>pburnsdata-patch-1</td><td>master</td><td>Resolve Spelling Error</td><td>211847806</td><td>emmorris</td><td>2019-03-07T15:29:01Z</td><td>APPROVED</td><td>Preston Burns</td><td>2019-03-07T18:56:27Z</td><td>Great spelling Preston!</td></tr><tr><td>0094</td><td>samussiah</td><td>2019-03-18T21:18:10Z</td><td>dev-v2.3.0</td><td>master</td><td>Safety Histogram v2.3.0</td><td>229670422</td><td>dschwentker</td><td>2019-04-23T16:45:43Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-23T18:06:13Z</td><td>Regression tests passed in Firefox and Chrome</td></tr><tr><td>0096</td><td>samussiah</td><td>2019-04-02T16:15:05Z</td><td>invalid-measure</td><td>dev-v2.3.0</td><td>Optionalize units, throw warning when start measure is invalid, and annotate removed records</td><td>223913673</td><td>pburnsdata</td><td>2019-04-08T15:22:35Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:14:49Z</td><td>Looks great! Couple bonus improvements in there too;;makes perfect sense;;Seems like all the cases!;;i like this</td></tr><tr><td>0096</td><td>samussiah</td><td>2019-04-02T16:15:05Z</td><td>invalid-measure</td><td>dev-v2.3.0</td><td>Optionalize units, throw warning when start measure is invalid, and annotate removed records</td><td>228818200</td><td>dschwentker</td><td>2019-04-19T20:32:13Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:14:49Z</td><td>Tested and passed the three issues in this PR.</td></tr><tr><td>0097</td><td>samussiah</td><td>2019-04-02T21:04:23Z</td><td>improved-hovering</td><td>dev-v2.3.0</td><td>Improve hovering over bins.</td><td>223937012</td><td>pburnsdata</td><td>2019-04-08T15:58:51Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:14:55Z</td><td>Hovers on incredible - clicks all the right buttons;;looks nice;;oh wow interesting. Good idea on the invisible path;;always handy</td></tr><tr><td>0097</td><td>samussiah</td><td>2019-04-02T21:04:23Z</td><td>improved-hovering</td><td>dev-v2.3.0</td><td>Improve hovering over bins.</td><td>228820276</td><td>dschwentker</td><td>2019-04-19T20:40:04Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:14:55Z</td><td>Tested and approved</td></tr><tr><td>0098</td><td>samussiah</td><td>2019-04-03T18:30:31Z</td><td>zero-range-bars</td><td>dev-v2.3.0</td><td>Manually draw zero range bars.</td><td>224046202</td><td>pburnsdata</td><td>2019-04-08T19:38:32Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:15:06Z</td><td>Excellent. From garganto bars to lil bars. Makes sense to me : lil ranges -> lil bars</td></tr><tr><td>0098</td><td>samussiah</td><td>2019-04-03T18:30:31Z</td><td>zero-range-bars</td><td>dev-v2.3.0</td><td>Manually draw zero range bars.</td><td>228831074</td><td>dschwentker</td><td>2019-04-19T21:23:56Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:15:06Z</td><td>Tested and approved</td></tr><tr><td>0102</td><td>samussiah</td><td>2019-04-05T19:15:41Z</td><td>better-bins</td><td>dev-v2.3.0</td><td>Add bin width algorithm.</td><td>224056911</td><td>pburnsdata</td><td>2019-04-08T20:22:44Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2019-04-22T17:15:57Z</td><td>THIS IS SOME FANCY STUFF BIG MAN. Requested changes tho cuz i think the normal range needs to stay on top of the hover bars in the SVG so the tooltips dont get lost;;whers dis tooltip;;yeuuuh fancy fancy;;i like this;;I don't see these - it looks like the hover bars are on top of them in the SVG ;;credit - good man</td></tr><tr><td>0102</td><td>samussiah</td><td>2019-04-05T19:15:41Z</td><td>better-bins</td><td>dev-v2.3.0</td><td>Add bin width algorithm.</td><td>225116337</td><td>pburnsdata</td><td>2019-04-10T17:34:16Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:15:57Z</td><td></td></tr><tr><td>0102</td><td>samussiah</td><td>2019-04-05T19:15:41Z</td><td>better-bins</td><td>dev-v2.3.0</td><td>Add bin width algorithm.</td><td>228836761</td><td>dschwentker</td><td>2019-04-19T21:49:59Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:15:57Z</td><td>Tested and approved</td></tr><tr><td>0103</td><td>samussiah</td><td>2019-04-05T19:40:36Z</td><td>zoom-button</td><td>dev-v2.3.0</td><td>Add button that sets x-domain to extent of filtered data.</td><td>224397745</td><td>pburnsdata</td><td>2019-04-09T13:24:46Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:16:04Z</td><td>that's a cool feature - great idea;;@samussiah is this using jsdelivr or does it even matter?</td></tr><tr><td>0103</td><td>samussiah</td><td>2019-04-05T19:40:36Z</td><td>zoom-button</td><td>dev-v2.3.0</td><td>Add button that sets x-domain to extent of filtered data.</td><td>224480090</td><td>samussiah</td><td>2019-04-09T15:25:32Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-04-22T17:16:04Z</td><td>text files like our test data can be served up straight from GitHub, no middleman required</td></tr><tr><td>0103</td><td>samussiah</td><td>2019-04-05T19:40:36Z</td><td>zoom-button</td><td>dev-v2.3.0</td><td>Add button that sets x-domain to extent of filtered data.</td><td>228835606</td><td>dschwentker</td><td>2019-04-19T21:44:14Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:16:04Z</td><td>Tested/approved</td></tr><tr><td>0104</td><td>samussiah</td><td>2019-04-07T17:19:18Z</td><td>x-axis-tick-labels</td><td>dev-v2.3.0</td><td>Annotate bin boundaries and ditch x-axis.</td><td>225118715</td><td>pburnsdata</td><td>2019-04-10T17:45:03Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:16:10Z</td><td>@samussiah This looks great to me - major upgrade.;; ;; Two random thoughts:;; - might lose labels if theres two empty bars next to each other;; - the new x axis tick label fonts are a lil bigger than the y axis labels but not sure that really matters;; ;; Approving this because those two don't seem like problems to me - but thought I'd raise them to your attention incase they did to you;;This looks great - big improvement I think;;smart</td></tr><tr><td>0104</td><td>samussiah</td><td>2019-04-07T17:19:18Z</td><td>x-axis-tick-labels</td><td>dev-v2.3.0</td><td>Annotate bin boundaries and ditch x-axis.</td><td>228837616</td><td>dschwentker</td><td>2019-04-19T21:53:52Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:16:10Z</td><td>Tested and approved</td></tr><tr><td>0107</td><td>samussiah</td><td>2019-04-09T18:09:00Z</td><td>read-me-wiki</td><td>dev-v2.3.0</td><td>Update README and wiki.</td><td>225128080</td><td>pburnsdata</td><td>2019-04-10T18:11:07Z</td><td>APPROVED</td><td>Spencer Childress</td><td></td><td>Coolio - knocking out a bunch of issues here;;wow this is really high quality;;makes perfect sense;;@samussiah does this (destroying the listing) not happen on destroy?</td></tr><tr><td>0107</td><td>samussiah</td><td>2019-04-09T18:09:00Z</td><td>read-me-wiki</td><td>dev-v2.3.0</td><td>Update README and wiki.</td><td>225195087</td><td>samussiah</td><td>2019-04-10T20:19:51Z</td><td>COMMENTED</td><td>Spencer Childress</td><td></td><td>yep, good catch.  i'll throw a fix in.</td></tr><tr><td>0107</td><td>samussiah</td><td>2019-04-09T18:09:00Z</td><td>read-me-wiki</td><td>dev-v2.3.0</td><td>Update README and wiki.</td><td>228706484</td><td>dschwentker</td><td>2019-04-19T14:17:58Z</td><td>APPROVED</td><td>Spencer Childress</td><td></td><td>Tested and approved</td></tr><tr><td>0109</td><td>samussiah</td><td>2019-04-09T20:11:36Z</td><td>normal-range-tooltips</td><td>dev-v2.3.0</td><td>Normal range tooltips</td><td>225690622</td><td>pburnsdata</td><td>2019-04-11T17:50:53Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:16:16Z</td><td>Perfect! Good idea to simply move it to control</td></tr><tr><td>0109</td><td>samussiah</td><td>2019-04-09T20:11:36Z</td><td>normal-range-tooltips</td><td>dev-v2.3.0</td><td>Normal range tooltips</td><td>228730412</td><td>dschwentker</td><td>2019-04-19T15:30:45Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:16:16Z</td><td>Tested and approved</td></tr><tr><td>0112</td><td>jwildfire</td><td>2019-04-19T19:05:18Z</td><td>dev-v2.2.3</td><td>master</td><td>dev-v2.2.3</td><td>229149295</td><td>samussiah</td><td>2019-04-22T17:12:15Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-22T17:12:19Z</td><td></td></tr><tr><td>0114</td><td>samussiah</td><td>2019-05-10T21:08:08Z</td><td>dev-v2.3.1</td><td>master</td><td>Safety Histogram v2.3.1</td><td>237011420</td><td>jwildfire</td><td>2019-05-14T04:04:02Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2019-06-13T15:59:40Z</td><td>Let's chat tomorrow. I suggested a few minor tweaks in comments, and want to discuss whether it makes sense to set the y-axis (along with the x-) for each measure. ;; ;; Also - getting an error when i change a range value and then click zoom (works fine if i hit enter). ;;```suggestion;;     "webcharts": "^1.11.6";; ```;;Also need to update package version above. I think I'd call this a technical fix (not a new feature), so I'd probably go with v2.3.1 ... ;;Want to add a binType option (or just delete the 2nd method)?;;Not reviewing this right now ... can dig in later if you decide to keep it in. ;;Are we using all 3 sets of bin widths? ;;Good comments - very helpful. ;;what's this doing? </td></tr><tr><td>0114</td><td>samussiah</td><td>2019-05-10T21:08:08Z</td><td>dev-v2.3.1</td><td>master</td><td>Safety Histogram v2.3.1</td><td>237460824</td><td>jwildfire</td><td>2019-05-14T19:42:05Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-13T15:59:40Z</td><td></td></tr><tr><td>0114</td><td>samussiah</td><td>2019-05-10T21:08:08Z</td><td>dev-v2.3.1</td><td>master</td><td>Safety Histogram v2.3.1</td><td>248993643</td><td>danedexF5</td><td>2019-06-12T20:16:03Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-13T15:59:40Z</td><td>Approved</td></tr><tr><td>0120</td><td>samussiah</td><td>2019-06-03T15:35:36Z</td><td>dev-v2.4.0</td><td>master</td><td>Safety Histogram v2.4.0</td><td>259675149</td><td>danedexF5</td><td>2019-07-09T18:13:22Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-07-09T19:01:39Z</td><td>I approve</td></tr><tr><td>0121</td><td>samussiah</td><td>2019-06-03T16:36:11Z</td><td>bins-control</td><td>dev-v2.4.0</td><td>add bins control</td><td>246152880</td><td>jwildfire</td><td>2019-06-05T17:33:08Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:54:41Z</td><td>Looks good!;; ;; Might be good to coerce bin count in the control to an integer with Math.ceil (since that seems to be what happens behind the scenes regardless)</td></tr><tr><td>0121</td><td>samussiah</td><td>2019-06-03T16:36:11Z</td><td>bins-control</td><td>dev-v2.4.0</td><td>add bins control</td><td>251321601</td><td>danedexF5</td><td>2019-06-18T19:48:28Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:54:41Z</td><td>Approved</td></tr><tr><td>0124</td><td>samussiah</td><td>2019-06-03T20:16:12Z</td><td>bin-algorithms</td><td>dev-v2.4.0</td><td>add binning algorithm control</td><td>246165635</td><td>jwildfire</td><td>2019-06-05T17:56:50Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:54:51Z</td><td>Really nice stuff!</td></tr><tr><td>0124</td><td>samussiah</td><td>2019-06-03T20:16:12Z</td><td>bin-algorithms</td><td>dev-v2.4.0</td><td>add binning algorithm control</td><td>251321414</td><td>danedexF5</td><td>2019-06-18T19:48:06Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:54:51Z</td><td>Approved</td></tr><tr><td>0125</td><td>samussiah</td><td>2019-06-03T20:42:02Z</td><td>updated-footnote</td><td>dev-v2.4.0</td><td>update bar details footnote</td><td>246173913</td><td>jwildfire</td><td>2019-06-05T18:12:36Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2019-06-18T19:55:03Z</td><td>As discussed, there is a small bug. When the user (1) clicks bar #1 (with N=100), (2) mouses over a different bar #2 (with n=200) and (3) mouses out of bar #2. The footnote incorrectly says that Bar #1 has N=200.</td></tr><tr><td>0125</td><td>samussiah</td><td>2019-06-03T20:42:02Z</td><td>updated-footnote</td><td>dev-v2.4.0</td><td>update bar details footnote</td><td>246185877</td><td>jwildfire</td><td>2019-06-05T18:35:27Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:03Z</td><td></td></tr><tr><td>0125</td><td>samussiah</td><td>2019-06-03T20:42:02Z</td><td>updated-footnote</td><td>dev-v2.4.0</td><td>update bar details footnote</td><td>251321216</td><td>danedexF5</td><td>2019-06-18T19:47:43Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:03Z</td><td>Approved</td></tr><tr><td>0126</td><td>samussiah</td><td>2019-06-03T21:10:09Z</td><td>overlapping-bin-boundaries</td><td>dev-v2.4.0</td><td>thin x-axis tick labels</td><td>246177387</td><td>jwildfire</td><td>2019-06-05T18:19:43Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:12Z</td><td>Working well for me.  👍 ;;Clever!</td></tr><tr><td>0126</td><td>samussiah</td><td>2019-06-03T21:10:09Z</td><td>overlapping-bin-boundaries</td><td>dev-v2.4.0</td><td>thin x-axis tick labels</td><td>251321033</td><td>danedexF5</td><td>2019-06-18T19:47:22Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:12Z</td><td>Approved</td></tr><tr><td>0128</td><td>samussiah</td><td>2019-06-04T14:58:50Z</td><td>linear-x-axis</td><td>dev-v2.4.0</td><td>add option for linear x-axis instead of bin boundaries</td><td>246185632</td><td>jwildfire</td><td>2019-06-05T18:34:57Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:19Z</td><td>Looks great. ;; ;; Let's add a control to toggle between "continuous" and "bin boundaries" for the x-axis type. </td></tr><tr><td>0128</td><td>samussiah</td><td>2019-06-04T14:58:50Z</td><td>linear-x-axis</td><td>dev-v2.4.0</td><td>add option for linear x-axis instead of bin boundaries</td><td>251320786</td><td>danedexF5</td><td>2019-06-18T19:46:53Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:19Z</td><td>Approved</td></tr><tr><td>0130</td><td>samussiah</td><td>2019-06-05T21:44:24Z</td><td>axis-toggle</td><td>dev-v2.4.0</td><td>add x-axis tick display toggle</td><td>246516579</td><td>jwildfire</td><td>2019-06-06T11:43:47Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:27Z</td><td>👍 </td></tr><tr><td>0130</td><td>samussiah</td><td>2019-06-05T21:44:24Z</td><td>axis-toggle</td><td>dev-v2.4.0</td><td>add x-axis tick display toggle</td><td>251320416</td><td>danedexF5</td><td>2019-06-18T19:46:11Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-06-18T19:55:27Z</td><td>Approved</td></tr><tr><td>0131</td><td>dependabot[bot]</td><td>2019-07-12T04:15:53Z</td><td>dependabot/npm_and_yarn/lodash-4.17.14</td><td>master</td><td>Bump lodash from 4.17.11 to 4.17.14</td><td>261296212</td><td>samussiah</td><td>2019-07-12T14:36:38Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-07-12T14:37:17Z</td><td></td></tr><tr><td>0134</td><td>jwildfire</td><td>2019-08-20T18:10:43Z</td><td>dev-v2.5.0</td><td>master</td><td>Safety Histogram v2.5.0</td><td>334674929</td><td>danedexF5</td><td>2019-12-19T14:39:31Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2020-01-20T22:15:07Z</td><td></td></tr><tr><td>0134</td><td>jwildfire</td><td>2019-08-20T18:10:43Z</td><td>dev-v2.5.0</td><td>master</td><td>Safety Histogram v2.5.0</td><td>345542482</td><td>danedexF5</td><td>2020-01-20T21:38:41Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2020-01-20T22:15:07Z</td><td>Approved</td></tr><tr><td>0136</td><td>pburnsdata</td><td>2019-10-02T14:20:30Z</td><td>dev-v2.4.1</td><td>master</td><td>move table styling to onLayout</td><td>296352307</td><td>jwildfire</td><td>2019-10-02T16:03:11Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-10-02T16:07:10Z</td><td></td></tr><tr><td>0140</td><td>samussiah</td><td>2019-11-26T20:09:12Z</td><td>group-comparisons</td><td>dev-v2.5.0</td><td>group comparisons</td><td>327551908</td><td>jwildfire</td><td>2019-12-05T15:36:57Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-12-17T18:13:19Z</td><td>Really nice!;;Shall we just drop this for now? ;;Capital D in "highlighteD" intentional? ;;Looks consistent at least, so nbd. ;;slick!;;Also need to deselect bars in the main chart here. see #143 ;;Really nice. ;;👍 ;;Nice touch;;General note: I understand the need for the js-based css, but I've never liked using this crazy array of quoted strings. ;; ;; There must be a way we can save this as an actual css file and then write a script as part of the build to convert it to an object  and then load it like we do at the bottom of this file. </td></tr><tr><td>0140</td><td>samussiah</td><td>2019-11-26T20:09:12Z</td><td>group-comparisons</td><td>dev-v2.5.0</td><td>group comparisons</td><td>327732380</td><td>samussiah</td><td>2019-12-05T17:41:08Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-12-17T18:13:19Z</td><td>maybe this package: https://www.npmjs.com/package/cssparser</td></tr><tr><td></td></tr></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

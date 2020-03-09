@@ -1,0 +1,556 @@
+<html>
+<head>
+    <title>ae-timelines - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">ae-timelines - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for ae-timelines. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/rhoinc/ae-timelines/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h2 id="functionalspecifications">Functional Specifications</h2>
+<p>Users can interact with an AE timeline in the following ways:</p>
+<h3 id="filterbyseriousevent">Filter by Serious Event</h3>
+<p>This drop-down menu is used to filter serious events in the data set. The default is set to include all events, but can be manipulated to include events that are only marked as serious or events that are only marked as non-serious. An open-ended black circle marks serious events so they can be viewed in the timeline at a glance.</p>
+<h3 id="filterbyseverityintensity">Filter by Severity/Intensity</h3>
+<p>This drop-down menu displays a listing of the adverse event severity levels in the data set. The default is to display all severity levels. The current severity levels captured are mild, moderate, and severe, which are color coded and displayed in a legend above the timeline. </p>
+<h3 id="filterbysubjectidentifier">Filter by Subject Identifier</h3>
+<p>This drop-down menu displays a list of all of the subject identifiers included in the data set. Each participant is assigned a unique identifier that is associated with their adverse event data. Filtering to view a particular subject ID will only show data for that subject. The default for this filter is set to show data for all subjects.</p>
+<h3 id="filterbypreselectedcharacteristics">Filter by pre-selected characteristics</h3>
+<p>The chart can be configured to have any number of data filters. Each specified filter has a drop-down menu that is used to filter the visit data that is displayed in the chart.</p>
+<h3 id="sortbysubjectids">Sort by Subject IDs</h3>
+<p>This drop-down menu can sort the subject IDs included in the timeline data set. This option can sort the data by the participants with the earliest occurring adverse event(s) or the participants that appear first alphabetically in descending order. This option defaults to the earliest occurring events and their related participants.</p>
+<h3 id="totalparticipantsshown">Total Participants Shown</h3>
+<p>Displayed in the top right corner of the page, this statement provides the total number of participants in the data set in integers as well as the percentage of participants shown to one decimal place. In the default view, all participant data is included in the chart, or 100%, unless the project team requests otherwise. When filters are used, the data shown in the histogram is manipulated and the number of participant records shown at the top of the page may increase or decrease, depending on the variable selected. </p>
+<h3 id="hover">Hover</h3>
+<p>By moving a mouse cursor over a bar in the chart, users can display metadata for some variables. Hovering the cursor over a particular bar will display the reported term of an event, the day the event started, and the day the event stopped. More information about the event can be accessed by clicking on the Subject ID.</p>
+<h3 id="showdetails">Show details</h3>
+<p>Clicking on the Subject ID seen to the left of the bar will load a more detailed view. This view displays the raw data for a participant's adverse events. This view shows the sequence number for the event, the day the event started, the day the event stopped, the reported term, the event's severity/intensity, and if the event is classified as serious or not.</p>
+<h3 id="returntotheaetimelines">Return to the AE Timelines</h3>
+<p>The Back button is only visible if users have clicked on the detailed view for a given participant. Clicking on this button returns users to the default AE Timelines view.</p>
+<h2 id="regressiontests">Regression Tests</h2>
+<ul>
+<li>Confirm that selecting a filter manipulates the visible events </li>
+<li>Confirm that selecting a filter changes the ratio and percentage of affected participants</li>
+<li>Confirm that sorting subject IDs changes the order of the results as expected</li>
+<li>Confirm that hovering over event lines shows adverse event information (reported term, start day, stop day) for a participant</li>
+<li>Confirm that the date of an adverse event doesn't end in a circle</li>
+<li>Confirm that a serious AE is notated by a different mark than a normal AE</li>
+<li>Confirm that plot points marked as queried appear as a different color than other plot points and when clicked, display a message detailing the event and query</li>
+<li>Confirm that clicking on a participant ID takes the user to the detail view</li>
+<li>Confirm that Search works to filter the data displayed in the listing</li>
+<li>Confirm that Sort works in the listing by clicking on column headers</li>
+<li>Confirm that you can export the displayed data to a csv via via the Export: CSV button</li>
+<li>Confirm that clicking the Back button takes the user to the timelines chart screen</li>
+<li>Confirm that the population annotation (n of N participants…) is italicized.</li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/rhoinc/ae-timelines/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><p>AE Timelines are initialized using JSON data files that match the format created by <a href="https://github.com/mbostock/d3/wiki/CSV">d3.csv()</a>. The chart requires a data set with one record per adverse event with placeholder rows added for participants who didn't experience any adverse events over the course of the study. The chart uses column names from the AdAM data standard by default, but can be customized to work with any column names as long as the data structure is as expected. </p>
+<h2 id="defaultchart">Default Chart</h2>
+<p>The following columns are expected in a data file used to create an instance of AE Timelines. A sample chart using this configuration is found <a href="https://rhoinc.github.io/ae-timelines/build/test-page/">here</a>.</p>
+<h3 id="dataspecification">Data Specification</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Settings Variable</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">id_col</td>
+<td style="text-align:left;">Unique Subject Identifier</td>
+<td style="text-align:left;">USUBJID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">seq_col</td>
+<td style="text-align:left;">Sequence Number</td>
+<td style="text-align:left;">AESEQ</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">stdy_col</td>
+<td style="text-align:left;">Analysis Start Relative Day</td>
+<td style="text-align:left;">ASTDY</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">endy_col</td>
+<td style="text-align:left;">Analysis End Relative Day</td>
+<td style="text-align:left;">AENDY</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">term_col</td>
+<td style="text-align:left;">Reported Term</td>
+<td style="text-align:left;">AETERM</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">color.value_col</td>
+<td style="text-align:left;">Severity/Intensity</td>
+<td style="text-align:left;">AESEV</td>
+<td style="text-align:left;">Y <strong><em>*</em></strong></td>
+</tr>
+<tr>
+<td style="text-align:left;">highlight.value_col</td>
+<td style="text-align:left;">Serious Event</td>
+<td style="text-align:left;">AESER</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><strong><em>*</em></strong> a coloring variable of some sort is required but it does not have to be AESEV</td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="settings">Settings</h3>
+<p>No customization is needed to initialize a chart when the <code>data</code> object contains all default variables above.
+Just pass an empty object (<code>{}</code>) for <code>settings</code> and initialize the chart like so: <code>aeTimelines('body', {}).init(data)</code>.</p>
+<h2 id="customizedchartwithqueries">Customized Chart with Queries</h2>
+<p>The following data specs and chart settings can be used to create a chart with several custom filters, including Sex, Race and Query Status. The chart also highlights severe AEs and events under query. A sample chart using this configuration is found <a href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/aetimelines.html">here</a>.</p>
+<h3 id="dataspecification-1">Data Specification</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Settings Variable</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">id_col</td>
+<td style="text-align:left;">Unique Subject Identifier</td>
+<td style="text-align:left;">USUBJID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">seq_col</td>
+<td style="text-align:left;">Sequence Number</td>
+<td style="text-align:left;">AESEQ</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">stdy_col</td>
+<td style="text-align:left;">Analysis Start Relative Day</td>
+<td style="text-align:left;">ASTDY</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">endy_col</td>
+<td style="text-align:left;">Analysis End Relative Day</td>
+<td style="text-align:left;">AENDY</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">term_col</td>
+<td style="text-align:left;">Reported Term</td>
+<td style="text-align:left;">AETERM</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">color.value_col</td>
+<td style="text-align:left;">Severity/Intensity</td>
+<td style="text-align:left;">AESEV</td>
+<td style="text-align:left;">Y <strong><em>*</em></strong></td>
+</tr>
+<tr>
+<td style="text-align:left;">highlight.value_col</td>
+<td style="text-align:left;">Serious Event</td>
+<td style="text-align:left;">AESER</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">AE Seriousness</td>
+<td style="text-align:left;">AESER</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">AE Severity</td>
+<td style="text-align:left;">AESEV</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">AE Relationship</td>
+<td style="text-align:left;">AEREL</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">AE Outcome</td>
+<td style="text-align:left;">AEOUT</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Site ID</td>
+<td style="text-align:left;">SITEID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Treatment Arm</td>
+<td style="text-align:left;">ARM</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Sex</td>
+<td style="text-align:left;">SEX</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Race</td>
+<td style="text-align:left;">RACE</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Query Flag ("Y" for yes)</td>
+<td style="text-align:left;">QUERYFL</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;"><strong><em>*</em></strong> a coloring variable of some sort is required but it does not have to be AESEV</td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingsobject">Settings Object</h3>
+<pre><code>     var settings =
+        {color:
+            {value_col: 'AEREL'
+            ,label: 'Relationship'
+            ,values:
+                ['NOT RELATED'
+                ,'UNLIKELY RELATED'
+                ,'POSSIBLY RELATED'
+                ,'PROBABLY RELATED'
+                ,'DEFINITELY RELATED']}
+        ,highlight:
+            {value_col: 'QUERYFL'
+            ,label: 'Open Query'
+            ,value: 'Y'
+            ,detail_col: 'QUERY'
+            ,attributes:
+                {'stroke': 'black'
+                ,'stroke-width': '8'
+                ,'fill': 'none'
+                ,'stroke-opacity':"0.2"}}
+        ,custom_marks:
+            [
+                {type: 'circle'
+                ,per: ['USUBJID', 'AESEQ', 'wc_value']
+                ,tooltip: 'Serious Adverse Event'
+                ,radius: 6
+                ,attributes:
+                    {'fill-opacity': .5
+                    ,'fill': 'None'
+                    ,'stroke': 'Red'}
+                ,values: {"AESER": ['Y'] ,"wc_category":["ASTDY"]}}
+            ]
+        ,filters:
+            [   {value_col: 'AESER', label: 'Serious Event'}
+            ,   {value_col: 'AEREL', label: 'Relationship'}
+            ,   {value_col: 'AESEV', label: 'Severity/Intensity'}
+            ,   {value_col: 'USUBJID', label: 'Subject Identifier'}
+            ,   {value_col: 'ARM', label: 'Arm'}
+            ,   {value_col: 'SITEID', label: 'Site ID'}
+            ,   {value_col: 'SEX', label: 'Sex'}
+            ,   {value_col: 'RACE', label: 'Race'}
+            ,   {value_col: 'QUERYFL', label: 'Has query?'}
+
+            ]};
+</code></pre></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/rhoinc/ae-timelines/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="aetimelineselementsettings">aeTimelines(element, settings)</h1>
+<p>a factory to create a custom <a href="https://github.com/RhoInc/Webcharts/wiki/Chart">Webcharts chart</a> object</p>
+<p><strong>returns:</strong> <a href="https://github.com/RhoInc/Webcharts/wiki/Chart"><code>chart</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="events">Events</h1>
+<h2 id="participantsselected">participantsSelected</h2>
+<p>The custom <code>participantsSelected</code> event is dispatched to the overall chart wrapper (<code>chart.wrap</code>) whenever the details for a given participant are viewed (or cleared) by clicking on the y-axis labels in the chart. The event has a custom <code>data</code> property holding an array with the selected ID when a new participant is selected (<code>["123-456-7"]</code>) or an empty array when participant details are cleared. </p></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/rhoinc/ae-timelines/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><p>The most straightforward way to customize the AE Timelines is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the AE Timelines is a Webcharts <code>chart</code> object, many default Webcharts settings are set in the <a href="https://github.com/RhoInc/ae-timelines/blob/master/src/defaultSettings.js">defaultSettings.js file</a> as <a href="#webcharts-settings">described below</a>. Refer to the <a href="https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration">Webcharts documentation</a> for more details on these settings.</p>
+<p>In addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the AE Timelines to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.</p>
+<h1 id="rendererspecificsettings">Renderer-specific settings</h1>
+<p>The sections below describe each ae-timelines setting as of version 2.1.0.</p>
+<h2 id="settingsid_col">settings.id_col</h2>
+<p><code>string</code></p>
+<p>unique identifier variable name</p>
+<p><strong>default:</strong> <code>"USUBJID"</code></p>
+<h2 id="settingsseq_col">settings.seq_col</h2>
+<p><code>string</code></p>
+<p>event sequence number variable name</p>
+<p><strong>default:</strong> <code>"AESEQ"</code></p>
+<h2 id="settingsstdy_col">settings.stdy_col</h2>
+<p><code>string</code></p>
+<p>event start day variable name</p>
+<p><strong>default:</strong> <code>"ASTDY"</code></p>
+<h2 id="settingsendy_col">settings.endy_col</h2>
+<p><code>string</code></p>
+<p>event end day variable name</p>
+<p><strong>default:</strong> <code>"AENDY"</code></p>
+<h2 id="settingsterm_col">settings.term_col</h2>
+<p><code>string</code></p>
+<p>verbatim adverse event text variable name</p>
+<p><strong>default:</strong> <code>"AETERM"</code></p>
+<h2 id="settingscolor">settings.color</h2>
+<p><code>object</code></p>
+<p>an object that defines the event color stratification variable, its label, its levels, and their corresponding colors</p>
+<h3 id="settingscolorvalue_col">settings.color.value_col</h3>
+<p><code>string</code></p>
+<p>color stratification variable name, usually set to event severity</p>
+<p><strong>default:</strong> <code>"AESEV"</code></p>
+<h3 id="settingscolorlabel">settings.color.label</h3>
+<p><code>string</code></p>
+<p>color stratification variable label</p>
+<p><strong>default:</strong> <code>"Severity/Intensity"</code></p>
+<h3 id="settingscolorvalues">settings.color.values</h3>
+<p><code>array</code></p>
+<p>an array of stratification values</p>
+<p><strong>default:</strong> </p>
+<pre><code>[
+  "MILD",
+  "MODERATE",
+  "SEVERE"
+]
+</code></pre>
+<h3 id="settingscolorcolors">settings.color.colors</h3>
+<p><code>array</code></p>
+<p>an array of stratification colors</p>
+<p><strong>default:</strong> </p>
+<pre><code>[
+  "#66bd63",
+  "#fdae61",
+  "#d73027",
+  "#377eb8",
+  "#984ea3",
+  "#ff7f00",
+  "#a65628",
+  "#f781bf",
+  "#999999"
+]
+</code></pre>
+<h2 id="settingshighlight">settings.highlight</h2>
+<p><code>object</code></p>
+<p>an object that defines what events to highlight and how to highlight them</p>
+<h3 id="settingshighlightvalue_col">settings.highlight.value_col</h3>
+<p><code>string</code></p>
+<p>event highlighting variable name</p>
+<p><strong>default:</strong> <code>"AESER"</code></p>
+<h3 id="settingshighlightlabel">settings.highlight.label</h3>
+<p><code>string</code></p>
+<p>a description of the highlighted event</p>
+<p><strong>default:</strong> <code>"Serious Event"</code></p>
+<h3 id="settingshighlightvalue">settings.highlight.value</h3>
+<p><code>string</code></p>
+<p>value of <code>highlight.value_col</code> that identifies events to highlight</p>
+<p><strong>default:</strong> <code>"Y"</code></p>
+<h3 id="settingshighlightdetail_col">settings.highlight.detail_col</h3>
+<p><code>string</code></p>
+<p>detail of highlighted event variable name</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingshighlightattributes">settings.highlight.attributes</h3>
+<p><code>object</code></p>
+<p>an object of attributes that define highlighted marks</p>
+<h2 id="settingsfilters">settings.filters</h2>
+<p><code>array</code></p>
+<p>an array of filter variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfiltersvalue_col">settings.filters[].value_col</h3>
+<p><code>string</code></p>
+<p>the name of the filter variable</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfilterslabel">settings.filters[].label</h3>
+<p><code>string</code></p>
+<p>a description of the filter variable</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsdetails">settings.details</h2>
+<p><code>array</code></p>
+<p>an array of detail listing variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsdetailsvalue_col">settings.details[].value_col</h3>
+<p><code>string</code></p>
+<p>the name of the detail variable</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsdetailslabel">settings.details[].label</h3>
+<p><code>string</code></p>
+<p>a description of the detail variable</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingscustom_marks">settings.custom_marks</h2>
+<p><code>array</code></p>
+<p>an array of custom Webcharts marks</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingscustom_markstype">settings.custom_marks[].type</h3>
+<p><code>string</code></p>
+<p>a Webcharts mark type: point, bar, line, or text</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingscustom_marksper">settings.custom_marks[].per</h3>
+<p><code>array</code></p>
+<p>an array of variables for each value combination of which a mark is drawn</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingscustom_markstooltip">settings.custom_marks[].tooltip</h3>
+<p><code>string</code></p>
+<p>the tooltip of the custom mark</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingscustom_marksattributes">settings.custom_marks[].attributes</h3>
+<p><code>object</code></p>
+<p>the attributes of the custom mark</p>
+<h1 id="webchartssettings">Webcharts settings</h1>
+<p>The object below contains each Webcharts setting as of version 2.1.0.</p>
+<pre><code>{
+    x: {
+        column: 'wc_value',
+        type: 'linear',
+        label: null
+    },
+    y: {
+        column: null, // set in syncSettings()
+        type: 'ordinal',
+        label: '',
+        sort: 'earliest',
+        behavior: 'flex'
+    },
+    marks: [
+        {
+            type: 'line',
+            per: null, // set in syncSettings()
+            tooltip: null, // set in syncSettings()
+            attributes: {
+                'stroke-width': 5,
+                'stroke-opacity': 0.5
+            }
+        },
+        {
+            type: 'circle',
+            per: null, // set in syncSettings()
+            tooltip: null, // set in syncSettings()
+            attributes: {
+                'fill-opacity': 0.5,
+                'stroke-opacity': 0.5
+            }
+        }
+    ],
+    legend: { location: 'top' },
+    gridlines: 'y',
+    range_band: 15,
+    margin: { top: 50 }, // for second x-axis
+    resizable: true
+}
+</code></pre></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>PullRequest</th><th>Requester</th><th>DateRequested</th><th>Branch</th><th>Target</th><th>Title</th><th>ReviewID</th><th>Reviewer</th><th>ReviewDate</th><th>ReviewStatus</th><th>MergedBy</th><th>DateMerged</th><th>ReviewComments</th></tr></thead><tbody><tr><td>0006</td><td>jwildfire</td><td>2016-04-12T16:42:02Z</td><td>reorg</td><td>master</td><td>Reorg</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-04-13T12:45:53Z</td><td></td></tr><tr><td>0014</td><td>jwildfire</td><td>2016-05-25T19:38:02Z</td><td>reorg-backup</td><td>master</td><td>Reorg backup</td><td></td><td></td><td></td><td>NONE</td><td>Nathan Bryant</td><td>2016-06-08T14:47:19Z</td><td></td></tr><tr><td>0017</td><td>jwildfire</td><td>2016-06-22T20:27:11Z</td><td>v1.2.0</td><td>master</td><td>V1.2.0</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-06-22T20:27:22Z</td><td></td></tr><tr><td>0018</td><td>jwildfire</td><td>2016-06-22T22:03:17Z</td><td>v1.2.1</td><td>master</td><td>removing custom filter labels for now (creates issues in some situati…</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-06-22T22:03:26Z</td><td></td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15230562</td><td>jwildfire</td><td>2017-01-05T00:54:22Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Is `AESER` required now? If so, does this break backwards compatibility with v1.2.0?</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15230684</td><td>jwildfire</td><td>2017-01-05T00:55:52Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Adding the marks like this is an elegant solution. 👍👍</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15231313</td><td>jwildfire</td><td>2017-01-05T01:02:09Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>After reading through the rest of this and reviewing the discussion on #12, I do think we're breaking backwards compatibility. Not a huge deal, we'll just need to go through and update milestones and update package.json. Agree? </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15231888</td><td>jwildfire</td><td>2017-01-05T01:07:35Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>We're going to have to argue about this leading comma insanity eventually 😱</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15232032</td><td>jwildfire</td><td>2017-01-05T01:09:01Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Just noting that `sev_vals` is new here for reference. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15232130</td><td>jwildfire</td><td>2017-01-05T01:10:08Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>comment is out of place. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15232229</td><td>jwildfire</td><td>2017-01-05T01:11:04Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>note: class:serious is new</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15232370</td><td>jwildfire</td><td>2017-01-05T01:12:41Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>So if the user doesn't provide filters we use the defaults ... seems reasonable ... </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15232474</td><td>jwildfire</td><td>2017-01-05T01:13:56Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Any specific reason for removing the SOC from the tooltip? Not a huge deal, but I'd lean towards keeping it.</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15232876</td><td>jwildfire</td><td>2017-01-05T01:19:04Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>so `sev_vals` sets the order of axis. default is ['MILD','MODERATE','SEVERE'], which is reasonable, but we probably won't get close to 100% compliance there. What happens if there are other values or the formatting is different ("Mild" instead of "MILD")? Guessing they'll just get tacked on to the legend in alpha order? </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15233006</td><td>jwildfire</td><td>2017-01-05T01:20:26Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>This is only a problem if we don't support the edge case - if rows with AESER="Mild" won't render at all in the chart, and give "Mild" in the legend we have a problem. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15233090</td><td>jwildfire</td><td>2017-01-05T01:21:23Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>The more I see it the more I like this simplified approach to filters :+1:;; </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15233318</td><td>jwildfire</td><td>2017-01-05T01:23:43Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>is the the ES6 way to clone an object? I like!</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15233501</td><td>jwildfire</td><td>2017-01-05T01:25:24Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Note: Not going to code review the chunk below since it is fairly low priority and also fairly complex. We can always debug (or just take out the functionality) if it becomes problematic. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15233899</td><td>jwildfire</td><td>2017-01-05T01:29:28Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Nice. good call to do this in a separate file. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15233984</td><td>jwildfire</td><td>2017-01-05T01:30:22Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>skipping code review. can look later if needed. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15234225</td><td>jwildfire</td><td>2017-01-05T01:33:31Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Why'd you decide to use this instead of just sticking with:;; ```;; var currentObs = d3.set(chart.filtered_data.map(function (d) {</td><td></td><td>;;          return d[id_col];</td><td></td><td>;;      })).values().length;;; ```</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15234314</td><td>jwildfire</td><td>2017-01-05T01:34:41Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>In other words, why rederive `filtered_data` here instead of just using `chart.filtered_data`?</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15234534</td><td>jwildfire</td><td>2017-01-05T01:37:08Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Is the class used anywhere? Doesn't hurt either way, I suppose? </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15235070</td><td>jwildfire</td><td>2017-01-05T01:43:07Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>So basically, if these `value_cols` are included in `settings.details_cols` they get a custom `label`. Items in `settings.details_cols` that aren't listed below, just don't get a custom label. Yes? </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15235075</td><td>jwildfire</td><td>2017-01-05T01:43:12Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>This is nice. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15235113</td><td>jwildfire</td><td>2017-01-05T01:43:37Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>What's this doing? </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15235325</td><td>jwildfire</td><td>2017-01-05T01:46:24Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>The more I think about this the less sure I am it makes sense ... I'll put a comment on the issue. </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15322217</td><td>samussiah</td><td>2017-01-05T15:16:30Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>All my insane formatting gets gets roll'd up and babel'd in the end.  But for me it's a matter of aligning everything that can be logically aligned.  Plus leading commas make it easier to add items and properties and spot syntax errors (arguably): https://gist.github.com/isaacs/357981</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15322346</td><td>samussiah</td><td>2017-01-05T15:17:05Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Yeah, I added that at some point but didn't use it in the end.</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15324654</td><td>samussiah</td><td>2017-01-05T15:27:51Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>It would be nice to be able plot uncoded adverse events, such as early on in the study lifecycle.  Alternatively we could modify the tooltip when the user specifies coding terms.</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15325396</td><td>samussiah</td><td>2017-01-05T15:31:13Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>I went with that terminology because it's "controlled" in SDTM.  But the user can just specify `sev_vals`.  Are you suggesting to just ignore the case of the values?</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15325404</td><td>jwildfire</td><td>2017-01-05T15:31:16Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>🤔 </td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15326252</td><td>samussiah</td><td>2017-01-05T15:35:30Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>You know, I'm still not entirely sure how to deep clone an object, like down into arrays and objects and arrays of objects and so on.  But I hate manually syncing multiple settings objects so I like this approach.  But as you can see I couldn't get the `marks` to clone :crying_cat_face:</td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-12-17T17:21:44Z</td><td>v1.3.0</td><td>master</td><td>AE Timelines 2.0.0</td><td>15326619</td><td>samussiah</td><td>2017-01-05T15:37:23Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-02-21T17:08:49Z</td><td>Because as far as I can tell, in webCharts `filtered_data` corresponds to the last mark defined, which in this renderer is the SAE marks.  So I had to redefine `filtered_data`.</td></tr><tr><td>0023</td><td>jwildfire</td><td>2016-12-17T17:23:50Z</td><td>SAEs</td><td>v1.3.0</td><td>Visual tweaks for SAEs</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2017-01-04T16:40:45Z</td><td></td></tr><tr><td>0027</td><td>samussiah</td><td>2017-01-19T22:40:41Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks.</td><td>18033449</td><td>jwildfire</td><td>2017-01-23T21:47:29Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-23T21:56:21Z</td><td>Can this be used to add multiple "highlight" marks to the legend?</td></tr><tr><td>0027</td><td>samussiah</td><td>2017-01-19T22:40:41Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks.</td><td>18033931</td><td>jwildfire</td><td>2017-01-23T21:49:52Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-01-23T21:56:21Z</td><td>Looks great. Lines up perfectly with our plan to use arrays of marks for highlighting points of special interest. </td></tr><tr><td>0027</td><td>samussiah</td><td>2017-01-19T22:40:41Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks.</td><td>18039587</td><td>samussiah</td><td>2017-01-23T22:16:35Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-23T21:56:21Z</td><td>I don't see why the `highlight` parameter couldn't be extended as an array...  </td></tr><tr><td>0030</td><td>jwildfire</td><td>2017-03-07T02:10:51Z</td><td>v2.0.1</td><td>master</td><td>don't render filters with 0 or 1 values. resolves #29</td><td>25649545</td><td>samussiah</td><td>2017-03-07T22:27:18Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-03-13T23:22:50Z</td><td>stray</td></tr><tr><td>0030</td><td>jwildfire</td><td>2017-03-07T02:10:51Z</td><td>v2.0.1</td><td>master</td><td>don't render filters with 0 or 1 values. resolves #29</td><td>25649591</td><td>samussiah</td><td>2017-03-07T22:27:29Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-03-13T23:22:50Z</td><td>another stray</td></tr><tr><td>0030</td><td>jwildfire</td><td>2017-03-07T02:10:51Z</td><td>v2.0.1</td><td>master</td><td>don't render filters with 0 or 1 values. resolves #29</td><td>25649754</td><td>samussiah</td><td>2017-03-07T22:28:06Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-03-13T23:22:50Z</td><td>Outstanding!  Couple stray `console.log()`s in there.</td></tr><tr><td>0038</td><td>jwildfire</td><td>2017-10-16T18:16:05Z</td><td>v2.0.3-dev</td><td>master</td><td>V2.0.3 dev</td><td>69664233</td><td>samussiah</td><td>2017-10-16T19:00:04Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-10-16T20:21:18Z</td><td>stray log</td></tr><tr><td>0038</td><td>jwildfire</td><td>2017-10-16T18:16:05Z</td><td>v2.0.3-dev</td><td>master</td><td>V2.0.3 dev</td><td>69664409</td><td>samussiah</td><td>2017-10-16T19:00:37Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-10-16T20:21:18Z</td><td></td></tr><tr><td>0042</td><td>samussiah</td><td>2017-12-04T17:49:28Z</td><td>v2.0.4-dev</td><td>master</td><td>v2.0.4-dev</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-12-15T15:50:39Z</td><td></td></tr><tr><td>0043</td><td>samussiah</td><td>2017-12-04T18:52:06Z</td><td>listing-bug</td><td>v2.0.4-dev</td><td>update to hide detail listing initially</td><td>83024903</td><td>jwildfire</td><td>2017-12-13T00:02:30Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-12-13T00:02:41Z</td><td>👍</td></tr><tr><td>0050</td><td>samussiah</td><td>2018-04-02T14:16:03Z</td><td>v2.1.0-dev</td><td>master</td><td>AE Timelines v2.1.0</td><td></td><td></td><td></td><td>NONE</td><td>samussiah</td><td>2018-04-24T15:04:40Z</td><td></td></tr><tr><td>0051</td><td>samussiah</td><td>2018-04-03T18:11:24Z</td><td>test-page</td><td>master</td><td>Test page</td><td>109484680</td><td>pburnsdata</td><td>2018-04-04T20:21:27Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-24T15:04:39Z</td><td>fantestic</td></tr><tr><td>0052</td><td>samussiah</td><td>2018-04-03T19:15:45Z</td><td>settings-schema</td><td>v2.1.0-dev</td><td>Settings schema</td><td>110110465</td><td>pburnsdata</td><td>2018-04-06T15:35:40Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-24T15:04:46Z</td><td></td></tr><tr><td>0053</td><td>samussiah</td><td>2018-04-03T19:36:52Z</td><td>italicize-population-annotation</td><td>v2.1.0-dev</td><td>Italicize population annotation</td><td>109107567</td><td>pburnsdata</td><td>2018-04-03T20:37:21Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-24T15:04:54Z</td><td></td></tr><tr><td>0053</td><td>samussiah</td><td>2018-04-03T19:36:52Z</td><td>italicize-population-annotation</td><td>v2.1.0-dev</td><td>Italicize population annotation</td><td>112545124</td><td>tmbarald</td><td>2018-04-16T18:55:49Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-24T15:04:54Z</td><td>Fixed on all browsers.</td></tr><tr><td>0054</td><td>samussiah</td><td>2018-04-03T19:46:13Z</td><td>fix-color-domain</td><td>v2.1.0-dev</td><td>Fix color domain</td><td>110112843</td><td>pburnsdata</td><td>2018-04-06T15:42:32Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-24T15:05:00Z</td><td></td></tr><tr><td>0055</td><td>samussiah</td><td>2018-04-03T20:52:19Z</td><td>add-settings-merge</td><td>v2.1.0-dev</td><td>Add settings merge</td><td>110116071</td><td>pburnsdata</td><td>2018-04-06T15:52:00Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-24T15:05:08Z</td><td></td></tr><tr><td>0058</td><td>samussiah</td><td>2018-04-24T15:31:39Z</td><td>v2.1.0-dev</td><td>master</td><td>AE Timelines v2.1.0</td><td>115232688</td><td>tmbarald</td><td>2018-04-25T15:32:35Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-27T19:38:36Z</td><td>Since we cleared up the sorting issue today, everything is good!</td></tr><tr><td>0059</td><td>samussiah</td><td>2018-04-24T15:32:07Z</td><td>test-page</td><td>v2.1.0-dev</td><td>Test page</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-04-24T15:32:49Z</td><td></td></tr><tr><td>0060</td><td>brittsikora</td><td>2018-04-27T18:19:31Z</td><td>brittsikora-patch-1</td><td>master</td><td>Updating links</td><td>116058776</td><td>samussiah</td><td>2018-04-27T19:34:43Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-27T19:34:48Z</td><td></td></tr><tr><td>0061</td><td>rtbailey</td><td>2018-08-09T19:45:12Z</td><td>rtbailey-patch-1</td><td>master</td><td>Update LICENSE.md</td><td>167535243</td><td>samussiah</td><td>2018-10-23T17:07:07Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-10-23T17:13:13Z</td><td></td></tr><tr><td>0065</td><td>samussiah</td><td>2018-12-18T15:56:04Z</td><td>dev-v2.1.3</td><td>master</td><td>AE Timelines v2.1.3</td><td>194177632</td><td>rchronowic</td><td>2019-01-18T16:28:19Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:32:25Z</td><td>Approved! </td></tr><tr><td>0066</td><td>samussiah</td><td>2018-12-18T15:56:54Z</td><td>security-vulnerabilities</td><td>dev-v2.1.3</td><td>fix #64</td><td>186726845</td><td>pburnsdata</td><td>2018-12-19T20:07:24Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:21:46Z</td><td>very secure</td></tr><tr><td>0066</td><td>samussiah</td><td>2018-12-18T15:56:54Z</td><td>security-vulnerabilities</td><td>dev-v2.1.3</td><td>fix #64</td><td>194090092</td><td>rchronowic</td><td>2019-01-18T13:18:23Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:21:46Z</td><td>Approved</td></tr><tr><td>0067</td><td>samussiah</td><td>2018-12-18T15:57:43Z</td><td>fix-test-page</td><td>dev-v2.1.3</td><td>Fix test page</td><td>186727616</td><td>pburnsdata</td><td>2018-12-19T20:09:28Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:21:58Z</td><td>jsdelivrd</td></tr><tr><td>0067</td><td>samussiah</td><td>2018-12-18T15:57:43Z</td><td>fix-test-page</td><td>dev-v2.1.3</td><td>Fix test page</td><td>194161626</td><td>rchronowic</td><td>2019-01-18T15:55:37Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:21:58Z</td><td>Approved</td></tr><tr><td>0068</td><td>samussiah</td><td>2018-12-18T15:58:13Z</td><td>scale-y-axis</td><td>dev-v2.1.3</td><td>Scale y axis</td><td>186730543</td><td>pburnsdata</td><td>2018-12-19T20:17:12Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:22:05Z</td><td>Change made in webcharts</td></tr><tr><td>0068</td><td>samussiah</td><td>2018-12-18T15:58:13Z</td><td>scale-y-axis</td><td>dev-v2.1.3</td><td>Scale y axis</td><td>194089772</td><td>rchronowic</td><td>2019-01-18T13:17:20Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:22:05Z</td><td></td></tr><tr><td>0069</td><td>samussiah</td><td>2018-12-18T15:58:38Z</td><td>ignore-placeholder-rows</td><td>dev-v2.1.3</td><td>Ignore placeholder rows</td><td>186732906</td><td>pburnsdata</td><td>2018-12-19T20:23:34Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-18T16:22:16Z</td><td>nice touch</td></tr><tr><td>0069</td><td>samussiah</td><td>2018-12-18T15:58:38Z</td><td>ignore-placeholder-rows</td><td>dev-v2.1.3</td><td>Ignore placeholder rows</td><td>186733152</td><td>pburnsdata</td><td>2018-12-19T20:48:32Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:22:16Z</td><td>Spencer, is everything in your life modular?</td></tr><tr><td>0069</td><td>samussiah</td><td>2018-12-18T15:58:38Z</td><td>ignore-placeholder-rows</td><td>dev-v2.1.3</td><td>Ignore placeholder rows</td><td>186750738</td><td>samussiah</td><td>2018-12-19T21:12:22Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-18T16:22:16Z</td><td>just my home</td></tr><tr><td>0069</td><td>samussiah</td><td>2018-12-18T15:58:38Z</td><td>ignore-placeholder-rows</td><td>dev-v2.1.3</td><td>Ignore placeholder rows</td><td>194148862</td><td>rchronowic</td><td>2019-01-18T15:29:56Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T16:22:16Z</td><td>Passed testing in both Firefox and Chrome</td></tr><tr><td>0071</td><td>jwildfire</td><td>2019-03-27T19:48:24Z</td><td>dev-v2.1.4</td><td>master</td><td>dev-v2.1.4</td><td>220061748</td><td>samussiah</td><td>2019-03-28T14:37:08Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-03-28T14:37:14Z</td><td></td></tr><tr><td>0073</td><td>samussiah</td><td>2019-04-30T17:24:15Z</td><td>dev-v2.1.5</td><td>master</td><td>Avoid filtering out negative study days.</td><td>232401841</td><td>pburnsdata</td><td>2019-04-30T20:56:37Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-05-01T14:07:54Z</td><td>no time indeed -nice regex!</td></tr><tr><td>0075</td><td>dependabot[bot]</td><td>2019-07-12T04:09:52Z</td><td>dependabot/npm_and_yarn/lodash-4.17.14</td><td>master</td><td>Bump lodash from 4.17.11 to 4.17.14</td><td>261295934</td><td>samussiah</td><td>2019-07-12T14:36:12Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-07-12T14:37:33Z</td><td></td></tr><tr><td>0077</td><td>jwildfire</td><td>2019-08-09T16:50:12Z</td><td>dev-v2.1.6</td><td>master</td><td>Dev v2.1.6</td><td>274932957</td><td>pburnsdata</td><td>2019-08-14T14:38:23Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-08-19T19:39:28Z</td><td>Looks good - just need to merge in the changes!</td></tr><tr><td>0078</td><td>jwildfire</td><td>2019-08-09T16:50:44Z</td><td>addCustomEvent</td><td>dev-v2.1.6</td><td>add participantSelected event. Fix #76</td><td>274931798</td><td>pburnsdata</td><td>2019-08-14T14:36:46Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-08-19T19:38:51Z</td><td></td></tr><tr><td></td></tr></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

@@ -1,0 +1,753 @@
+<html>
+<head>
+    <title>safety-outlier-explorer - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">safety-outlier-explorer - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for safety-outlier-explorer. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/rhoinc/safety-outlier-explorer/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h1 id="functionalspecifications">Functional Specifications</h1>
+<h2 id="filterbymeasure">Filter by Measure</h2>
+<p>This drop-down menu is used to filter the lab variable that is displayed in the chart. The default measure is set to the first variable in the data set, but the default value can be adjusted to any measure upon the project team's request. Users can select any pre-defined measure in this filter.  Selecting a measure will display the data points associated with that measure and will display the visits that the measure is collected at underneath the chart.</p>
+<h2 id="filterbypreselectedcharacteristics">Filter by pre-selected characteristics</h2>
+<p>The chart can be configured to have any number of data filters. Each specified filter has a drop-down menu that is used to filter the visit data that is displayed in the chart.</p>
+<h2 id="totalparticipantsshown">Total Participants Shown</h2>
+<p>Displayed under the header, this statement provides the total number of participants in the data set in integers as well as the percentage of participants shown to one decimal place. In the default view, all participant data is included in the chart, or 100%, unless the project team requests otherwise. When filters are used, the data shown in the histogram is manipulated and the number of participant records shown at the top of the page may increase or decrease, depending on the variable selected. </p>
+<h2 id="changethexaxis">Change the X-axis</h2>
+<p>The chart contains a toggle that controls the display of the x-axis. Users can view the x-axis data by study day, visit, or visit number. The x-axis displays the data point at which the measure data is collected and manipulating it changes the scale at which the measure data is plotted. Study day, visit, or visit number can be chosen for a given measure, but the chart default is to show the x-axis by study day.</p>
+<h2 id="setyaxislimits">Set Y-axis Limits</h2>
+<p>Users are able to adjust the lower limit of the y-axis by manipulating the input within the Lower Limit box. Users are able to adjust the upper limit of the y-axis by manipulating the input within the Upper Limit box. Each limit box has up and down arrows to adjust the value of the box by 1. Users can select an arrow to change the input or delete the current value in the box and type in a new value. When typing in a value, users must click outside of the box to apply the changes. When a user manipulates a y-axis limit, the y-axis on the chart below the controls will reflect the change.</p>
+<h2 id="resetyaxislimits">Reset Y-axis limits</h2>
+<p>Users can change the upper and lower y-axis limits back to the default values for a measure by selecting the "Reset Limits" button. Pressing the button will erase the current values in the upper and lower limit boxes and replace them with defaults. The chart below will also reflect the changes and will show the default axes.</p>
+<h2 id="normalrangecontrols">Normal Range Controls</h2>
+<p>Users can opt to change the method for the normal ranges to the following options: None, LLN-ULN, Standard Deviation, and Quantiles. The default for the normal range controls is set to "LLN-ULN", which is the upper and lower normal range specified in the data. Users may select "None", which will remove the green shading around the normal ranges and will remove the inlier count to the left of the charts. Users may also select "Standard Deviation", which will prompt the user to enter the number of standard deviations they would like to set as the normal range. Altering the default value will change the upper and lower normal range bands in the chart and will change the inlier count to the left of the chart. Users may also select "Quantiles", which prompts the user to enter an upper and lower quantile to set as the normal ranges. Altering the upper quantile will change the upper normal range band in the chart and altering the lower quantile will change the lower normal range band in the chart. Changing the normal ranges may change the number of inliers and the inlier count to the left of the chart will update based on your selections.</p>
+<h2 id="viewvisitswithoutdata">View Visits Without Data</h2>
+<p>Users can select the checkbox to view visits that do not contain data. Checking the box will show a timepoint for the visit. Unchecking the checkbox will hide the timepoint for visits without data; visits without data are hidden on default.</p>
+<h2 id="viewunscheduledvisits">View Unscheduled Visits</h2>
+<p>Users can select the checkbox to view data that is not associated with a scheduled visit. Checking the box will show a timepoint for the unscheduled visit and its associated data. Unselecting the checkbox will hide the unscheduled visit timepoint and its data; unscheduled visits are hidden on default.</p>
+<h2 id="viewsmallmultiples">View Small Multiples</h2>
+<p>Clicking a data point will open a listing of small multiples below the chart that contains a detailed listing of all of the participant's records. This linked table contains small charts for each measure captured in the data set as well as the participant's subject ID, age, sex, and race. When the listing appears, the data points selected will appear in a continuous gray line inside of the chart. When a user clicks outside of the selected data point, the gray line disappears along with the detailed listing.</p>
+<p>Clicking a data point will perform 2 actions:</p>
+<ul>
+<li>Display the raw data records, including the subject identifier, age, race, sex, and small data renderings of each measure captured in the data set </li>
+<li>Create a gray line to connect the selected data points</li>
+</ul>
+<h1 id="regressiontests">Regression Tests</h1>
+<ul>
+<li>Confirm that the number and percentage of participants is captured above the chart</li>
+<li>Confirm that selecting the Measure filter changes the distribution of observations</li>
+<li>Confirm that the x-axis filter changes the x-axis to the selected variable</li>
+<li>Confirm that entering a value into the Y-axis Lower Limit box and clicking outside of the box updates the lower limit of the y-axis</li>
+<li>Confirm that entering a value into the Upper Limit box and clicking outside of the box updates the upper limit of the y-axis</li>
+<li>Confirm that selecting the y-axis reset button returns the chart to the default values for that measure</li>
+<li>Confirm that checking the "Visits without data" checkbox shows a timepoint for visits with no associated data points</li>
+<li>Confirm that unchecking the "Visits without data" checkbox hides the timepoint for visits with no associated data points</li>
+<li>Confirm that checking the "Unscheduled visits" checkbox shows a timepont for unscheduled visits and their associated data</li>
+<li>Confirm that unchecking the "Unscheduled visits" checkbox hides the timepoint for unscheduled visits and their associated data</li>
+<li>Confirm that hovering on a data point displays tooltips for the data point with Subject, value, and visit</li>
+<li>Confirm that date can be added to the standard tooltip with these settings: {tooltip<em>cols: [{label:"Date", value</em>col:"DT"}]}</li>
+<li>Confirm that clicking on a data point applies a dark highlight to all of the participant's data points</li>
+<li>Confirm that clicking on a data point opens a detailed listing of a participant's data beneath the chart</li>
+<li>Confirm that when clicking a point that overlaps with another point. </li>
+<li>Confirm that all marks (points, lines) associated with that participant should highlight.</li>
+<li>Confirm that a note should appear beneath the chart detailing which participants have results overlapping with the click mark.</li>
+<li>Confirm that hovering over any ID in the note should highlight that participant in the chart above.</li>
+<li>Confirm that clicking any ID in the note should highlight that participant in the chart above and display that participant's measures below.</li>
+<li>Confirm that with an overlapping point highlighted, changing any control should remove the note but maintain the highlighting of the selected participant.</li>
+<li>Confirm that the selected participant is displayed in a dropdown with the current participant selected</li>
+<li>Confirm that the listing contains subject-level demographic data (Age, Sex, and Race appear by default, can add other Participant Details if wanted)</li>
+<li>Confirm that the listing contains subject-level information about measures and and visits</li>
+<li>Confirm that you can change the selected participant via the dropdown and the new subject should be highlighted in the main chart and the small multiples should update to reflect that participant's data.</li>
+<li>Confirm that a dropdown labeled Normal range method appears in the controls section with four options: None, LLN-ULN, Standard Deviation, and Quantiles.</li>
+<li>Confirm that selecting Standard Deviation displays a text input labeled Number of standard deviations and defaults to 1.96.</li>
+<li>Confirm that selecting Quantiles displays two text inputs, one for the lower quantile and one for the upper quantile, labeled Lower quantile and Upper quantile respectively, that default to .05 and .95.</li>
+<li>Confirm that the x-axis tick labels change rotation angles depending on the x-axis control variable.</li>
+<li>Confirm that a unit variable is appended to each measure in the Measure dropdown.</li>
+<li>Confirm that there is a specified unit variable in the form on the left panel of CAT.</li>
+<li>Confirm that there are values displayed next to each measure under the specified unit variable in the data set.</li>
+<li>Confirm that the chart lines, when the scrolled on, darken significantly. When the user removes his/her cursor from the chart line, it should return to its default state.</li>
+<li>Confirm that when clicking the arrows in the y-axis limit inputs, the limits should increment by a reasonable factor of the y-axis range, or roughly 1/15 of the range.  For example, if the range is 150 the increment should be 10 and if the range is 1.5 the increment should be .1.</li>
+<li>Confirm that the minimum and maximum points are not clipped by the edge of the chart canvas and can be clicked.</li>
+<li>Confirm that hovering over a point that overlaps with one or more other points yields an additional line in the tooltip: Number of overlapping point(s) = n.</li>
+<li>Confirm that hovering over a point that does not overlap with any other points does not yield an additional line in the tooltip.</li>
+</ul>
+<p><strong>Warnings and Notes</strong></p>
+<ul>
+<li>Confirm that the right side of the webpage between the controls and the chart a note should appear that details how many records with missing and/or non-numeric results were removed.</li>
+<li>Confirm that the test dataset already contains missing records. To test non-numeric records edit ADBDS.csv by adding non-numeric values to the STRESN column.</li>
+<li>Confirm that a warning appears in the console when an invalid initially displayed measure is entered, i.e. one that doesn't appear in the data. (Fill in some dummy text in the "Initially Displayed Measure" field in Settings)</li>
+<li>Verify that after entering the dummy text in the "Initially Displayed Measure" field and reloading the chart, that the Measure dropdown defaults to an existent measure</li>
+<li>Confirm that when entering a valid initially displayed measure but without units, (e.g. Temperature) that a warning appears in the console noting that the specified measure does not include units</li>
+<li>After entering the measure and reloading the chart, verify the Measure dropdown defaults to the specified measure with units</li>
+</ul>
+<p><strong>Highlighting</strong></p>
+<ul>
+<li>Confirm that adding the following block to the Settings input will add custom marks to the chart:
+{
+"custom_marks": [
+    {
+        "per": [
+            "USUBJID",
+            "VISIT",
+            "TEST",
+            "STRESN"
+        ],
+        "type": "circle",
+        "attributes": {
+            "fill": "red",
+            "fill-opacity": 1,
+            "stroke": "black",
+            "stroke-opacity": 1
+        },
+        "radius": 4,
+        "values": {
+            "DY": [
+                "56",
+                "112",
+                "168",
+                "224",
+                "280",
+                "336"
+            ]
+        }
+    }
+]
+}</li>
+<li>Verify that custom marks as well as default marks highlight as expected</li>
+<li>Verify that custom marks as well as default marks can be clicked</li>
+<li>Verify that custom marks maintain their visual characteristics, e.g. fill, stroke, etc.</li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/rhoinc/safety-outlier-explorer/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><p>The Safety Outlier Explorer is initialized with JSON data files that match the format created by <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/CSV.md">d3.csv()</a>.
+The chart expects an <a href="https://www.cdisc.org/system/files/members/standard/foundational/adam/analysis_data_model_v2.1.pdf">ADaM-esque</a> data structure by default but can be customized to work with any dataset that contains one row per participant per time point per measure and includes the required columns specified below.</p>
+<h1 id="defaultchart">Default Chart</h1>
+<p>The following columns are expected in a data file used to create an instance of the safety outlier explorer. A sample chart using this configuration is found <a href="https://rhoinc.github.io/safety-outlier-explorer/build/test-page/">here</a>.</p>
+<h2 id="dataspecification">Data Specification</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Settings Variable</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">id_col</td>
+<td style="text-align:left;">Unique Subject Identifier</td>
+<td style="text-align:left;">USUBJID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">time<em>cols[0].value</em>col</td>
+<td style="text-align:left;">Visit Name</td>
+<td style="text-align:left;">VISIT</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">time<em>cols[0].order</em>col</td>
+<td style="text-align:left;">Visit Name (N)</td>
+<td style="text-align:left;">VISITNUM</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">time<em>cols[1].value</em>col</td>
+<td style="text-align:left;">Study Day of Visit</td>
+<td style="text-align:left;">DY</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">measure_col</td>
+<td style="text-align:left;">Name of Measure or Test</td>
+<td style="text-align:left;">TEST</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">value_col</td>
+<td style="text-align:left;">Result or Finding</td>
+<td style="text-align:left;">STRESN</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">unit_col</td>
+<td style="text-align:left;">Units</td>
+<td style="text-align:left;">STRESU</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">normal<em>col</em>low</td>
+<td style="text-align:left;">Normal Range Lower Limit</td>
+<td style="text-align:left;">STRNLO</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">normal<em>col</em>high</td>
+<td style="text-align:left;">Normal Range Upper Limit</td>
+<td style="text-align:left;">STRNHI</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">details[0].value_col</td>
+<td style="text-align:left;">Age</td>
+<td style="text-align:left;">AGE</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">details[1].value_col</td>
+<td style="text-align:left;">Sex</td>
+<td style="text-align:left;">SEX</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">details[2].value_col</td>
+<td style="text-align:left;">Race</td>
+<td style="text-align:left;">RACE</td>
+<td style="text-align:left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="settings">Settings</h2>
+<p>No customization is needed to initialize a chart when the <code>data</code> object contains all default variables above.
+Just pass an empty object (<code>{}</code>) for <code>settings</code> and initialize the chart like so: <code>safetyOutlierExplorer('body', {}).init(data)</code>.</p>
+<h1 id="customizedchartwithqueries">Customized Chart with Queries</h1>
+<p>The following data specs and chart settings can be used to create a chart with several custom filters, including Sex, Race and Query Status. A sample chart using this configuration is found <a href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safetyoutlierexplorer.html">here</a>.</p>
+<h2 id="dataspecification-1">Data Specification</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Settings Variable</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">id_col</td>
+<td style="text-align:left;">Unique Subject Identifier</td>
+<td style="text-align:left;">USUBJID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">time<em>cols[0].value</em>col</td>
+<td style="text-align:left;">Visit Name</td>
+<td style="text-align:left;">VISIT</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">time<em>cols[0].order</em>col</td>
+<td style="text-align:left;">Visit Name (N)</td>
+<td style="text-align:left;">VISITNUM</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">time<em>cols[1].value</em>col</td>
+<td style="text-align:left;">Study Day of Visit</td>
+<td style="text-align:left;">DY</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">measure_col</td>
+<td style="text-align:left;">Name of Measure or Test</td>
+<td style="text-align:left;">TEST</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">value_col</td>
+<td style="text-align:left;">Result or Finding</td>
+<td style="text-align:left;">STRESN</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">unit_col</td>
+<td style="text-align:left;">Units</td>
+<td style="text-align:left;">STRESU</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">normal<em>col</em>low</td>
+<td style="text-align:left;">Normal Range Lower Limit</td>
+<td style="text-align:left;">STRNLO</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">normal<em>col</em>high</td>
+<td style="text-align:left;">Normal Range Upper Limit</td>
+<td style="text-align:left;">STRNHI</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">details[0].value_col</td>
+<td style="text-align:left;">Age</td>
+<td style="text-align:left;">AGE</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">details[1].value_col</td>
+<td style="text-align:left;">Sex</td>
+<td style="text-align:left;">SEX</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">details[2].value_col</td>
+<td style="text-align:left;">Race</td>
+<td style="text-align:left;">RACE</td>
+<td style="text-align:left;"></td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Site ID</td>
+<td style="text-align:left;">SITEID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Treatment Arm</td>
+<td style="text-align:left;">ARM</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Sex</td>
+<td style="text-align:left;">SEX</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Race</td>
+<td style="text-align:left;">RACE</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter</td>
+<td style="text-align:left;">Query Flag ("Y" for yes)</td>
+<td style="text-align:left;">QUERYFL</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">custom_marks[0].tooltip</td>
+<td style="text-align:left;">Query Details</td>
+<td style="text-align:left;">QUERYDETAILS</td>
+<td style="text-align:left;">Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="settingsobject">Settings Object</h2>
+<pre><code>{
+     time_cols: [
+        {
+            value_col: 'VISIT',
+            type: 'ordinal',
+            label: 'Visit',
+            rotate_tick_labels: true,
+            vertical_space: 100,
+            order_col: 'VISITNUM'
+        },
+        {
+            value_col: 'DY',
+            type: 'linear',
+            label: 'Study Day',
+            rotate_tick_labels: false,
+            vertical_space: 0
+        }
+    ],
+    filters: [
+        {value_col: 'ARM', label: 'Arm'},
+        {value_col: 'SITEID', label: 'Site ID'},
+        {value_col: 'SEX', label: 'Sex'},
+        {value_col: 'RACE', label: 'Race'},
+        {value_col: 'QUERYFL', label: 'Open Query?'}
+    ],
+    details: [
+        {value_col: 'ARM', label: 'Arm'},
+        {value_col: 'AGE', label: 'Age'},
+        {value_col: 'SEX', label: 'Sex'},
+        {value_col: 'RACE', label: 'Race'}
+    ],
+    custom_marks: [
+        {
+            per: ['USUBJID', 'VISIT', 'STRESN'],
+            type: 'circle',
+            attributes: {
+                'fill-opacity': 1,
+                'stroke': 'red',
+                'fill': 'red'
+            },
+            values: {
+                QUERYFL: ['Y']
+            },
+            tooltip: 'Query Details: [QUERYDETAILS]'
+        }
+    ],
+    multiples_sizing: {
+        width: 250,
+        height: 75
+    }
+}
+</code></pre></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/rhoinc/safety-outlier-explorer/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="safetyoutlierexplorerelementsettings">safetyOutlierExplorer(element, settings)</h1>
+<p>a factory to create a custom <a href="https://github.com/RhoInc/Webcharts/wiki/Chart">Webcharts chart</a> object</p>
+<p><strong>returns:</strong> <a href="https://github.com/RhoInc/Webcharts/wiki/Chart"><code>chart</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="events">Events</h1>
+<h2 id="participantsselected">participantsSelected</h2>
+<p>The custom <code>participantsSelected</code> event is dispatched to the overall chart wrapper (<code>chart.wrap</code>) whenever the details for a given participant are viewed (or cleared) by clicking on a line or point in the chart. The event has a custom <code>data</code> property holding an array with the selected ID when a new participant is selected (<code>["123-456-7"]</code>) or an empty array when participant details are cleared. </p></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/rhoinc/safety-outlier-explorer/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><p>The most straightforward way to customize the Safety Outlier Explorer is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the Safety Outlier Explorer is a Webcharts <code>chart</code> object, many default Webcharts settings are set in the <a href="https://github.com/RhoInc/safety-outlier-explorer/blob/master/src/defaultSettings.js">defaultSettings.js file</a> as <a href="#webcharts-settings">described below</a>. Refer to the <a href="https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration">Webcharts documentation</a> for more details on these settings.</p>
+<p>In addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the Safety Outlier Explorer to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.</p>
+<h1 id="rendererspecificsettings">Renderer-specific settings</h1>
+<p>The sections below describe each safety-outlier-explorer setting as of version 2.3.0.</p>
+<h2 id="settingsid_col">settings.id_col</h2>
+<p><code>string</code></p>
+<p>unique identifier variable name</p>
+<p><strong>default:</strong> <code>"USUBJID"</code></p>
+<h2 id="settingstime_cols">settings.time_cols</h2>
+<p><code>array</code></p>
+<p>visit metadata</p>
+<p><strong>default:</strong> </p>
+<pre><code>[
+  {
+    "type": "ordinal",
+    "value_col": "VISIT",
+    "label": "Visit",
+    "order_col": "VISITNUM",
+    "order": null,
+    "rotate_tick_labels": true,
+    "vertical_space": 100
+  },
+  {
+    "type": "linear",
+    "value_col": "DY",
+    "label": "Study Day",
+    "order_col": "DY",
+    "order": null,
+    "rotate_tick_labels": false,
+    "vertical_space": 0
+  }
+]
+</code></pre>
+<h3 id="settingstime_colstype">settings.time_cols[].type</h3>
+<p><code>string</code></p>
+<p>Visit variable data type</p>
+<p><strong>default:</strong> <code>"ordinal"</code></p>
+<h3 id="settingstime_colsvalue_col">settings.time<em>cols[].value</em>col</h3>
+<p><code>string</code></p>
+<p>Visit variable name</p>
+<p><strong>default:</strong> <code>"VISIT"</code></p>
+<h3 id="settingstime_colslabel">settings.time_cols[].label</h3>
+<p><code>string</code></p>
+<p>Visit variable label</p>
+<p><strong>default:</strong> <code>"Visit"</code></p>
+<h3 id="settingstime_colsorder_col">settings.time<em>cols[].order</em>col</h3>
+<p><code>string</code></p>
+<p>Visit ordering variable name</p>
+<p><strong>default:</strong> <code>"VISITNUM"</code></p>
+<h3 id="settingstime_colsorder">settings.time_cols[].order</h3>
+<p><code>array</code></p>
+<p>Visit order</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingstime_colsrotate_tick_labels">settings.time<em>cols[].rotate</em>tick_labels</h3>
+<p><code>boolean</code></p>
+<p>Rotate tick labels 45 degrees?</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h3 id="settingstime_colsvertical_space">settings.time<em>cols[].vertical</em>space</h3>
+<p><code>number</code></p>
+<p>Rotated tick label spacing</p>
+<p><strong>default:</strong> <code>100</code></p>
+<h2 id="settingsmeasure_col">settings.measure_col</h2>
+<p><code>string</code></p>
+<p>measure variable name</p>
+<p><strong>default:</strong> <code>"TEST"</code></p>
+<h2 id="settingsunit_col">settings.unit_col</h2>
+<p><code>string</code></p>
+<p>measure unit variable name</p>
+<p><strong>default:</strong> <code>"STRESU"</code></p>
+<h2 id="settingsvalue_col">settings.value_col</h2>
+<p><code>string</code></p>
+<p>result variable name</p>
+<p><strong>default:</strong> <code>"STRESN"</code></p>
+<h2 id="settingsnormal_col_low">settings.normal<em>col</em>low</h2>
+<p><code>string</code></p>
+<p>LLN variable name</p>
+<p><strong>default:</strong> <code>"STNRLO"</code></p>
+<h2 id="settingsnormal_col_high">settings.normal<em>col</em>high</h2>
+<p><code>string</code></p>
+<p>ULN variable name</p>
+<p><strong>default:</strong> <code>"STNRHI"</code></p>
+<h2 id="settingsstart_value">settings.start_value</h2>
+<p><code>string</code></p>
+<p>value of measure to display initially</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsfilters">settings.filters</h2>
+<p><code>array</code></p>
+<p>an array of filter variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfiltersvalue_col">settings.filters[].value_col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfilterslabel">settings.filters[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsdetails">settings.details</h2>
+<p><code>array</code></p>
+<p>an array of ID-level variables and associated metadata</p>
+<p><strong>default:</strong> </p>
+<pre><code>[
+  {
+    "value_col": "AGE",
+    "label": "Age"
+  },
+  {
+    "value_col": "SEX",
+    "label": "Sex"
+  },
+  {
+    "value_col": "RACE",
+    "label": "Race"
+  }
+]
+</code></pre>
+<h3 id="settingsdetailsvalue_col">settings.details[].value_col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> <code>"AGE"</code></p>
+<h3 id="settingsdetailslabel">settings.details[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> <code>"Age"</code></p>
+<h2 id="settingstooltip_cols">settings.tooltip_cols</h2>
+<p><code>object</code></p>
+<p><strong>added in v2.4</strong>. Takes an array of col/label objects and adds those values to the end of the standard point tooltips. The following would add Date to the tooltip: <code>{tooltip_cols: [{label:"Date",value_col:"DT"}]};</code></p>
+<p><strong>default:</strong> <code>null</code></p>
+<h2 id="settingsmultiples_sizing">settings.multiples_sizing</h2>
+<p><code>object</code></p>
+<p>width and height of small multiples</p>
+<h3 id="settingsmultiples_sizingwidth">settings.multiples_sizing.width</h3>
+<p><code>number</code></p>
+<p>Width</p>
+<p><strong>default:</strong> <code>300</code></p>
+<h3 id="settingsmultiples_sizingheight">settings.multiples_sizing.height</h3>
+<p><code>number</code></p>
+<p>Height</p>
+<p><strong>default:</strong> <code>100</code></p>
+<h2 id="settingsnormal_range_method">settings.normal<em>range</em>method</h2>
+<p><code>string</code></p>
+<p>method for identifying the normal range</p>
+<p><strong>default:</strong> <code>"LLN-ULN"</code></p>
+<h2 id="settingsnormal_range_sd">settings.normal<em>range</em>sd</h2>
+<p><code>number</code></p>
+<p>the number of standard deviations from the mean with which to define the normal range</p>
+<p><strong>default:</strong> <code>1.96</code></p>
+<h2 id="settingsnormal_range_quantile_low">settings.normal<em>range</em>quantile_low</h2>
+<p><code>number</code></p>
+<p>this quantile defines the lower bound of the normal range</p>
+<p><strong>default:</strong> <code>0.05</code></p>
+<h2 id="settingsnormal_range_quantile_high">settings.normal<em>range</em>quantile_high</h2>
+<p><code>number</code></p>
+<p>this quantile defines the upper bound of the normal range</p>
+<p><strong>default:</strong> <code>0.95</code></p>
+<h2 id="settingsvisits_without_data">settings.visits<em>without</em>data</h2>
+<p><code>boolean</code></p>
+<p>controls display of visits without data for the current measure</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsunscheduled_visits">settings.unscheduled_visits</h2>
+<p><code>boolean</code></p>
+<p>controls display of unscheduled visits</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsunscheduled_visit_pattern">settings.unscheduled<em>visit</em>pattern</h2>
+<p><code>string</code></p>
+<p>a regular expression that identifies unscheduled visits</p>
+<p><strong>default:</strong> <code>"/unscheduled|early termination/i"</code></p>
+<h2 id="settingsunscheduled_visits_values">settings.unscheduled<em>visits</em>values</h2>
+<p><code>array</code></p>
+<p>an array of strings that identify unscheduled visits; overrides unscheduled<em>visit</em>pattern</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsline_attributes">settings.line_attributes</h2>
+<p><code>object</code></p>
+<p>an object that defines the line color, thickness, and opacity</p>
+<h3 id="settingsline_attributesstroke">settings.line_attributes.stroke</h3>
+<p><code>string</code></p>
+<p>Line Color</p>
+<p><strong>default:</strong> <code>"black"</code></p>
+<h3 id="settingsline_attributesstrokewidth">settings.line_attributes.stroke-width</h3>
+<p><code>number</code></p>
+<p>Line Thickness</p>
+<p><strong>default:</strong> <code>0.5</code></p>
+<h3 id="settingsline_attributesstrokeopacity">settings.line_attributes.stroke-opacity</h3>
+<p><code>number</code></p>
+<p>Line Opacity</p>
+<p><strong>default:</strong> <code>0.75</code></p>
+<h2 id="settingspoint_attributes">settings.point_attributes</h2>
+<p><code>object</code></p>
+<p>an object that defines the point color, radius, and opacity and its outline color, thickness, and opacity</p>
+<h3 id="settingspoint_attributesstroke">settings.point_attributes.stroke</h3>
+<p><code>string</code></p>
+<p>Point Outline Color</p>
+<p><strong>default:</strong> <code>"rgb(102,194,165)"</code></p>
+<h3 id="settingspoint_attributesstrokewidth">settings.point_attributes.stroke-width</h3>
+<p><code>number</code></p>
+<p>Point Outline Thickness</p>
+<p><strong>default:</strong> <code>0.5</code></p>
+<h3 id="settingspoint_attributesstrokeopacity">settings.point_attributes.stroke-opacity</h3>
+<p><code>number</code></p>
+<p>Point Outline Opacity</p>
+<p><strong>default:</strong> <code>1</code></p>
+<h3 id="settingspoint_attributesfill">settings.point_attributes.fill</h3>
+<p><code>string</code></p>
+<p>Point Color</p>
+<p><strong>default:</strong> <code>"rgb(102,194,165)"</code></p>
+<h3 id="settingspoint_attributesradius">settings.point_attributes.radius</h3>
+<p><code>number</code></p>
+<p>Point Radius</p>
+<p><strong>default:</strong> <code>3</code></p>
+<h3 id="settingspoint_attributesfillopacity">settings.point_attributes.fill-opacity</h3>
+<p><code>number</code></p>
+<p>Point Opacity</p>
+<p><strong>default:</strong> <code>1</code></p>
+<h1 id="webchartssettings">Webcharts settings</h1>
+<p>The object below contains each Webcharts setting as of version 2.3.0.</p>
+<pre><code>{
+    x: {
+        column: null, //set in syncSettings()
+        type: null, //set in syncSettings()
+        behavior: 'raw'
+    },
+    y: {
+        column: null, //set in syncSettings()
+        stat: 'mean',
+        type: 'linear',
+        label: 'Value',
+        behavior: 'raw',
+        format: '0.2f'
+    },
+    marks: [
+        {
+            per: null, //set in syncSettings()
+            type: 'line',
+            attributes: {
+                'clip-path': 'url(#1)'
+            },
+            tooltip: null //set in syncSettings()
+        },
+        {
+            per: null, //set in syncSettings()
+            type: 'circle',
+            attributes: {
+                'clip-path': 'url(#1)'
+            },
+            tooltip: null //set in syncSettings()
+        }
+    ],
+    resizable: true,
+    margin: { right: 20 }, //create space for box plot
+    aspect: 3
+}
+</code></pre></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>PullRequest</th><th>Requester</th><th>DateRequested</th><th>Branch</th><th>Target</th><th>Title</th><th>ReviewID</th><th>Reviewer</th><th>ReviewDate</th><th>ReviewStatus</th><th>MergedBy</th><th>DateMerged</th><th>ReviewComments</th></tr></thead><tbody><tr><td>0007</td><td>jwildfire</td><td>2016-04-15T16:34:39Z</td><td>adjust-ticks</td><td>master</td><td>Adjust ticks</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-04-15T16:34:47Z</td><td></td></tr><tr><td>0014</td><td>jwildfire</td><td>2016-05-25T19:55:47Z</td><td>reorg</td><td>master</td><td>Reorg</td><td></td><td></td><td></td><td>NONE</td><td>Nathan Bryant</td><td>2016-06-08T14:45:25Z</td><td></td></tr><tr><td>0015</td><td>nbryant</td><td>2016-06-14T17:17:40Z</td><td>build-fix</td><td>master</td><td>fixing build to use babel</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-06-14T17:42:24Z</td><td></td></tr><tr><td>0026</td><td>jwildfire</td><td>2016-12-17T16:15:37Z</td><td>v1.3.0</td><td>master</td><td>Safety Outlier Explorer v1.3.0</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-02-23T22:03:03Z</td><td></td></tr><tr><td>0028</td><td>samussiah</td><td>2017-01-09T17:39:14Z</td><td>custom-filters</td><td>v1.3.0</td><td>Implement custom filter functionality and update build-chf process.</td><td>16036262</td><td>jwildfire</td><td>2017-01-10T23:16:45Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2017-01-20T14:28:14Z</td><td>I'd suggest avoiding this hard code and working time_col[].type in to the settings so that the user can specify what type of axis to use. See [here](https://github.com/RhoInc/safety-outlier-explorer/pull/32#pullrequestreview-16034578) for details.</td></tr><tr><td>0028</td><td>samussiah</td><td>2017-01-09T17:39:14Z</td><td>custom-filters</td><td>v1.3.0</td><td>Implement custom filter functionality and update build-chf process.</td><td>16239688</td><td>samussiah</td><td>2017-01-11T21:27:17Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T14:28:14Z</td><td>Fixed in #32 </td></tr><tr><td>0028</td><td>samussiah</td><td>2017-01-09T17:39:14Z</td><td>custom-filters</td><td>v1.3.0</td><td>Implement custom filter functionality and update build-chf process.</td><td>17485238</td><td>jwildfire</td><td>2017-01-19T15:47:49Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T14:28:14Z</td><td>Looks good. Careful with the order of the PR merges. LMK if you start hitting problems. </td></tr><tr><td>0028</td><td>samussiah</td><td>2017-01-09T17:39:14Z</td><td>custom-filters</td><td>v1.3.0</td><td>Implement custom filter functionality and update build-chf process.</td><td>17485251</td><td>jwildfire</td><td>2017-01-19T15:47:52Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-01-20T14:28:14Z</td><td></td></tr><tr><td>0029</td><td>samussiah</td><td>2017-01-09T20:06:04Z</td><td>participant-details</td><td>v1.3.0</td><td>Add participant details to small multiples container.</td><td>15937822</td><td>jwildfire</td><td>2017-01-10T15:22:20Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-01-20T14:46:09Z</td><td>👍  looks good to me. Ready to merge. </td></tr><tr><td>0030</td><td>samussiah</td><td>2017-01-10T15:39:40Z</td><td>small-multiple-layout</td><td>v1.3.0</td><td>Remove small multiple resizability to improve layout.</td><td>16038309</td><td>jwildfire</td><td>2017-01-10T23:29:37Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-01-20T16:10:42Z</td><td>Looking good. Default is a tad small for multiples; worth adding a setting for smallMultipleWidth? </td></tr><tr><td>0031</td><td>samussiah</td><td>2017-01-10T16:53:59Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement consistent axes within a selected measure when other filter…</td><td>16037412</td><td>jwildfire</td><td>2017-01-10T23:24:05Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2017-01-20T14:51:20Z</td><td>Like this approach a lot. One more change related to generalizing the hard code logic for the x axis;;Another change like [this one](https://github.com/RhoInc/safety-outlier-explorer/pull/32#pullrequestreview-16034578) needed :( Should be able to pull the axis type off of `config.time_col[].type` and then decide whether to use `d3.extent()` or `d3.set().values()` based on that. </td></tr><tr><td>0031</td><td>samussiah</td><td>2017-01-10T16:53:59Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement consistent axes within a selected measure when other filter…</td><td>16239621</td><td>samussiah</td><td>2017-01-11T21:26:54Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T14:51:20Z</td><td>Fixed in #32 </td></tr><tr><td>0031</td><td>samussiah</td><td>2017-01-10T16:53:59Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement consistent axes within a selected measure when other filter…</td><td>17486009</td><td>jwildfire</td><td>2017-01-19T15:50:54Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T14:51:20Z</td><td>Looks good. Careful with merge order. </td></tr><tr><td>0031</td><td>samussiah</td><td>2017-01-10T16:53:59Z</td><td>consistent-axes</td><td>v1.3.0</td><td>Implement consistent axes within a selected measure when other filter…</td><td>17486027</td><td>jwildfire</td><td>2017-01-19T15:50:58Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-01-20T14:51:20Z</td><td></td></tr><tr><td>0032</td><td>samussiah</td><td>2017-01-10T19:20:42Z</td><td>rotate-x-tick-labels</td><td>v1.3.0</td><td>Add x-axis tick label rotation functionality with setting...</td><td>16034578</td><td>jwildfire</td><td>2017-01-10T23:05:55Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2017-01-20T15:02:03Z</td><td>I'm a little worried about having a hard coded variable name here ("DY"). What happens when the user specifies a different set of `time_cols`?  ;; ;; What if we had time_cols specified like this: `time_cols: [{value_col:"VISITN", axis_type:"ordinal"}, {value_col:"DY", axis_type:"linear}, ...]`, then this area becomes:;; ```;;   settings.x.column = settings.time_cols[0].value_col;;;   settings.x.type =  settings.time_cols[0].axis_type;;; ```</td></tr><tr><td>0032</td><td>samussiah</td><td>2017-01-10T19:20:42Z</td><td>rotate-x-tick-labels</td><td>v1.3.0</td><td>Add x-axis tick label rotation functionality with setting...</td><td>16037986</td><td>samussiah</td><td>2017-01-10T23:27:29Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T15:02:03Z</td><td>I like that approach a helluva lot more.</td></tr><tr><td>0032</td><td>samussiah</td><td>2017-01-10T19:20:42Z</td><td>rotate-x-tick-labels</td><td>v1.3.0</td><td>Add x-axis tick label rotation functionality with setting...</td><td>17484963</td><td>jwildfire</td><td>2017-01-19T15:46:44Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-01-20T15:02:03Z</td><td>Looks great. Well done. </td></tr><tr><td>0033</td><td>samussiah</td><td>2017-01-10T21:31:52Z</td><td>sample-population</td><td>v1.3.0</td><td>Add sample/population annotation.</td><td>16032313</td><td>jwildfire</td><td>2017-01-10T22:50:48Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T15:12:11Z</td><td>Why do we need super_raw_data instead of just the normal raw_data here? ;; ;; I see that convention quite a bit. Maybe we should just add it to webcharts? </td></tr><tr><td>0033</td><td>samussiah</td><td>2017-01-10T21:31:52Z</td><td>sample-population</td><td>v1.3.0</td><td>Add sample/population annotation.</td><td>16032402</td><td>jwildfire</td><td>2017-01-10T22:51:25Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T15:12:11Z</td><td>Looks good - just one question about super_raw for you. </td></tr><tr><td>0033</td><td>samussiah</td><td>2017-01-10T21:31:52Z</td><td>sample-population</td><td>v1.3.0</td><td>Add sample/population annotation.</td><td>16239290</td><td>samussiah</td><td>2017-01-11T21:25:15Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T15:12:11Z</td><td>Updated to calculate population count onInit() instead of passing around an unadulterated data array.</td></tr><tr><td>0033</td><td>samussiah</td><td>2017-01-10T21:31:52Z</td><td>sample-population</td><td>v1.3.0</td><td>Add sample/population annotation.</td><td>17486648</td><td>jwildfire</td><td>2017-01-19T15:53:14Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-01-20T15:12:11Z</td><td></td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17487955</td><td>jwildfire</td><td>2017-01-19T15:57:57Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>This probably won't work since the `unit_col` typically changes with `measure_col`</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17488232</td><td>jwildfire</td><td>2017-01-19T15:59:09Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>might need something like `raw_data.filter(d=>give me the current measure)[0][chart.config.unit_col]`</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17488380</td><td>jwildfire</td><td>2017-01-19T15:59:40Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>we should really clean up the data paradigm in webcharts a bit ... let's make time for that after these releases go out. </td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17488727</td><td>jwildfire</td><td>2017-01-19T16:00:59Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>Need to only look at the currently selected measure here. see comment above for possible implementation.</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17489594</td><td>jwildfire</td><td>2017-01-19T16:04:36Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>For the moment, maybe we should create/maintain a `chart.measure_data` in this renderer. Seems like that would deal with most of this nonsense in a fairly elegant way ... just throw something like this in to `onInit()` and `onDraw()`:;; ;; ```;; var current_measure = {go get it from the control};; chart.measure_data = raw_data.filter(d=>d[chart.config.measure_col]==current_measure);; ```</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17489992</td><td>jwildfire</td><td>2017-01-19T16:06:03Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>Yessiree. Like this a lot. </td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17490118</td><td>jwildfire</td><td>2017-01-19T16:06:30Z</td><td>DISMISSED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>See comments about creating `chart.summary_data` to help with data flow in this renderer. </td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17705172</td><td>samussiah</td><td>2017-01-20T15:56:15Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>@jwildfire `this.raw_data` in this case refers to an individual multiple's data, which is already filtered on a single measure.  The reason I switched from `this.current_data` eludes me but it is simpler to pull a datum out of `this.raw_data`.</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17705533</td><td>samussiah</td><td>2017-01-20T15:57:51Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>Similarly, `chart.raw_data` refers to the multiple's data, which is already filtered on a single measure.</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17709913</td><td>samussiah</td><td>2017-01-20T16:17:16Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>Just kidding, you're absolutely right.  Will update to `this.filtered_data` in a new branch.</td></tr><tr><td>0034</td><td>samussiah</td><td>2017-01-17T20:19:05Z</td><td>custom-marks</td><td>v1.3.0</td><td>Custom marks</td><td>17709930</td><td>samussiah</td><td>2017-01-20T16:17:20Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-20T16:03:34Z</td><td>Just kidding, you're absolutely right.  Will update to `this.filtered_data` in a new branch.</td></tr><tr><td>0038</td><td>samussiah</td><td>2017-01-20T22:26:39Z</td><td>small-multiple-fixes</td><td>v1.3.0</td><td>Add configuration of and variable y-domain to small multiples.</td><td>18065992</td><td>jwildfire</td><td>2017-01-24T01:18:52Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2017-01-25T18:09:31Z</td><td>Looks great in general. Just take a look at the highlight on point click. ;;Clicking a line gives the expected behaviour, but clicking a point (that is a <circle>) doesn't seem to leave the participant highlighted in the main chart. Expect there just needs to be a copy/paste update in this area. </td></tr><tr><td>0038</td><td>samussiah</td><td>2017-01-20T22:26:39Z</td><td>small-multiple-fixes</td><td>v1.3.0</td><td>Add configuration of and variable y-domain to small multiples.</td><td>18464455</td><td>samussiah</td><td>2017-01-25T18:09:15Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-01-25T18:09:31Z</td><td>Fixed.</td></tr><tr><td>0044</td><td>samussiah</td><td>2017-02-02T15:26:52Z</td><td>y-axis-label-fix</td><td>v1.3.0</td><td>Fixing small multiples y-axis label issue.</td><td>21894300</td><td>jwildfire</td><td>2017-02-14T23:45:04Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-02-14T23:45:17Z</td><td>Looks good. </td></tr><tr><td>0045</td><td>jwildfire</td><td>2017-02-23T21:46:07Z</td><td>master</td><td>v1.3.0</td><td>Update 2.0 from master</td><td></td><td></td><td></td><td>NONE</td><td></td><td></td><td></td></tr><tr><td>0047</td><td>jwildfire</td><td>2017-03-07T02:34:13Z</td><td>v2.0.1</td><td>master</td><td>no filters for 0 or 1 level vars. closes #46</td><td>25649265</td><td>samussiah</td><td>2017-03-07T22:26:07Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-03-13T23:34:28Z</td><td>Nooice!</td></tr><tr><td>0052</td><td>jwildfire</td><td>2017-10-12T22:53:20Z</td><td>v2.0.2-dev</td><td>master</td><td>v2.0.2 - dev branch</td><td>69263322</td><td>samussiah</td><td>2017-10-13T15:22:03Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-10-13T21:00:35Z</td><td></td></tr><tr><td>0055</td><td>jwildfire</td><td>2017-10-16T20:12:56Z</td><td>v2.0.3-dev</td><td>master</td><td>V2.0.3 dev</td><td>69687382</td><td>samussiah</td><td>2017-10-16T20:23:09Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-10-16T20:30:43Z</td><td></td></tr><tr><td>0059</td><td>jwildfire</td><td>2017-11-17T03:03:17Z</td><td>y-axis-controls</td><td>v2.1.0-dev</td><td>Y axis controls</td><td>77471728</td><td>samussiah</td><td>2017-11-17T15:41:40Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-11-17T15:42:53Z</td><td>Smart.</td></tr><tr><td>0059</td><td>jwildfire</td><td>2017-11-17T03:03:17Z</td><td>y-axis-controls</td><td>v2.1.0-dev</td><td>Y axis controls</td><td>77471863</td><td>samussiah</td><td>2017-11-17T15:42:04Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-11-17T15:42:53Z</td><td>Entirely functional, I likes!</td></tr><tr><td>0060</td><td>jwildfire</td><td>2017-11-17T03:04:07Z</td><td>v2.1.0-dev</td><td>master</td><td>v2.1.0 Development Branch</td><td>81204300</td><td>brittsikora</td><td>2017-12-05T14:40:53Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-12-05T14:47:48Z</td><td>Passed regression testing</td></tr><tr><td>0061</td><td>jwildfire</td><td>2017-11-17T03:49:06Z</td><td>check-values</td><td>v2.1.0-dev</td><td>Don't drop measures with sparse numeric data</td><td>79912316</td><td>samussiah</td><td>2017-11-29T16:35:06Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2017-12-04T00:46:44Z</td><td>`+"" === 0`;; ;; I'd prefer to kick out missing values.</td></tr><tr><td>0065</td><td>samussiah</td><td>2017-12-05T18:00:02Z</td><td>y-axis-controls</td><td>master</td><td>refactor y-axis controls</td><td>81281130</td><td>jwildfire</td><td>2017-12-05T18:06:45Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-12-05T18:08:53Z</td><td>Works like a charm. I like the updated labels</td></tr><tr><td>0073</td><td>samussiah</td><td>2018-01-26T20:03:40Z</td><td>v2.2.0-dev</td><td>master</td><td>Safety Outlier Explorer - v2.2.0</td><td>93729014</td><td>brittsikora</td><td>2018-02-02T19:24:45Z</td><td>APPROVED</td><td>samussiah</td><td>2018-02-02T21:34:30Z</td><td>Passing regression testing in firefox and chrome</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92058104</td><td>jwildfire</td><td>2018-01-28T17:01:08Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>Very nice - thanks for all the refactor work. ;;any specific reason to move it to preprocess? Or just trying to keep everything together? ;;Seems like this should be in #76 - Is `config.unscheduled_visits` defined yet? No biggie though. I assume this will be used in the later PRs. ;;Nice refactor here 🥇 ;;more code for #76 ? ;;I think we should make this warning visible at some point. Make it a footnote or something instead of showing it just in the console. Created #79 for later. ;;NBD, but curious if there is a reason for the funky "|" concatenation here instead of just using an object with 2 properties? ;;   ;;another refactor 🏅  - you'll catch Michael Phelps in no time. ;;We should probably make an issue to fix this in webcharts. ;;Hate having to re-write the filter functionality here - I think it's slightly cleaner to filter `raw_data` based on the measure, and save the actual raw data in `super_raw` in the init callback. That way the regular webcharts filtering workflow still works.  Maybe not worth fixing in v2.2 (since I'm sure this works fine), but something to keep in mind for later. ;; ;; If we ever do decide to tackle webcharts v2.0 I definitely think that we should add a `preprocessed_data` array (or something like that) to the chart object. That new array would sits between the loaded data and the data that is sent to `webcharts.draw()`. </td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92243465</td><td>samussiah</td><td>2018-01-29T15:34:49Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>Because it's a pain to modify `current_data`, particularly when there's more than one mark type.  Simpler to modify the raw data, hence `initial_data`, `measure_data`, etc.</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92243647</td><td>samussiah</td><td>2018-01-29T15:35:19Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>Rightio.  Just copying stuff from the safety-results-over-time updates.</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92243766</td><td>samussiah</td><td>2018-01-29T15:35:41Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>Heh yeah.</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92244012</td><td>samussiah</td><td>2018-01-29T15:36:17Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>Not a bad idea, perhaps a red exclamation point with a tooltip.</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92244206</td><td>samussiah</td><td>2018-01-29T15:36:49Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>Because I don't think `d3.set()` works with objects?  Could be wrong about that.</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92244454</td><td>samussiah</td><td>2018-01-29T15:37:28Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>It would be nice to identify controls without accessing their data.</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>92249110</td><td>samussiah</td><td>2018-01-29T15:48:46Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td>You're right, we don't even need this data array.;; ;; The issue here is that we want only the measure filter to change the domains.  It'd be nice to specify in the filter settings the x- and y-behavior.  What do you think?;; ;; This bit does seem over-engineered though.  If we just set the behaviors to raw and set `raw_data` to the `measure_data` we can avoid defining the filtered data and domains.;; ;; It'd be nice if we could access the data between each of these steps:;; ;; 1. raw data;; 2. valid data, removing x- and y-values that don't make sense;; 3. filtered data, applying the filters;; 4. mark data, nesting the data</td></tr><tr><td>0074</td><td>samussiah</td><td>2018-01-26T20:04:24Z</td><td>visit-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>93308123</td><td>brittsikora</td><td>2018-02-01T14:55:03Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:11:57Z</td><td></td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>92089934</td><td>jwildfire</td><td>2018-01-29T04:38:22Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td>Looks good to me. ;; ;; (Just reviewed afc1f9ab433df480fe90031a75430652711632d2);;This lives elsewhere now??;;Moved in refactor? ;;`array.pop()` instead of `array[0]` is cute. Probably a bit easier to read. ;;How dare you use `chart.initial_data` instead of good ol' `chart.super_raw_data`? Kids these days. ;;Guessing this wasn't be used? </td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>92241069</td><td>samussiah</td><td>2018-01-29T15:28:38Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td>Changed it to updateParticipantCount ¯\_(ツ)_/¯</td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>92241335</td><td>samussiah</td><td>2018-01-29T15:29:20Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td>Moved to `onPreprocess/setYdomain`.</td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>92242252</td><td>samussiah</td><td>2018-01-29T15:31:36Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td>Yeah, but [`array.find()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) is the best option, but the one time I tried it out babel didn't add a polyfill so it failed in IE.</td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>92242534</td><td>samussiah</td><td>2018-01-29T15:32:21Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td>I'm not a super freak.</td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>92242755</td><td>samussiah</td><td>2018-01-29T15:32:55Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td>Right, only needed that in safety-results-over-time for the box plots.</td></tr><tr><td>0076</td><td>samussiah</td><td>2018-01-26T21:48:00Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>93332460</td><td>brittsikora</td><td>2018-02-01T15:56:10Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:12:17Z</td><td></td></tr><tr><td>0077</td><td>samussiah</td><td>2018-01-26T22:04:27Z</td><td>visits-without-data</td><td>master</td><td>Visits without data</td><td>92091177</td><td>jwildfire</td><td>2018-01-29T04:47:26Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:12:30Z</td><td>Easy peasy. ;; ;; (Just reviewed bcc71207c005f0f28a88cf11365abfd0112ad94d here)</td></tr><tr><td>0077</td><td>samussiah</td><td>2018-01-26T22:04:27Z</td><td>visits-without-data</td><td>master</td><td>Visits without data</td><td>93306717</td><td>brittsikora</td><td>2018-02-01T14:51:24Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:12:30Z</td><td>Pass, nice job!</td></tr><tr><td>0078</td><td>samussiah</td><td>2018-01-26T22:27:45Z</td><td>settings-schema</td><td>master</td><td>Settings schema</td><td>92091598</td><td>jwildfire</td><td>2018-01-29T04:53:42Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:12:45Z</td><td>oopsies. </td></tr><tr><td>0078</td><td>samussiah</td><td>2018-01-26T22:27:45Z</td><td>settings-schema</td><td>master</td><td>Settings schema</td><td>93336906</td><td>brittsikora</td><td>2018-02-01T16:06:45Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:12:45Z</td><td>Broken in firefox, but works in chrome in the CAT. Will not be an issue outside of the CAT</td></tr><tr><td>0081</td><td>samussiah</td><td>2018-02-01T22:14:05Z</td><td>revert-78-settings-schema</td><td>master</td><td>Revert "Settings schema"</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-02-01T22:14:14Z</td><td></td></tr><tr><td>0082</td><td>samussiah</td><td>2018-02-01T22:15:02Z</td><td>revert-77-visits-without-data</td><td>master</td><td>Revert "Visits without data"</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-02-01T22:15:08Z</td><td></td></tr><tr><td>0083</td><td>samussiah</td><td>2018-02-01T22:18:35Z</td><td>visits-without-data</td><td>v2.2.0-dev</td><td>Visits without data</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-02-01T22:18:41Z</td><td></td></tr><tr><td>0084</td><td>samussiah</td><td>2018-02-01T22:20:20Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-02-01T22:20:30Z</td><td></td></tr><tr><td>0085</td><td>samussiah</td><td>2018-02-02T22:07:32Z</td><td>v2.2.1-dev</td><td>master</td><td>messed up npm publish so updating the patch version</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-02-02T22:07:43Z</td><td></td></tr><tr><td>0087</td><td>samussiah</td><td>2018-02-27T14:56:09Z</td><td>v2.2.3-dev</td><td>master</td><td>Safety Outlier Explorer - v2.2.3</td><td>100109077</td><td>pburnsdata</td><td>2018-02-28T15:34:37Z</td><td>APPROVED</td><td>samussiah</td><td>2018-03-09T20:24:21Z</td><td></td></tr><tr><td>0087</td><td>samussiah</td><td>2018-02-27T14:56:09Z</td><td>v2.2.3-dev</td><td>master</td><td>Safety Outlier Explorer - v2.2.3</td><td>102770317</td><td>dschwentker</td><td>2018-03-09T19:56:54Z</td><td>APPROVED</td><td>samussiah</td><td>2018-03-09T20:24:21Z</td><td>Tested and passed using webcharts version v1.10.0-dev. Confirmed that there are 0 results when running  d3.selectAll('.wc-controls .control-label') in the console.</td></tr><tr><td>0089</td><td>samussiah</td><td>2018-03-27T13:39:27Z</td><td>v2.3.0-dev</td><td>master</td><td>Safety Outlier Explorer v2.3.0</td><td>114456493</td><td>tmbarald</td><td>2018-04-23T16:19:49Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-27T18:16:18Z</td><td>Gotcha @samussiah . All good now!</td></tr><tr><td>0092</td><td>samussiah</td><td>2018-03-28T15:48:25Z</td><td>darker-lines</td><td>v2.3.0-dev</td><td>Darker lines</td><td>108142079</td><td>pburnsdata</td><td>2018-03-29T17:45:27Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2018-04-16T19:12:55Z</td><td>It's darker! Looks good, only concern is that because points have outlines around them now, they are getting obscured sometimes by points around them. ;; ;; ![image](https://user-images.githubusercontent.com/26064686/38103003-0be8d476-3353-11e8-808e-64a17d1fb843.png);; Maybe sending them to the front with something like this when they are selected would make sense:  ;; ;; d3.selection.prototype.moveToFront = function() {;;       return this.each(function() {;;         this.parentNode.appendChild(this);;;       });;;     };;; ;; (from  https://github.com/wbkd/d3-extended)</td></tr><tr><td>0092</td><td>samussiah</td><td>2018-03-28T15:48:25Z</td><td>darker-lines</td><td>v2.3.0-dev</td><td>Darker lines</td><td>110117922</td><td>pburnsdata</td><td>2018-04-06T15:57:08Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-16T19:12:55Z</td><td></td></tr><tr><td>0092</td><td>samussiah</td><td>2018-03-28T15:48:25Z</td><td>darker-lines</td><td>v2.3.0-dev</td><td>Darker lines</td><td>112072704</td><td>tmbarald</td><td>2018-04-13T16:14:49Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-16T19:12:55Z</td><td>Issue fixed on all browsers</td></tr><tr><td>0093</td><td>samussiah</td><td>2018-03-30T18:51:27Z</td><td>normal-range-controls</td><td>v2.3.0-dev</td><td>Normal range controls</td><td>109115979</td><td>pburnsdata</td><td>2018-04-03T21:02:46Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-16T19:36:29Z</td><td></td></tr><tr><td>0093</td><td>samussiah</td><td>2018-03-30T18:51:27Z</td><td>normal-range-controls</td><td>v2.3.0-dev</td><td>Normal range controls</td><td>112016452</td><td>tmbarald</td><td>2018-04-13T13:47:03Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-16T19:36:29Z</td><td>Worked well in all browsers. Found minor bug that was only in IE.</td></tr><tr><td>0094</td><td>samussiah</td><td>2018-03-30T19:24:53Z</td><td>fix-tick-rotation</td><td>v2.3.0-dev</td><td>Fix tick rotation</td><td>109442362</td><td>pburnsdata</td><td>2018-04-04T18:16:30Z</td><td>APPROVED</td><td>samussiah</td><td>2018-04-16T19:36:30Z</td><td></td></tr><tr><td>0094</td><td>samussiah</td><td>2018-03-30T19:24:53Z</td><td>fix-tick-rotation</td><td>v2.3.0-dev</td><td>Fix tick rotation</td><td>112030411</td><td>tmbarald</td><td>2018-04-13T14:22:34Z</td><td>APPROVED</td><td>samussiah</td><td>2018-04-16T19:36:30Z</td><td>Issue fixed on all browsers</td></tr><tr><td>0095</td><td>samussiah</td><td>2018-03-30T20:39:52Z</td><td>append-units</td><td>v2.3.0-dev</td><td>Append units</td><td>109445979</td><td>pburnsdata</td><td>2018-04-04T18:26:14Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-16T19:41:08Z</td><td></td></tr><tr><td>0095</td><td>samussiah</td><td>2018-03-30T20:39:52Z</td><td>append-units</td><td>v2.3.0-dev</td><td>Append units</td><td>112048916</td><td>tmbarald</td><td>2018-04-13T15:08:45Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-16T19:41:08Z</td><td>The issue has been fixed for all browsers.</td></tr><tr><td>0098</td><td>samussiah</td><td>2018-04-02T15:15:40Z</td><td>add-test-page-script</td><td>v2.3.0-dev</td><td>add package.json script</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2018-04-16T19:41:19Z</td><td></td></tr><tr><td>0102</td><td>brittsikora</td><td>2018-04-25T20:47:33Z</td><td>brittsikora-patch-1</td><td>v2.3.0-dev</td><td>Updating example link</td><td>116034117</td><td>samussiah</td><td>2018-04-27T18:13:54Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-27T18:14:55Z</td><td></td></tr><tr><td>0104</td><td>rtbailey</td><td>2018-08-09T19:44:26Z</td><td>rtbailey-patch-1</td><td>v2.4.0-dev</td><td>Update LICENSE.md</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2018-10-03T20:51:14Z</td><td></td></tr><tr><td>0108</td><td>jwildfire</td><td>2018-10-03T20:51:30Z</td><td>v2.4.0-dev</td><td>master</td><td>Safety Outlier Explorer v2.4.0</td><td>163563447</td><td>samussiah</td><td>2018-10-10T21:11:54Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-10-29T21:16:55Z</td><td>that'll teach Mozilla!</td></tr><tr><td>0108</td><td>jwildfire</td><td>2018-10-03T20:51:30Z</td><td>v2.4.0-dev</td><td>master</td><td>Safety Outlier Explorer v2.4.0</td><td>163563478</td><td>samussiah</td><td>2018-10-10T21:11:59Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-10-29T21:16:55Z</td><td></td></tr><tr><td>0108</td><td>jwildfire</td><td>2018-10-03T20:51:30Z</td><td>v2.4.0-dev</td><td>master</td><td>Safety Outlier Explorer v2.4.0</td><td>169512659</td><td>dschwentker</td><td>2018-10-29T20:53:18Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-10-29T21:16:55Z</td><td>Regression testing run and passed in Chrome and Firefox.</td></tr><tr><td>0110</td><td>jwildfire</td><td>2018-10-04T04:20:15Z</td><td>sendToBackOnClick</td><td>v2.4.0-dev</td><td>Send points to the back on click. #105</td><td>162905535</td><td>samussiah</td><td>2018-10-09T14:01:22Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-10-23T18:59:45Z</td><td>#pretentious</td></tr><tr><td>0110</td><td>jwildfire</td><td>2018-10-04T04:20:15Z</td><td>sendToBackOnClick</td><td>v2.4.0-dev</td><td>Send points to the back on click. #105</td><td>162917010</td><td>samussiah</td><td>2018-10-09T14:22:04Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-10-23T18:59:45Z</td><td>That checks out.</td></tr><tr><td>0110</td><td>jwildfire</td><td>2018-10-04T04:20:15Z</td><td>sendToBackOnClick</td><td>v2.4.0-dev</td><td>Send points to the back on click. #105</td><td>162917888</td><td>samussiah</td><td>2018-10-09T14:23:36Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-10-23T18:59:45Z</td><td>That was a lot easier than I expected.  Noice!</td></tr><tr><td>0112</td><td>samussiah</td><td>2018-10-10T21:06:13Z</td><td>fix-mark-rotation-to-front</td><td>sendToBackOnClick</td><td>Fix mark rotation to front</td><td>163564354</td><td>samussiah</td><td>2018-10-10T21:14:11Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-10-23T18:59:32Z</td><td>Forgot to update lines.  Will fix in the morning.</td></tr><tr><td>0112</td><td>samussiah</td><td>2018-10-10T21:06:13Z</td><td>fix-mark-rotation-to-front</td><td>sendToBackOnClick</td><td>Fix mark rotation to front</td><td>163564582</td><td>samussiah</td><td>2018-10-10T21:14:48Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-10-23T18:59:32Z</td><td>two applications can't hurt right?</td></tr><tr><td>0112</td><td>samussiah</td><td>2018-10-10T21:06:13Z</td><td>fix-mark-rotation-to-front</td><td>sendToBackOnClick</td><td>Fix mark rotation to front</td><td>167072468</td><td>jwildfire</td><td>2018-10-22T19:48:48Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-10-23T18:59:32Z</td><td>🔥 Well done all around. Thanks for all the effort to make my dinky little slapdash update actually work!;; ;; ;;nice touch making this clickable.;;ugh - hate that this is needed to update the radius. we should clean this up in v2.0;;nice code, this is. ;;nicely done;;Nice addition! ⭐️for going above and beyond the spec. ;;Not sure what this bit is doing really ... ;;Is it actually called anywhere else? </td></tr><tr><td>0112</td><td>samussiah</td><td>2018-10-10T21:06:13Z</td><td>fix-mark-rotation-to-front</td><td>sendToBackOnClick</td><td>Fix mark rotation to front</td><td>167085325</td><td>samussiah</td><td>2018-10-22T20:04:35Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-10-23T18:59:32Z</td><td>yeah, this just makes accessing `chart.points` and `chart.lines` more accessible down the line, instead of having to `chart.marks.find(mark => mark.type == 'circle|line').groups` every time they need accessing</td></tr><tr><td>0112</td><td>samussiah</td><td>2018-10-10T21:06:13Z</td><td>fix-mark-rotation-to-front</td><td>sendToBackOnClick</td><td>Fix mark rotation to front</td><td>167380034</td><td>rchronowic</td><td>2018-10-23T12:09:34Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-10-23T18:59:32Z</td><td>Tested this fix in both Firefox and Chrome, point rotation on click still functions properly and the drop down is now properly size! ;; All good to go!</td></tr><tr><td>0115</td><td>pburnsdata</td><td>2019-01-08T21:14:35Z</td><td>pburnsdata-patch-1</td><td>master</td><td>Resolve Spelling Error</td><td></td><td></td><td></td><td>NONE</td><td>Preston Burns</td><td></td><td></td></tr><tr><td>0116</td><td>samussiah</td><td>2019-02-07T15:33:48Z</td><td>dev-v2.5.0</td><td>master</td><td>Safety Outlier Explorer v2.5.0</td><td>210383891</td><td>danedexF5</td><td>2019-03-04T21:45:28Z</td><td>APPROVED</td><td>Preston Burns</td><td>2019-03-05T18:14:16Z</td><td>Approved</td></tr><tr><td>0117</td><td>samussiah</td><td>2019-02-07T16:56:51Z</td><td>invalid-starting-measure</td><td>dev-v2.5.0</td><td>add starting measure check</td><td>202871707</td><td>pburnsdata</td><td>2019-02-12T20:02:38Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:10Z</td><td>Looks good! Had trouble getting the branch/commit to load in CAT so tried it out locally - not sure yet why it wasn't working...;;yeah!</td></tr><tr><td>0117</td><td>samussiah</td><td>2019-02-07T16:56:51Z</td><td>invalid-starting-measure</td><td>dev-v2.5.0</td><td>add starting measure check</td><td>204907947</td><td>danedexF5</td><td>2019-02-18T18:07:19Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:10Z</td><td></td></tr><tr><td>0118</td><td>samussiah</td><td>2019-02-07T18:35:28Z</td><td>extend-y-domain</td><td>dev-v2.5.0</td><td>extend y-domain</td><td>202881020</td><td>pburnsdata</td><td>2019-02-12T20:17:07Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:17Z</td><td>noice - good idea to make it relative to the measure domain</td></tr><tr><td>0118</td><td>samussiah</td><td>2019-02-07T18:35:28Z</td><td>extend-y-domain</td><td>dev-v2.5.0</td><td>extend y-domain</td><td>204908194</td><td>danedexF5</td><td>2019-02-18T18:08:11Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:17Z</td><td></td></tr><tr><td>0119</td><td>samussiah</td><td>2019-02-07T23:06:45Z</td><td>add-y-increment</td><td>dev-v2.5.0</td><td>precision</td><td>202890680</td><td>pburnsdata</td><td>2019-02-12T20:31:09Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:27Z</td><td>Saweet. Much better than increments of 1;;this seemed reasonable for the examples I tried</td></tr><tr><td>0119</td><td>samussiah</td><td>2019-02-07T23:06:45Z</td><td>add-y-increment</td><td>dev-v2.5.0</td><td>precision</td><td>204908150</td><td>danedexF5</td><td>2019-02-18T18:07:58Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:27Z</td><td></td></tr><tr><td>0120</td><td>samussiah</td><td>2019-02-07T23:09:39Z</td><td>removed-records</td><td>dev-v2.5.0</td><td>Removed records</td><td>203781500</td><td>pburnsdata</td><td>2019-02-14T18:22:24Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:43Z</td><td>Awesome. Couldn't have made that any better;;Cool - good idea to clarify the reason for dropping;;fun lil test;;a nice touch</td></tr><tr><td>0120</td><td>samussiah</td><td>2019-02-07T23:09:39Z</td><td>removed-records</td><td>dev-v2.5.0</td><td>Removed records</td><td>204908072</td><td>danedexF5</td><td>2019-02-18T18:07:44Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:44:43Z</td><td></td></tr><tr><td>0121</td><td>samussiah</td><td>2019-02-12T21:35:52Z</td><td>custom-mark-highlighting</td><td>dev-v2.5.0</td><td>Custom mark highlighting</td><td>204001325</td><td>pburnsdata</td><td>2019-02-14T22:26:54Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:45:11Z</td><td>Alright, alright, alright. That's a wrap! LOOKIN GOOOD;;nice catch;;.....;;is default a method?;;MY MAN!!! YES!</td></tr><tr><td>0121</td><td>samussiah</td><td>2019-02-12T21:35:52Z</td><td>custom-mark-highlighting</td><td>dev-v2.5.0</td><td>Custom mark highlighting</td><td>204907594</td><td>samussiah</td><td>2019-02-18T18:06:05Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-02-18T18:45:11Z</td><td>i think that's how babel interprets import/export syntax in the context of require().  in this case the settings files return a default function.</td></tr><tr><td>0121</td><td>samussiah</td><td>2019-02-12T21:35:52Z</td><td>custom-mark-highlighting</td><td>dev-v2.5.0</td><td>Custom mark highlighting</td><td>204908006</td><td>danedexF5</td><td>2019-02-18T18:07:31Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-02-18T18:45:11Z</td><td></td></tr><tr><td>0123</td><td>jwildfire</td><td>2019-03-25T18:48:02Z</td><td>dev-v2.5.1</td><td>master</td><td>v2.5.1</td><td>218523080</td><td>samussiah</td><td>2019-03-25T18:53:33Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-03-25T18:53:46Z</td><td></td></tr><tr><td>0124</td><td>jwildfire</td><td>2019-03-27T19:40:42Z</td><td>dev-v2.5.2</td><td>master</td><td>dev-v2.5.2</td><td>220059749</td><td>samussiah</td><td>2019-03-28T14:34:16Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-03-28T14:34:21Z</td><td></td></tr><tr><td>0126</td><td>samussiah</td><td>2019-04-09T13:53:10Z</td><td>dev-v2.5.3</td><td>master</td><td>Fix infinite loop calculating caused by zero range.</td><td>224454374</td><td>jwildfire</td><td>2019-04-09T14:46:59Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-09T14:48:29Z</td><td>👍 Logic looks good and worked with the sample data set where previous data was bombing. </td></tr><tr><td>0133</td><td>jwildfire</td><td>2019-05-15T23:32:11Z</td><td>dev-v2.5.4</td><td>master</td><td>Dev v2.5.4</td><td>239016546</td><td>samussiah</td><td>2019-05-17T16:21:33Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2019-05-20T16:28:04Z</td><td>Minor issue with `details` update.;;Details in this chart are participant-level characteristics, not listing columns.  Filters and measure characteristics don't make sense here.</td></tr><tr><td>0133</td><td>jwildfire</td><td>2019-05-15T23:32:11Z</td><td>dev-v2.5.4</td><td>master</td><td>Dev v2.5.4</td><td>239595436</td><td>jwildfire</td><td>2019-05-20T16:10:39Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-05-20T16:28:04Z</td><td>That makes sense. Cleaning it up now. </td></tr><tr><td>0133</td><td>jwildfire</td><td>2019-05-15T23:32:11Z</td><td>dev-v2.5.4</td><td>master</td><td>Dev v2.5.4</td><td>239603617</td><td>samussiah</td><td>2019-05-20T16:27:38Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-05-20T16:28:04Z</td><td>prettier and their fickle opinions of code indentation...</td></tr><tr><td>0134</td><td>dependabot[bot]</td><td>2019-07-12T19:32:52Z</td><td>dependabot/npm_and_yarn/lodash-4.17.14</td><td>master</td><td>Bump lodash from 4.17.11 to 4.17.14</td><td>262466582</td><td>samussiah</td><td>2019-07-16T14:40:12Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-07-16T14:40:18Z</td><td></td></tr><tr><td>0137</td><td>jwildfire</td><td>2019-08-09T19:51:10Z</td><td>dev-v2.5.5</td><td>master</td><td>Dev v2.5.5</td><td>276783925</td><td>pburnsdata</td><td>2019-08-19T20:04:00Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-08-19T20:07:20Z</td><td>Lookin good</td></tr><tr><td>0138</td><td>jwildfire</td><td>2019-08-09T19:51:44Z</td><td>addCustomEvent</td><td>dev-v2.5.5</td><td>Add custom event</td><td>274986618</td><td>pburnsdata</td><td>2019-08-14T15:56:39Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-08-19T19:55:29Z</td><td>Looks good - might need to be updated with the new [overlapping points changes](https://github.com/RhoInc/safety-outlier-explorer/pull/140) I'm guessing that this will return each subject id as you cycle through by reclicking points. My current thought is that this is better than returning all the subjects under a point since you're still only viewing one line so it's fine as is - we just might want to add events for 2.6.0 to the ids the are listed beneath the chart when you click a point - that make sense @jwildfire?</td></tr><tr><td>0139</td><td>jwildfire</td><td>2019-08-14T05:57:18Z</td><td>dev-v2.6.0</td><td>master</td><td>Dev v2.6.0</td><td>278476529</td><td>rchronowic</td><td>2019-08-22T14:50:11Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-08-22T17:11:58Z</td><td>Passed regression testing.</td></tr><tr><td>0140</td><td>jwildfire</td><td>2019-08-14T05:57:59Z</td><td>noverlap</td><td>dev-v2.6.0</td><td>Deal with overlapping points</td><td>276627069</td><td>samussiah</td><td>2019-08-19T15:11:09Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-08-19T20:30:47Z</td><td>This is way more functional and transparent than reordering the points in the DOM.  Nice work.</td></tr><tr><td>0142</td><td>jwildfire</td><td>2019-08-19T22:10:24Z</td><td>hoverlap</td><td>dev-v2.6.0</td><td>Overlap tooltips</td><td>277195757</td><td>samussiah</td><td>2019-08-20T14:11:31Z</td><td>APPROVED</td><td>jwildfire</td><td>2019-08-20T15:32:51Z</td><td>Dig it.</td></tr><tr><td>0144</td><td>samussiah</td><td>2020-01-31T16:28:15Z</td><td>dev-v2.6.1</td><td>master</td><td>Safety Outlier Explorer v2.6.1</td><td>351626698</td><td>jwildfire</td><td>2020-01-31T16:33:38Z</td><td>APPROVED</td><td>jwildfire</td><td>2020-01-31T16:34:08Z</td><td></td></tr><tr><td></td></tr></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

@@ -1,0 +1,345 @@
+<html>
+<head>
+    <title>safety-delta-delta - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">safety-delta-delta - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for safety-delta-delta. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/rhoinc/safety-delta-delta/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h1 id="functionalspecs">Functional Specs</h1>
+<h2 id="baselineandcomparisonvisitscontrols">Baseline and Comparison Visit(s) Controls</h2>
+<p>These multi-select controls are used to select the visits that are displayed in the chart. The default visits are set to the first/last visit in the data set, but the default value can be adjusted to any visit upon the project team's request. Users can interactively select any single visit, or shift-click to select multiple visits.  Selecting a visit will update the delta-delta chart accordingly. When multiple visits are selected, all participant measures from those visits are averaged. </p>
+<h2 id="xandymeasurecontrols">X and Y Measure Controls</h2>
+<p>These controls are used to select the measures that are displayed in the chart. The default measures are set to the first and second measure found in the data set, but the default value can be adjusted to any measure upon the project team's request. Users can interactively select any measure, which updates the delta-delta chart accordingly. </p>
+<h2 id="filterbypreselectedcharacteristics">Filter by Pre-selected Characteristics</h2>
+<p>The chart can be configured to have any number of data filters. Each specified filter has a drop-down menu that is used to filter the visit data that is displayed in the chart.</p>
+<h2 id="totalparticipantsshown">Total Participants Shown</h2>
+<p>Displayed under the controls, this statement provides the total number of participants in the data set in integers as well as the percentage of participants shown to one decimal place. When filters are used, the data shown in the histogram is manipulated and the number of participant records shown at the top of the page may increase or decrease, depending on the variable selected. </p>
+<h2 id="hover">Hover</h2>
+<p>By moving a mouse cursor over a point in the chart, users can display exact x- and y-values for the chosen point along with the ID for the selected participant.  </p>
+<h2 id="linkedtable">Linked Table</h2>
+<p>Clicking on a point in the chart will open a table beside the chart that contains a detailed listing of all participant lab data. Each row of the table has summary data for a single measure for the selected participant, and includes, the measure name, a sparkline showing the measure's value over time, and an annotated numeric value summarizing the change in the measure between the selected time points. This linked table contains a standard set of default columns that appear consistently across all filters. When a point is clicked it is highlighted and the table header shows the participant ID and any other specified participant details. </p>
+<h1 id="regressiontests">Regression Tests</h1>
+<h2 id="controls">Controls</h2>
+<ul>
+<li>Confirm that if the X or Y Measure filter is changed, the distribution of observations change.</li>
+<li>Confirm that if the Baseline or Comparison Visit filters are changed, the distribution of observations change. </li>
+<li>Confirm that plotted values represent the change between baseline and comparison visits for the selected measures. (Clicking points and then mousing over values in the detail table should make this relatively easy to QC). </li>
+<li>Confirm that multi-select  (shift-click) in Visit Filters works as expected. Participant with multiple values should have their values averaged. Click a point and mouseover points in the the detail section to confirm. </li>
+<li>View x of x participants note at the bottom of the controls: check that it updates when filters are applied</li>
+<li>Confirm that filters work as expected.  {"filters":[{"value_col":"SITE","label":"Site"}]}</li>
+<li>Confirm that if a filter is added for a variable that is not in the data, then a browser console warning is thrown. Add a made up filter such as {"filters":[{"value_col":"SOTE","label":"Sote"}]} and render the chart. Open the browser's developer tools to the Console view and look for the "The [ Sote ] filter has been removed because the variable does not exist." message.</li>
+<li>Confirm that missing or non-numeric values in the dataset are handled and removed, and that the number of missing and non-numeric records appears opposite the number of participants annotation, beneath the controls. View the same Console in the developer tools and look for the "xxxx missing or non-numeric results have been removed." warning message. Download the dataset, remove some numeric values, save the datset, and then upload the new version, and render the chart. The number of missing or non-numeric values shown in the warning message should increment accordingly.</li>
+<li>Confirm that if you set initial X or Y Measure to an existent value (like IgE) and render, then the chart defaults to the specified measure, but with units attached. [[[TODO: ADD CODE]]]</li>
+<li>Confirm that specifying a non-existent value for a required field (such as Measure/Medical Sign or Result) and rendering the charts results in a "variable does not exist error" printed to both the console and the container element, and the chart is then destroyed. [[[TODO: ADD CODE]]]</li>
+</ul>
+<h2 id="chart">Chart</h2>
+<ul>
+<li>Confirm that you can view a detailed listing of all measures for a participant by clicking on a point in the chart. </li>
+<li>Confirm that the clicked point is highlighted with a thick black border</li>
+<li>Confirm that click a different point when the detail table is shown, redraws the table for the newly clicked participant.</li>
+<li>Confirm that changing any control removes the detail table.  </li>
+<li>Confirm that the points are not cut off on the edge of the chart.</li>
+</ul>
+<h2 id="datalisting">Data Listing</h2>
+<ul>
+<li>Confirm that Participant ID is displayed above the table</li>
+<li>Confirm that updating the Details option displays additional metadata above the chart [[[TODO: ADD CODE]]]</li>
+<li>Confirm that the table header has "Measure" and "Change over Time" headers</li>
+<li>Confirm that one row is shown for each measure collected for the clicked participant</li>
+<li>Confirm that each row has the measure's name, a sparkline showing the pattern of the data over time, and a change over time value.</li>
+<li>Confirm that change over time values are red if they are less than 0, green if they are greater than 0 and black if they equal 0. </li>
+<li>Confirm that values where baseline or comparison visits are missing renderer with a gray "NA"</li>
+<li>Confirm that in the sparkline, baseline visits are shown as filled blue circles, comparison visits are shown as filled orange circles and other visits are shown as empty gray circles. </li>
+<li>Confirm that the footnote beneath the table describes the colors used in the table accurately. </li>
+<li>Confirm that the currently selected x- and y-axis measures have the appropriate light blue tags. </li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/rhoinc/safety-delta-delta/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><p>The Safety Delta-Delta plot accepts <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> data of the format returned by <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/CSV.md"><code>d3.csv()</code></a>. The renderer visualizes clinical medical signs data with <strong>one row per measurement</strong> plus the required variables specified below.</p>
+<h2 id="datastructure">Data structure</h2>
+<p>one record per measurement</p>
+<h2 id="dataspecification">Data specification</h2>
+<p>required and optional variables:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Setting</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Data Type</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:center;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>measure_col</code></td>
+<td style="text-align:left;"><em>TEST</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains the names of each medical sign</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>value_col</code></td>
+<td style="text-align:left;"><em>STRESN</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">a variable that contains the results for each medical sign; non-numeric results are removed with a notification thrown to the log</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>id_col</code></td>
+<td style="text-align:left;"><em>USUBJID</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains IDs for each participant</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>visit_col</code></td>
+<td style="text-align:left;"><em>VISIT</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains the categorical visit where the measure was collected</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>visitn_col</code></td>
+<td style="text-align:left;"><em>VISITN</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">a variable that contains the numeric visit where the measure was collected</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>filters[]</code></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"><strong>either</strong></td>
+<td style="text-align:left;">an array of variables and metadata that will appear in the controls as data filters</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>details[]</code></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"><strong>either</strong></td>
+<td style="text-align:left;">an array of variables and metadata that will appear in the data listing</td>
+<td style="text-align:center;"></td>
+</tr>
+</tbody>
+</table></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/rhoinc/safety-delta-delta/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="safetydeltadeltaelementsettings">safetyDeltaDelta(element, settings)</h1>
+<p>a factory to create a custom <a href="https://github.com/RhoInc/Webcharts/wiki/Chart">Webcharts chart</a> object</p>
+<p><strong>returns:</strong> <a href="https://github.com/RhoInc/Webcharts/wiki/Chart"><code>chart</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/rhoinc/safety-delta-delta/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><p>The most straightforward way to customize the Safety Delta-Delta plot is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the Safety Histogram is a Webcharts <code>chart</code> object, many default Webcharts settings are set in the <a href="https://github.com/RhoInc/safety-delta-delta/blob/master/src/configuration/webchartsSettings.js">webchartsSettings.js file</a> as <a href="#webcharts-settings">described below</a>. Refer to the <a href="https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration">Webcharts documentation</a> for more details on these settings.</p>
+<p>In addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the Safety Delta-Delta plot to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.</p>
+<h1 id="rendererspecificsettings">Renderer-specific settings</h1>
+<p>The sections below describe each safety-delta-delta setting as of version 1.0.0.</p>
+<h2 id="settingsmeasure_col">settings.measure_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the names of each medical sign</p>
+<p><strong>default:</strong> <code>"TEST"</code></p>
+<h2 id="settingsvalue_col">settings.value_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the results for each medical sign; non-numeric results are removed with a notification thrown to the log</p>
+<p><strong>default:</strong> <code>"STRESN"</code></p>
+<h2 id="settingsid_col">settings.id_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains IDs for each participant</p>
+<p><strong>default:</strong> <code>"USUBJID"</code></p>
+<h2 id="settingsvisit_col">settings.visit_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the categorical visit where the measure was collected</p>
+<p><strong>default:</strong> <code>"VISIT"</code></p>
+<h2 id="settingsvisitn_col">settings.visitn_col</h2>
+<p><code>string</code></p>
+<p>a variable that contains the numeric visit where the measure was collected</p>
+<p><strong>default:</strong> <code>"VISITN"</code></p>
+<h2 id="settingsmeasure">settings.measure</h2>
+<p><code>object</code></p>
+<p>Measures to be used in delta-delta scatter plot. Must be a value of the <code>settings.measure_value</code> column</p>
+<h3 id="settingsmeasurex">settings.measure.x</h3>
+<p><code>string</code></p>
+<p>Measure to be shown on the x-axis of the delta-delta plot</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsmeasurey">settings.measure.y</h3>
+<p><code>string</code></p>
+<p>Measure to be shown on the y-axis of the delta-delta plot</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsaddregressionline">settings.addRegressionLine</h2>
+<p><code>boolean</code></p>
+<p>Indicates whether a regression line should be drawn on the delta-delta scatter plot</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsvisits">settings.visits</h2>
+<p><code>object</code></p>
+<h3 id="settingsvisitsx">settings.visits.x</h3>
+<p><code>string</code></p>
+<p>Measure to be shown on the x-axis of the delta-delta plot</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsvisitsy">settings.visits.y</h3>
+<p><code>string</code></p>
+<p>Measure to be shown on the y-axis of the delta-delta plot</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsfilters">settings.filters</h2>
+<p><code>array</code></p>
+<p>an array of variables and metadata that will appear in the controls as data filters</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfilterslabel">settings.filters[].label</h3>
+<p><code>string</code></p>
+<p>a description of the variable</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfiltersvalue_col">settings.filters[].value_col</h3>
+<p><code>string</code></p>
+<p>the name of the variable</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsdetails">settings.details</h2>
+<p><code>array</code></p>
+<p>an array of variables and metadata that will appear in the data listing</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsdetailslabel">settings.details[].label</h3>
+<p><code>string</code></p>
+<p>a description of the variable</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsdetailsvalue_col">settings.details[].value_col</h3>
+<p><code>string</code></p>
+<p>the name of the variable</p>
+<p><strong>default:</strong> none</p>
+<h1 id="webchartssettings">Webcharts settings</h1>
+<p>The object below contains Webcharts settings that define the safety-histogram chart as of version 1.0.0 of the Safety Delta Delta.</p>
+<pre><code>{
+    "x": {
+        "column": null,
+        "type": "linear",
+        "label": "x delta",
+        "format": "0.2f"
+    },
+    "y": {
+        "column": null,
+        "type": "linear",
+        "label": "y delta",
+        "behavior": "flex",
+        "format": "0.2f"
+    },
+    "marks": [
+        {
+            "type": "circle",
+            "per": null,
+            "radius": 4,
+            "attributes": {
+                "stroke-width": 0.5,
+                "fill-opacity": 0.8
+            },
+            "tooltip": "Subject ID: [key]\nX Delta: [delta_x_rounded]\nY Delta: [delta_y_rounded]"
+        }
+    ],
+    "gridlines": "xy",
+    "resizable": false,
+    "margin": {
+        "right": 25,
+        "top": 25
+    },
+    "aspect": 1,
+    "width": 400
+}
+</code></pre></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>Not Found</th></tr></thead><tbody></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

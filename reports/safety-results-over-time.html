@@ -1,0 +1,448 @@
+<html>
+<head>
+    <title>safety-results-over-time - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">safety-results-over-time - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for safety-results-over-time. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/rhoinc/safety-results-over-time/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h1 id="functionalspecifications">Functional Specifications</h1>
+<h2 id="filterbymeasure">Filter by Measure</h2>
+<p>This drop-down menu is used to filter the lab variable that is displayed in the chart. The default measure is set to the first variable in the data set, but the default value can be adjusted to any measure upon the project team's request. Users can select any pre-defined measure in this filter.  Selecting a measure will display the data points associated with that measure and will display the visits that the measure is collected at underneath the chart.</p>
+<h2 id="filterbypreselectedcharacteristics">Filter by pre-selected characteristics</h2>
+<p>The chart can be configured to have any number of data filters. Each specified filter has a drop-down menu that is used to filter the visit data that is displayed in the chart.</p>
+<h2 id="totalparticipantsshown">Total Participants Shown</h2>
+<p>Displayed under the header, this statement provides the total number of participants in the data set in integers as well as the percentage of participants shown to one decimal place. In the default view, all participant data is included in the chart, or 100%, unless the project team requests otherwise. When filters are used, the data shown in the histogram is manipulated and the number of participant records shown at the top of the page may increase or decrease, depending on the variable selected. </p>
+<h2 id="setyaxislimits">Set Y-axis Limits</h2>
+<p>Users are able to adjust the lower limit of the y-axis by manipulating the input within the Lower Limit box. Users are able to adjust the upper limit of the y-axis by manipulating the input within the Upper Limit box. Each limit box has up and down arrows to adjust the value of the box by 1. Users can select an arrow to change the input or delete the current value in the box and type in a new value. When typing in a value, users must click outside of the box to apply the changes. When a user manipulates a y-axis limit, the y-axis on the chart below the controls will reflect the change.</p>
+<h2 id="resetyaxislimits">Reset Y-axis limits</h2>
+<p>Users can change the upper and lower y-axis limits back to the default values for a measure by selecting the "Reset Limits" button. Pressing the button will erase the current values in the upper and lower limit boxes and replace them with defaults. The chart below will also reflect the changes and will show the default axes.</p>
+<h2 id="viewvisitswithoutdata">View Visits Without Data</h2>
+<p>Users can select the checkbox to view visits that do not contain data. Checking the box will show a timepoint for the visit. Unchecking the checkbox will hide the timepoint for visits without data; visits without data are hidden on default.</p>
+<h2 id="viewunscheduledvisits">View Unscheduled Visits</h2>
+<p>Users can select the checkbox to view data that is not associated with a scheduled visit. Checking the box will show a timepoint for the unscheduled visit and its associated data. Unselecting the checkbox will hide the unscheduled visit timepoint and its data; unscheduled visits are hidden on default.</p>
+<h2 id="boxandwhiskerplots">Box and Whisker Plots</h2>
+<p>The chart includes box and whisker plots to show the data distribution for a given measure. These plots show the data distribution for a data measure and can be added to the chart by clicking the box to the right of the Box plots text located above the chart. To take the plots away, the user can uncheck the box by clicking in it again. The box is checked by default, so the box and whisker plots appear when the chart is rendered.</p>
+<h2 id="violinplots">Violin Plots</h2>
+<p>The chart includes violin plots to show the data distribution for a given measure. These plots show the data distribution for a data measure and can be added to the chart by clicking the box to the right of the Violin plots text located above the chart. To take the plots away, the user can uncheck the box by clicking in it again. The box is not checked by default, so the violin plots do not appear when the chart is rendered.</p>
+<h1 id="regressiontests">Regression Tests</h1>
+<ul>
+<li>Confirm that the number and percentage of participants is displayed</li>
+<li>Confirm that the filters are working as expected (Measure, Group): selecting a variable changes the plot values. Customize the chart to add the Group filter: {"groups":["SEX","RACE"]}</li>
+<li>Confirm that when a grouping is selected, the order of box/violin plots for each x-axis value match the group order in the legend.</li>
+<li>Confirm that checking the "Visits without data" checkbox shows a timepoint for visits with no associated data points</li>
+<li>Confirm that unchecking the "Visits without data" checkbox hides the timepoint for visits with no associated data points</li>
+<li>Confirm that checking the "Unscheduled visits" checkbox shows a timepont for unscheduled visits and their associated data</li>
+<li>Confirm that unchecking the "Unscheduled visits" checkbox hides the timepoint for unscheduled visits and their associated data </li>
+<li>Confirm that selecting the violin plot option causes violin plots to appear around the data ranges</li>
+<li>Confirm that selecting the box plot option causes box plots to appear around the data ranges</li>
+<li>Confirm that checking the Outliers checkbox causes results outside the 5th and 9th percentiles (i.e. results outside the horizontal lines of box plots) to be displayed in the chart.</li>
+<li>Confirm that Outlier points are clearly visible in the chart, even with Violin plots selected and that hovering on an outlier causes it to expand.</li>
+<li>Confirm that unchecking the Outliers checkbox hides the outliers from the chart.</li>
+<li>Confirm that the # of enrolled/randomized participants is visible at the top of the page</li>
+<li>Confirm that hovering over a plot displays a tooltip with information about the data (N, Min, Median, etc.). Verify that 
+Min and Max have the lowest precision; 5th %, Q1, Median, Q3, 95th %, and Mean have precision to one more decimal place than the lowest precision; and StDev has precision to two more decimal places than the lowest precision.</li>
+<li>Confirm that typing in a number into either the lower limit or upper limit control updates the y-axis domain accordingly.</li>
+<li>Confirm that the lower limit cannot be equal to or greater than the upper limit and the upper limit cannot be equal to or less than the lower limit. Entering this condition should cause the limits to flip automatically and always have the larger limit as the Upper Limit.</li>
+<li>Confirm that a Scale radio control appears next to the y-axis limit controls with two options, linear and log, and that selecting either radio button updates the scale of the y-axis updates as expected.</li>
+<li>Confirm that Y-axis tick labels do not overlap for any measure plotted on a log scale.</li>
+<li>Confirm that the Reset Limits button resets the y-axis to the minimum and maximum values in the data.</li>
+<li>Confirm that the unit value for a given measure is appended to the measure in the Measure dropdown and in the y-axis label.</li>
+<li>Confirm that you can update the Unit (setting: unit_col) to a nonexistent variable name in CAT and re-render the chart, where the chart should behave identically, except units are not appended to the options in the Measures filter, or to the y-axis label.</li>
+<li>Confirm that you can update the start_value setting for a Measure to have the Measure dropdown default to displaying a measure that is not the first one alphabetically in the list.</li>
+<li>Confirm that you can update the start_value setting for a Measure to have a non-existent Measure and chart will handle it and display an existing measure by default instead. Verify that a warning is written to the console explaining that the specified measure does not exist.</li>
+<li>Confirm that you can specify a group variable (ARM, SEX, etc.) as well as a group label (Treatment Group, Sex, etc.) in CAT and that the group labels, and not the group variable names) appear in the Group dropdown, as well as in the legend label.</li>
+<li>Confirm that adding a non-existant group variable/label gets handled by the chart and the group label/name is not actually displayed in the Group dropdown.</li>
+<li>Confirm that group-by labels corresponding to duplicate group-by variables do not appear in the group-by dropdown, even if the labels differ.</li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/rhoinc/safety-results-over-time/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><p>The Safety Results Over Time accepts <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> data of the format returned by <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/CSV.md"><code>d3.csv()</code></a>. The renderer visualizes clinical medical signs data with <strong>one row per participant per visit per medical sign</strong> plus the required variables specified below.</p>
+<h2 id="datastructure">Data structure</h2>
+<p>one record per participant per visit per medical sign</p>
+<h2 id="dataspecification">Data specification</h2>
+<p>required and optional variables:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Setting</th>
+<th style="text-align:left;">Default</th>
+<th style="text-align:left;">Data Type</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:center;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><code>id_col</code></td>
+<td style="text-align:left;"><em>USUBJID</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">unique identifier of participant</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>time_settings.value_col</code></td>
+<td style="text-align:left;"><em>VISIT</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">visit name</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>time_settings.order_col</code></td>
+<td style="text-align:left;"><em>VISITNUM</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">visit order</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>measure_col</code></td>
+<td style="text-align:left;"><em>TEST</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">measure name</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>unit_col</code></td>
+<td style="text-align:left;"><em>STRESU</em></td>
+<td style="text-align:left;"><strong>character</strong></td>
+<td style="text-align:left;">measure unit</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>value_col</code></td>
+<td style="text-align:left;"><em>STRESN</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">measure result</td>
+<td style="text-align:center;"><strong>Yes</strong></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>normal_col_low</code></td>
+<td style="text-align:left;"><em>STNRLO</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">LLN of measure</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>normal_col_high</code></td>
+<td style="text-align:left;"><em>STNRHI</em></td>
+<td style="text-align:left;"><strong>numeric</strong></td>
+<td style="text-align:left;">ULN of measure</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>filters[]</code></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"><strong>either</strong></td>
+<td style="text-align:left;">an array of filter variables and associated metadata</td>
+<td style="text-align:center;"></td>
+</tr>
+<tr>
+<td style="text-align:left;"><code>groups[]</code></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"><strong>either</strong></td>
+<td style="text-align:left;">an array of grouping variables and associated metadata</td>
+<td style="text-align:center;"></td>
+</tr>
+</tbody>
+</table></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/rhoinc/safety-results-over-time/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="safetyresultsovertimeelementsettings">safetyResultsOverTime(element, settings)</h1>
+<p>a factory to create a custom <a href="https://github.com/RhoInc/Webcharts/wiki/Chart">Webcharts chart</a> object</p>
+<p><strong>returns:</strong> <a href="https://github.com/RhoInc/Webcharts/wiki/Chart"><code>chart</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/rhoinc/safety-results-over-time/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><p>The most straightforward way to customize the Safety Results Over Time is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the Safety Results Over Time is a Webcharts <code>chart</code> object, many default Webcharts settings are set in the <a href="https://github.com/RhoInc/safety-results-over-time/blob/master/src/defaultSettings.js">defaultSettings.js file</a> as <a href="#webcharts-settings">described below</a>. Refer to the <a href="https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration">Webcharts documentation</a> for more details on these settings.</p>
+<p>In addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to the Safety Results Over Time to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.</p>
+<h1 id="rendererspecificsettings">Renderer-specific settings</h1>
+<p>The sections below describe each safety-results-over-time setting as of version 2.3.1.</p>
+<h2 id="settingsid_col">settings.id_col</h2>
+<p><code>string</code></p>
+<p>name of variable that captures unique identifier of participant</p>
+<p><strong>default:</strong> <code>"USUBJID"</code></p>
+<h2 id="settingstime_settings">settings.time_settings</h2>
+<p><code>object</code></p>
+<p>visit metadata</p>
+<h3 id="settingstime_settingsvalue_col">settings.time<em>settings.value</em>col</h3>
+<p><code>string</code></p>
+<p>name of variable that captures visit name</p>
+<p><strong>default:</strong> <code>"VISIT"</code></p>
+<h3 id="settingstime_settingslabel">settings.time_settings.label</h3>
+<p><code>string</code></p>
+<p>Visit variable label</p>
+<p><strong>default:</strong> <code>"Visit"</code></p>
+<h3 id="settingstime_settingsorder_col">settings.time<em>settings.order</em>col</h3>
+<p><code>string</code></p>
+<p>name of variable that captures visit order</p>
+<p><strong>default:</strong> <code>"VISITNUM"</code></p>
+<h3 id="settingstime_settingsorder">settings.time_settings.order</h3>
+<p><code>array</code></p>
+<p>Visit order</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingstime_settingsrotate_tick_labels">settings.time<em>settings.rotate</em>tick_labels</h3>
+<p><code>boolean</code></p>
+<p>Rotate tick labels 45 degrees?</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h3 id="settingstime_settingsvertical_space">settings.time<em>settings.vertical</em>space</h3>
+<p><code>number</code></p>
+<p>Rotated tick label spacing</p>
+<p><strong>default:</strong> <code>100</code></p>
+<h2 id="settingsmeasure_col">settings.measure_col</h2>
+<p><code>string</code></p>
+<p>name of variable that captures measure name</p>
+<p><strong>default:</strong> <code>"TEST"</code></p>
+<h2 id="settingsunit_col">settings.unit_col</h2>
+<p><code>string</code></p>
+<p>name of variable that captures measure unit</p>
+<p><strong>default:</strong> <code>"STRESU"</code></p>
+<h2 id="settingsvalue_col">settings.value_col</h2>
+<p><code>string</code></p>
+<p>name of variable that captures measure result</p>
+<p><strong>default:</strong> <code>"STRESN"</code></p>
+<h2 id="settingsnormal_col_low">settings.normal<em>col</em>low</h2>
+<p><code>string</code></p>
+<p>name of variable that captures LLN of measure</p>
+<p><strong>default:</strong> <code>"STNRLO"</code></p>
+<h2 id="settingsnormal_col_high">settings.normal<em>col</em>high</h2>
+<p><code>string</code></p>
+<p>name of variable that captures ULN of measure</p>
+<p><strong>default:</strong> <code>"STNRHI"</code></p>
+<h2 id="settingsstart_value">settings.start_value</h2>
+<p><code>string</code></p>
+<p>value of measure to display initially</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsfilters">settings.filters</h2>
+<p><code>array</code></p>
+<p>an array of filter variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfiltersvalue_col">settings.filters[].value_col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfilterslabel">settings.filters[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsgroups">settings.groups</h2>
+<p><code>array</code></p>
+<p>an array of grouping variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsgroupsvalue_col">settings.groups[].value_col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsgroupslabel">settings.groups[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingscolor_by">settings.color_by</h2>
+<p><code>string</code></p>
+<p>grouping variable; defaults to first item in <code>groups</code> setting; set to <code>'srot_none'</code> to display chart without grouping on initialization</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsboxplots">settings.boxplots</h2>
+<p><code>boolean</code></p>
+<p>controls initial display of box plots</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h2 id="settingsoutliers">settings.outliers</h2>
+<p><code>boolean</code></p>
+<p>controls initial display of outliers outside the 5th and 95th percentiles</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h2 id="settingsviolins">settings.violins</h2>
+<p><code>boolean</code></p>
+<p>controls initial display of violin plots</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsmissingvalues">settings.missingValues</h2>
+<p><code>array</code></p>
+<p>an array of strings that identify missing values in both the measure and result variables</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsvisits_without_data">settings.visits<em>without</em>data</h2>
+<p><code>boolean</code></p>
+<p>controls display of visits without data for the current measure</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsunscheduled_visits">settings.unscheduled_visits</h2>
+<p><code>boolean</code></p>
+<p>controls display of unscheduled visits</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsunscheduled_visit_pattern">settings.unscheduled<em>visit</em>pattern</h2>
+<p><code>string</code></p>
+<p>a regular expression that identifies unscheduled visits</p>
+<p><strong>default:</strong> <code>"/unscheduled|early termination/i"</code></p>
+<h2 id="settingsunscheduled_visit_values">settings.unscheduled<em>visit</em>values</h2>
+<p><code>array</code></p>
+<p>an array of strings that identify unscheduled visits; overrides unscheduled<em>visit</em>pattern</p>
+<p><strong>default:</strong> none</p>
+<h1 id="webchartssettings">Webcharts settings</h1>
+<p>The object below contains Webcharts settings as of version 2.3.1 of the Safety Results Over Time.</p>
+<pre><code>{
+    "x": {
+        "column": null,
+        "type": "ordinal",
+        "label": null,
+        "behavior": "flex",
+        "sort": "alphabetical-ascending",
+        "tickAttr": null
+    },
+    "y": {
+        "column": null,
+        "type": "linear",
+        "label": null,
+        "behavior": "flex",
+        "stat": "mean",
+        "format": null
+    },
+    "marks": [
+        {
+            "type": "line",
+            "per": null,
+            "attributes": {
+                "stroke-width": 2,
+                "stroke-opacity": 1,
+                "display": "none"
+            }
+        },
+        {
+            "type": "circle",
+            "per": null,
+            "attributes": {
+                "stroke": "black",
+                "stroke-opacity": 0,
+                "fill-opacity": 0
+            },
+            "values": {
+                "srot_outlier": [
+                    true
+                ]
+            },
+            "radius": null,
+            "tooltip": null,
+            "hidden": true
+        },
+        {
+            "type": "circle",
+            "per": null,
+            "attributes": {
+                "stroke": "black",
+                "stroke-opacity": 1,
+                "fill-opacity": 1
+            },
+            "values": {
+                "srot_outlier": [
+                    true
+                ]
+            },
+            "radius": 1.75,
+            "tooltip": null,
+            "hidden": false
+        }
+    ],
+    "legend": {
+        "mark": "square"
+    },
+    "color_by": null,
+    "resizable": true,
+    "gridlines": "y",
+    "aspect": 3
+}
+</code></pre></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>PullRequest</th><th>Requester</th><th>DateRequested</th><th>Branch</th><th>Target</th><th>Title</th><th>ReviewID</th><th>Reviewer</th><th>ReviewDate</th><th>ReviewStatus</th><th>MergedBy</th><th>DateMerged</th><th>ReviewComments</th></tr></thead><tbody><tr><td>0004</td><td>jwildfire</td><td>2016-04-15T17:44:50Z</td><td>adjust-ticks</td><td>master</td><td>New functionality for tick rotation and violin plots. </td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-04-15T17:44:57Z</td><td></td></tr><tr><td>0007</td><td>jwildfire</td><td>2016-05-25T20:04:26Z</td><td>reorg</td><td>master</td><td>Reorg</td><td></td><td></td><td></td><td>NONE</td><td>Nathan Bryant</td><td>2016-06-08T14:39:06Z</td><td></td></tr><tr><td>0016</td><td>jwildfire</td><td>2016-12-17T16:28:29Z</td><td>v1.3.0</td><td>master</td><td>Safety Results Over Time v1.3.0</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-02-23T21:31:46Z</td><td></td></tr><tr><td>0018</td><td>samussiah</td><td>2017-01-25T22:20:49Z</td><td>custom-filters</td><td>v1.3.0</td><td>Add custom filters, remove chart-foundry references, and refactor a bit.</td><td>21902013</td><td>jwildfire</td><td>2017-02-15T00:52:52Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-02-16T19:04:45Z</td><td>Going to go ahead and approve this for merge, but will create a few issues based on my comments that we may want to address before release. ;;Should create issue to make unit and the normal ranges optional. ;;I wonder if the default here should just be "none" and the users can configure additional groups as desired ;;`e.NONE='All'` is like a metaphysical riddle or something. ;;We should bite the bullet and update the way we merge settings eventually, but not for this round of releases ... likely to bite us at some point though ...</td></tr><tr><td>0018</td><td>samussiah</td><td>2017-01-25T22:20:49Z</td><td>custom-filters</td><td>v1.3.0</td><td>Add custom filters, remove chart-foundry references, and refactor a bit.</td><td>21903361</td><td>jwildfire</td><td>2017-02-15T00:54:08Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:04:45Z</td><td>You already have this covered in #19. </td></tr><tr><td>0018</td><td>samussiah</td><td>2017-01-25T22:20:49Z</td><td>custom-filters</td><td>v1.3.0</td><td>Add custom filters, remove chart-foundry references, and refactor a bit.</td><td>21903621</td><td>jwildfire</td><td>2017-02-15T00:56:08Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:04:45Z</td><td>Created #23</td></tr><tr><td>0018</td><td>samussiah</td><td>2017-01-25T22:20:49Z</td><td>custom-filters</td><td>v1.3.0</td><td>Add custom filters, remove chart-foundry references, and refactor a bit.</td><td>21903972</td><td>jwildfire</td><td>2017-02-15T00:59:07Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:04:45Z</td><td>created an [issue](https://github.com/RhoInc/webcharts-wrapper-boilerplate/issues/4)</td></tr><tr><td>0018</td><td>samussiah</td><td>2017-01-25T22:20:49Z</td><td>custom-filters</td><td>v1.3.0</td><td>Add custom filters, remove chart-foundry references, and refactor a bit.</td><td>21904078</td><td>jwildfire</td><td>2017-02-15T00:59:56Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:04:45Z</td><td>This is the only change we need for 2.0.0, I think.</td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>21905012</td><td>jwildfire</td><td>2017-02-15T01:12:21Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>Approved with 🎆. Very nice. ;;Good stuff. Much cleaner box/violin plot implementation. 👏👏👏;;Would definitely be good to share these improvements. At the very least we should put them in a new stand-alone example so that we don't forget about them. ;; ;; Still thinking it would be nice to implement a boxplot 'mark' in webcharts. Maybe a worthy Rho24? </td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>21905901</td><td>jwildfire</td><td>2017-02-15T01:14:56Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>webcharts specific now (instead of generic D3 function). Not a problem, just worth noting. </td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>21906154</td><td>jwildfire</td><td>2017-02-15T01:17:11Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>honestly, if we're going to take it this far. it might be better just to send it the chart object and nothing else. Just have `group`, `boxInsideColor` and `precision` as options for the user there. </td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>21906292</td><td>jwildfire</td><td>2017-02-15T01:18:08Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>clever. </td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>22335380</td><td>samussiah</td><td>2017-02-16T19:05:53Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>I like that idea a lot!</td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>22337714</td><td>samussiah</td><td>2017-02-16T19:15:40Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>The group object has a bunch of items of interest, most importantly:;; ;; * The x-axis value at which to plot the box plot;; * The group value with which to offset the the box plot;; * The nested group data;; ;; Rather than pass each of those to the function I thought it would be nicer to just wrap 'em up in a single object.</td></tr><tr><td>0020</td><td>samussiah</td><td>2017-02-06T20:44:27Z</td><td>rotate-tick-labels</td><td>v1.3.0</td><td>Rotate tick labels & Improvements to box and violin plots</td><td>22337872</td><td>samussiah</td><td>2017-02-16T19:16:18Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:16:29Z</td><td>Hacky ;-);; ;; I want my darn violin plots to touch the min and max!</td></tr><tr><td>0021</td><td>samussiah</td><td>2017-02-08T20:13:19Z</td><td>annotate-population</td><td>v1.3.0</td><td>Add population annotation.</td><td>21907008</td><td>jwildfire</td><td>2017-02-15T01:24:11Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-02-16T19:19:36Z</td><td>Easy peasy.</td></tr><tr><td>0022</td><td>samussiah</td><td>2017-02-09T19:37:02Z</td><td>consistent-axes-plus-log-linear</td><td>v1.3.0</td><td>Consistent axes plus log linear</td><td>21907223</td><td>jwildfire</td><td>2017-02-15T03:21:17Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-02-16T19:53:50Z</td><td>why bring `i`  along for the ride here? ;;so nesting by visit and group;;Is the nested data used in the boxplots? </td></tr><tr><td>0022</td><td>samussiah</td><td>2017-02-09T19:37:02Z</td><td>consistent-axes-plus-log-linear</td><td>v1.3.0</td><td>Consistent axes plus log linear</td><td>22339300</td><td>samussiah</td><td>2017-02-16T19:22:31Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:53:50Z</td><td>no idea, removed</td></tr><tr><td>0022</td><td>samussiah</td><td>2017-02-09T19:37:02Z</td><td>consistent-axes-plus-log-linear</td><td>v1.3.0</td><td>Consistent axes plus log linear</td><td>22339641</td><td>samussiah</td><td>2017-02-16T19:23:55Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T19:53:50Z</td><td>Yup!</td></tr><tr><td>0024</td><td>samussiah</td><td>2017-02-16T21:55:42Z</td><td>groups-default</td><td>v1.3.0</td><td>Update default grouping to none and hide group control when only one …</td><td>22372748</td><td>samussiah</td><td>2017-02-16T21:56:39Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2017-02-16T21:56:44Z</td><td>Looks good to me.</td></tr><tr><td>0027</td><td>jwildfire</td><td>2017-03-07T02:28:04Z</td><td>v2.0.1</td><td>master</td><td>v2.0.1</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-03-13T23:31:26Z</td><td></td></tr><tr><td>0028</td><td>samussiah</td><td>2017-03-07T22:19:35Z</td><td>log-fix</td><td>v2.0.1</td><td>Fix logged axis bug.</td><td>25840368</td><td>jwildfire</td><td>2017-03-08T18:19:23Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td></td><td>I think I'd rather do this in the control instead of deleting all 0 values on pre-process. </td></tr><tr><td>0033</td><td>jwildfire</td><td>2017-10-12T23:09:56Z</td><td>v2.0.2-dev</td><td>master</td><td>V2.0.2 dev</td><td>69263644</td><td>samussiah</td><td>2017-10-13T15:23:07Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-10-13T20:59:16Z</td><td></td></tr><tr><td>0035</td><td>samussiah</td><td>2017-10-20T13:58:34Z</td><td>v2.0.3-dev</td><td>master</td><td>V2.0.3 dev</td><td>70860678</td><td>jwildfire</td><td>2017-10-20T14:31:08Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-10-20T14:31:24Z</td><td></td></tr><tr><td>0039</td><td>mhickle</td><td>2017-12-13T15:54:12Z</td><td>ReadMe</td><td>master</td><td>Read me</td><td>84246923</td><td>brittsikora</td><td>2017-12-18T19:42:02Z</td><td>APPROVED</td><td>mhickle</td><td>2017-12-18T19:43:00Z</td><td></td></tr><tr><td>0040</td><td>samussiah</td><td>2018-01-05T14:59:25Z</td><td>v2.1.0-dev</td><td>master</td><td>v2.1.0-dev</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2018-01-15T23:31:38Z</td><td></td></tr><tr><td>0042</td><td>samussiah</td><td>2018-01-05T18:26:12Z</td><td>y-axis-limits</td><td>v2.1.0-dev</td><td>add y-axis domain controls</td><td>87103473</td><td>jwildfire</td><td>2018-01-07T16:16:08Z</td><td>CHANGES_REQUESTED</td><td>jwildfire</td><td>2018-01-11T17:04:35Z</td><td>Generally looks good, but found a few small issues in QC. ;; 1) Need a clippath applied or bars overlap axis once filtered. ;; 2) "None" now appears twice in the group dropdown.;; 3) Turning on violin plots not working as expected (only rendering for first visit)</td></tr><tr><td>0042</td><td>samussiah</td><td>2018-01-05T18:26:12Z</td><td>y-axis-limits</td><td>v2.1.0-dev</td><td>add y-axis domain controls</td><td>88234332</td><td>jwildfire</td><td>2018-01-11T17:02:12Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-01-11T17:04:35Z</td><td>👍  Looks great to me. </td></tr><tr><td>0044</td><td>samussiah</td><td>2018-01-15T23:46:04Z</td><td>v2.2.0-dev</td><td>master</td><td>Safety Results Over Time v2.2.0</td><td>93728962</td><td>brittsikora</td><td>2018-02-02T19:24:33Z</td><td>APPROVED</td><td>samussiah</td><td>2018-02-02T21:43:37Z</td><td>Passing regression testing in firefox and chrome</td></tr><tr><td>0046</td><td>samussiah</td><td>2018-01-16T19:22:01Z</td><td>visitnum-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>89510084</td><td>jwildfire</td><td>2018-01-17T16:54:00Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2018-02-01T22:34:42Z</td><td>Code generally looks good to me, but chart bombed when I tried these settings in CAT: `{"time_settings":{"order":["Visit 2","Visit 5"]}}`;; ;; I was expecting Visit 2 and Visit 5 to be pulled to the left on the x-axis ... ;;So the `order` option basically overwrites the `order_col` option. ;;so `x.order` will be null unless `time_settings.order` is defined. Should be ok ... </td></tr><tr><td>0046</td><td>samussiah</td><td>2018-01-16T19:22:01Z</td><td>visitnum-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>89674774</td><td>jwildfire</td><td>2018-01-18T05:17:00Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:34:42Z</td><td>👍 </td></tr><tr><td>0046</td><td>samussiah</td><td>2018-01-16T19:22:01Z</td><td>visitnum-order</td><td>v2.2.0-dev</td><td>Visit order</td><td>93162159</td><td>brittsikora</td><td>2018-02-01T04:04:08Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:34:42Z</td><td></td></tr><tr><td>0047</td><td>samussiah</td><td>2018-01-18T00:01:04Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>89976822</td><td>jwildfire</td><td>2018-01-19T00:09:03Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2018-02-01T22:34:51Z</td><td>Have we confirmed with Jack that this is ok to remove? Seems like it would be easy enough to keep. Maybe just refactor using the same workflow as `removeUnscheduledVisits.js` below. ;;On further thought, I think the "hide visits with no data" control is worth keeping unless there is a compelling reason not to do so ... </td></tr><tr><td>0047</td><td>samussiah</td><td>2018-01-18T00:01:04Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>89978985</td><td>jwildfire</td><td>2018-01-19T00:19:53Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:34:51Z</td><td>I would probably lean towards making this text based instead of requiring users to understand regex. Or I suppose we could support both by adding `unscheduled_visit_terms:["unscheduled","early termination"]` alongside the `unscheduled_visit_pattern` and then building some logic regarding which one takes precedence ... </td></tr><tr><td>0047</td><td>samussiah</td><td>2018-01-18T00:01:04Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>90264514</td><td>samussiah</td><td>2018-01-19T22:27:41Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:34:51Z</td><td>Yeah, on second thought it's nice to have.  </td></tr><tr><td>0047</td><td>samussiah</td><td>2018-01-18T00:01:04Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>90264981</td><td>samussiah</td><td>2018-01-19T22:30:06Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:34:51Z</td><td>The problem is unscheduled visits typically have a suffix that indicates where the visit fell in the schedule of events.  I've added another parameter, `unscheduled_visit_values` that default to `null` but overrides the `unscheduled_visit_pattern` if specified.</td></tr><tr><td>0047</td><td>samussiah</td><td>2018-01-18T00:01:04Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>90708577</td><td>jwildfire</td><td>2018-01-23T05:04:35Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:34:51Z</td><td>Looks good.;;I think I'd vote for `unscheduled visits` to be `true` by default. ;;nevermind - I'd didn't notice the control. I think it's looking good as is. </td></tr><tr><td>0047</td><td>samussiah</td><td>2018-01-18T00:01:04Z</td><td>unscheduled-visits</td><td>v2.2.0-dev</td><td>Unscheduled visits</td><td>93164310</td><td>brittsikora</td><td>2018-02-01T04:25:39Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:34:51Z</td><td></td></tr><tr><td>0048</td><td>samussiah</td><td>2018-01-18T21:27:40Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td>89977768</td><td>jwildfire</td><td>2018-01-19T00:25:30Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2018-02-01T22:35:00Z</td><td>Minor tweaks likely needed after changes to #47. ;;👍  good catch;;default = false, no? ;;is this a string? or a regular expression? (maybe json schema only supports strings?);;update based on comments from #47 ;;nevermind - i see the logic below dealing with this. ;;This looks good - should also make it easier to support `config.unscheduled_visit_list` as suggested in #47 code review </td></tr><tr><td>0048</td><td>samussiah</td><td>2018-01-18T21:27:40Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td>92092688</td><td>jwildfire</td><td>2018-01-29T05:11:06Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:35:00Z</td><td>Not sure I totally see the point of splitting the settings here, but I guess it doesn't hurt anything ... so 🤷‍♂️ ;;As mentioned elsewhere, we should move this to a footnote. Created #50</td></tr><tr><td>0048</td><td>samussiah</td><td>2018-01-18T21:27:40Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td>92237489</td><td>samussiah</td><td>2018-01-29T15:19:28Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-02-01T22:35:00Z</td><td>I needed to pull in the webcharts settings for the [configuration wiki](https://github.com/RhoInc/safety-results-over-time/wiki/Configuration) and this was the hacky route I chose.</td></tr><tr><td>0048</td><td>samussiah</td><td>2018-01-18T21:27:40Z</td><td>settings-schema</td><td>v2.2.0-dev</td><td>Settings schema</td><td>93165133</td><td>brittsikora</td><td>2018-02-01T04:33:47Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-02-01T22:35:00Z</td><td>Feature testing passes</td></tr><tr><td>0051</td><td>samussiah</td><td>2018-02-27T14:56:32Z</td><td>v2.2.1-dev</td><td>master</td><td>Safety Results Over Time - v2.2.1</td><td>100106134</td><td>pburnsdata</td><td>2018-02-28T15:27:42Z</td><td>APPROVED</td><td>samussiah</td><td>2018-03-09T20:22:14Z</td><td></td></tr><tr><td>0051</td><td>samussiah</td><td>2018-02-27T14:56:32Z</td><td>v2.2.1-dev</td><td>master</td><td>Safety Results Over Time - v2.2.1</td><td>102770035</td><td>dschwentker</td><td>2018-03-09T19:55:54Z</td><td>APPROVED</td><td>samussiah</td><td>2018-03-09T20:22:14Z</td><td>Tested and passed using webcharts version v1.10.0-dev. Confirmed that there are 0 results when running  d3.selectAll('.wc-controls .control-label') in the console.</td></tr><tr><td>0055</td><td>samussiah</td><td>2018-04-02T14:19:20Z</td><td>v2.2.2-dev</td><td>master</td><td>Safety Results Over Time v2.2.2</td><td>116959651</td><td>emmorris</td><td>2018-05-02T15:56:51Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-05-02T20:41:12Z</td><td></td></tr><tr><td>0056</td><td>samussiah</td><td>2018-04-02T17:49:34Z</td><td>add-test-page</td><td>v2.2.2-dev</td><td>add test page</td><td>109001458</td><td>pburnsdata</td><td>2018-04-03T15:35:38Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-30T19:52:26Z</td><td></td></tr><tr><td>0059</td><td>brittsikora</td><td>2018-05-01T19:58:07Z</td><td>brittsikora-patch-1</td><td>master</td><td>Updating example link</td><td>116683861</td><td>samussiah</td><td>2018-05-01T20:04:17Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-05-01T20:04:23Z</td><td>magnificent!</td></tr><tr><td>0063</td><td>rtbailey</td><td>2018-08-09T19:47:07Z</td><td>rtbailey-patch-1</td><td>master</td><td>Update LICENSE.md</td><td>167596899</td><td>samussiah</td><td>2018-10-23T19:28:34Z</td><td>APPROVED</td><td>Ryan Bailey</td><td></td><td></td></tr><tr><td>0064</td><td>samussiah</td><td>2018-10-23T19:27:59Z</td><td>v2.2.3-dev</td><td>master</td><td>Safety Results Over Time v2.2.3</td><td>167731168</td><td>jwildfire</td><td>2018-10-24T05:07:31Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-10-25T15:46:46Z</td><td>👍 </td></tr><tr><td>0066</td><td>samussiah</td><td>2018-12-18T17:06:26Z</td><td>dev-v2.3.0</td><td>master</td><td>Safety Results Over Time v2.3.0</td><td>198170571</td><td>dschwentker</td><td>2019-01-30T16:19:57Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-30T16:59:08Z</td><td>Regression testing passed in Firefox and Chrome.</td></tr><tr><td>0068</td><td>samussiah</td><td>2019-01-02T19:14:30Z</td><td>legend-order</td><td>dev-v2.3.0</td><td>Sync order of box and violin plots with legend order.</td><td>190745838</td><td>pburnsdata</td><td>2019-01-09T14:21:27Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:07Z</td><td>Much improved- nice work;;interesante;;This is neat - cool to see individual subgroups show up far left etc.</td></tr><tr><td>0068</td><td>samussiah</td><td>2019-01-02T19:14:30Z</td><td>legend-order</td><td>dev-v2.3.0</td><td>Sync order of box and violin plots with legend order.</td><td>197790149</td><td>dschwentker</td><td>2019-01-29T21:21:44Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:07Z</td><td>Tested and passed</td></tr><tr><td>0069</td><td>samussiah</td><td>2019-01-02T19:14:52Z</td><td>tooltip-precision</td><td>dev-v2.3.0</td><td>Improve precision in tooltips.</td><td>190748815</td><td>pburnsdata</td><td>2019-01-09T14:28:35Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:15Z</td><td>Very precise, very precise;;good call moving precision in here;;here we go</td></tr><tr><td>0069</td><td>samussiah</td><td>2019-01-02T19:14:52Z</td><td>tooltip-precision</td><td>dev-v2.3.0</td><td>Improve precision in tooltips.</td><td>197790677</td><td>dschwentker</td><td>2019-01-29T21:22:56Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:15Z</td><td>Tested and approved</td></tr><tr><td>0070</td><td>samussiah</td><td>2019-01-02T19:15:15Z</td><td>outliers</td><td>dev-v2.3.0</td><td>Draw outliers.</td><td>190753858</td><td>pburnsdata</td><td>2019-01-09T14:43:07Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:24Z</td><td>@samussiah Looks good! My only thought would be that since the outliers are colored so similarly, they're difficult to see with the violin plot, but I suppose you are really looking at the full density when you're using the violin plot so they're part of the violin plot anyway. I'm thinking you really only care about seeing the outliers when you use boxplot so it doesn't really matter if the violin plot covers them up some? ;;do you want to remove this?;;cool - I've never used Map() and it looks super useful. Love that it's an iterable.</td></tr><tr><td>0070</td><td>samussiah</td><td>2019-01-02T19:15:15Z</td><td>outliers</td><td>dev-v2.3.0</td><td>Draw outliers.</td><td>197790971</td><td>dschwentker</td><td>2019-01-29T21:23:40Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:24Z</td><td>Tested and approved</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>191784792</td><td>pburnsdata</td><td>2019-01-11T18:21:37Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>get that outta here</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>191785563</td><td>pburnsdata</td><td>2019-01-11T18:23:48Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>solid usage of small - much respect</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>191791014</td><td>pburnsdata</td><td>2019-01-11T18:38:34Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>I'm wondering if the log ticks should be treated differently? @samussiah  - they might get lil squished</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>191791776</td><td>pburnsdata</td><td>2019-01-11T18:40:36Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>cool</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>191794571</td><td>samussiah</td><td>2019-01-11T18:48:17Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>What's a log equivalent of quantiles?</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>192361255</td><td>pburnsdata</td><td>2019-01-14T21:02:57Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>@samussiah started looking at the log quantile stuff and saw this - should be removeYAxisTicks()</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>192733351</td><td>pburnsdata</td><td>2019-01-15T16:19:11Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>Created #76 for this</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>192733887</td><td>pburnsdata</td><td>2019-01-15T16:20:06Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>Approved - Spencer to fix add/remove tick issues in later pr</td></tr><tr><td>0071</td><td>samussiah</td><td>2019-01-02T19:15:36Z</td><td>log-axis</td><td>dev-v2.3.0</td><td>Add log axis functionality.</td><td>197788812</td><td>dschwentker</td><td>2019-01-29T21:18:33Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:40Z</td><td>Tested and passed</td></tr><tr><td>0072</td><td>samussiah</td><td>2019-01-02T19:15:57Z</td><td>group-labels</td><td>dev-v2.3.0</td><td>Display group labels in group dropdown.</td><td>191795979</td><td>pburnsdata</td><td>2019-01-11T18:51:59Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:33:47Z</td><td>whats srot? just curious</td></tr><tr><td>0072</td><td>samussiah</td><td>2019-01-02T19:15:57Z</td><td>group-labels</td><td>dev-v2.3.0</td><td>Display group labels in group dropdown.</td><td>191800184</td><td>pburnsdata</td><td>2019-01-11T19:02:37Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:47Z</td><td></td></tr><tr><td>0072</td><td>samussiah</td><td>2019-01-02T19:15:57Z</td><td>group-labels</td><td>dev-v2.3.0</td><td>Display group labels in group dropdown.</td><td>197791096</td><td>dschwentker</td><td>2019-01-29T21:23:57Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:33:47Z</td><td>Tested and approved</td></tr><tr><td>0073</td><td>samussiah</td><td>2019-01-02T19:21:18Z</td><td>optionalize-variables</td><td>dev-v2.3.0</td><td>Optionalize the unit_col setting.</td><td>191801456</td><td>pburnsdata</td><td>2019-01-11T19:05:59Z</td><td>APPROVED</td><td>samussiah</td><td>2019-01-29T21:33:48Z</td><td>units4days</td></tr><tr><td>0074</td><td>pburnsdata</td><td>2019-01-08T21:17:01Z</td><td>pburnsdata-patch-1</td><td>dev-v2.3.0</td><td>Resolve spelling error in readme</td><td>194152949</td><td>samussiah</td><td>2019-01-18T15:38:21Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-18T15:38:31Z</td><td></td></tr><tr><td>0078</td><td>samussiah</td><td>2019-01-18T15:35:12Z</td><td>miscellany</td><td>dev-v2.3.0</td><td>Miscellany</td><td>194296527</td><td>pburnsdata</td><td>2019-01-18T22:07:13Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-01-29T21:39:02Z</td><td>this is super cool;;looks much better but some weird stuff happening. I'm seeing that Direct Bilirubin has an 000004 guy, or ALT has repeated 0.0s, and temperature doesnt have an axis @samussiah I was playing with it some too -> could be worth changing the format - im just not sure why the 0.0s and no axis ones are happening</td></tr><tr><td>0078</td><td>samussiah</td><td>2019-01-18T15:35:12Z</td><td>miscellany</td><td>dev-v2.3.0</td><td>Miscellany</td><td>195070218</td><td>pburnsdata</td><td>2019-01-22T15:36:59Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:39:02Z</td><td>Nice work as always. Looks good to me!;;this looks nice;;the power of regex;;lookin better to me!</td></tr><tr><td>0078</td><td>samussiah</td><td>2019-01-18T15:35:12Z</td><td>miscellany</td><td>dev-v2.3.0</td><td>Miscellany</td><td>197791217</td><td>dschwentker</td><td>2019-01-29T21:24:14Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:39:02Z</td><td>Tested and approved</td></tr><tr><td>0081</td><td>samussiah</td><td>2019-01-29T16:47:21Z</td><td>bug-fixes</td><td>dev-v2.3.0</td><td>Bug fixes</td><td>197712381</td><td>pburnsdata</td><td>2019-01-29T18:28:27Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:39:11Z</td><td>Looks swell</td></tr><tr><td>0081</td><td>samussiah</td><td>2019-01-29T16:47:21Z</td><td>bug-fixes</td><td>dev-v2.3.0</td><td>Bug fixes</td><td>197788445</td><td>dschwentker</td><td>2019-01-29T21:17:43Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-01-29T21:39:11Z</td><td>Tested and passed</td></tr><tr><td>0085</td><td>samussiah</td><td>2019-02-07T16:31:29Z</td><td>dev-v2.3.1</td><td>master</td><td>Safety Results over Time v2.3.1</td><td>207420929</td><td>pburnsdata</td><td>2019-02-25T14:30:19Z</td><td>APPROVED</td><td>Preston Burns</td><td>2019-03-06T21:29:34Z</td><td>That's a wrap!;;This I promise you</td></tr><tr><td>0085</td><td>samussiah</td><td>2019-02-07T16:31:29Z</td><td>dev-v2.3.1</td><td>master</td><td>Safety Results over Time v2.3.1</td><td>211480755</td><td>dschwentker</td><td>2019-03-06T21:22:10Z</td><td>APPROVED</td><td>Preston Burns</td><td>2019-03-06T21:29:34Z</td><td>Tested and confirmed #84. Other two issues require no testing. Passed and approved. </td></tr><tr><td>0087</td><td>samussiah</td><td>2019-03-11T22:16:07Z</td><td>add-color_by-to-schema</td><td>master</td><td>Add color_by to settings-schema.json</td><td></td><td></td><td></td><td>NONE</td><td>Spencer Childress</td><td>2019-04-01T17:51:45Z</td><td></td></tr><tr><td>0088</td><td>samussiah</td><td>2019-03-27T20:22:33Z</td><td>dev-v2.3.2</td><td>master</td><td>dev-v2.3.2</td><td>220027598</td><td>jwildfire</td><td>2019-03-28T13:45:48Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-01T17:51:44Z</td><td>Is this really numeric? </td></tr><tr><td>0088</td><td>samussiah</td><td>2019-03-27T20:22:33Z</td><td>dev-v2.3.2</td><td>master</td><td>dev-v2.3.2</td><td>220029500</td><td>samussiah</td><td>2019-03-28T13:48:46Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2019-04-01T17:51:44Z</td><td>heh nope</td></tr><tr><td>0091</td><td>jwildfire</td><td>2019-05-16T03:35:31Z</td><td>dev-v2.3.3</td><td>master</td><td>Dev v2.3.3</td><td>238435430</td><td>pburnsdata</td><td>2019-05-16T14:35:33Z</td><td>APPROVED</td><td>Preston Burns</td><td>2019-05-16T15:03:59Z</td><td>Lookin good</td></tr><tr><td>0093</td><td>dependabot[bot]</td><td>2019-07-12T04:22:54Z</td><td>dependabot/npm_and_yarn/lodash-4.17.14</td><td>master</td><td>Bump lodash from 4.17.11 to 4.17.14</td><td>261296294</td><td>samussiah</td><td>2019-07-12T14:36:45Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-07-12T14:37:14Z</td><td></td></tr><tr><td></td></tr></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

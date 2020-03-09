@@ -1,12 +1,12 @@
 export default function prepReleases() {
     let chart = this;
-    console.log(chart.config.releases);
+    console.log(this.data.raw);
     //merge data from different metrics
     this.data.releases = d3
-        .merge(chart.config.releases) // raw releases is an array of arrays
+        .merge(this.data.raw.map(m => m.raw.releases)) // raw releases is an array of arrays
         .map(function(release) {
             release.date = new Date(release.created_at);
-            release.name = release.url.split('/')[5];
+            release.repo = release.url.split('/')[5];
             release.repo_url = 'https://github.com/RhoInc/' + release.repo;
             // release.html = converter.makeHtml(release.body);
             return release;
@@ -14,7 +14,7 @@ export default function prepReleases() {
 
     this.data.raw.forEach(function(d) {
         d.releases = chart.data.releases
-            .filter(r => d.name == r.name)
+            .filter(r => d.repo == r.repo)
             .sort((a, b) => b.date.getTime() - a.date.getTime());
         console.log(d.releases);
         d.release_count = d.releases.length;

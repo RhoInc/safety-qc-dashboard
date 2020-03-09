@@ -1,0 +1,189 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+* {
+    font-family: 'Open Sans';
+}
+#title {
+    width: 96%;
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid lightgray;
+    margin: 24px 2% 12px 2%;
+    font-size: 32px;
+    font-weight: normal;
+}
+#subtitle {
+    width: 96%;
+    margin: 0 2% 12px 2%;
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+#info {
+    text-align: center;
+    color: #004085;
+    background-color: #cce5ff;
+    border:1px solid #b8daff;
+    padding: 0.5em;
+    margin: 0 2% 12px 2%;
+    border-radius:0.2em
+}
+
+#container {
+    width: 96%;
+    margin: 12px 2%;
+    padding: 0.5em;
+    display: inline-block;
+}
+
+.info{
+    padding:0.5em;
+    width: 96%;
+    margin: 0 2% 12px 2%;
+}
+.details{
+    background: #fff7bc;
+    border:1px solid #fec44f;
+    padding:0.5em;
+    overflow-x:scroll;
+}
+
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: "Lato", sans-serif
+}
+.w3-bar,h1,button {
+    font-family: "Montserrat", sans-serif
+}
+
+.w3-twothird{
+  text-align:justify;
+}
+
+.fa-anchor,.fa-coffee {
+    font-size:200px
+}
+.rho-blue {
+    background: #326195;
+    color: white;
+}
+.rho-green {
+    background: #6ebe4b;
+    color: black;
+}
+.rho-logo {
+    margin-top: 84px;
+    margin-left: 48px;
+}
+
+header{
+  margin-top:50px;
+  padding-top:1em;
+  padding-bottom:1em;
+  color: #326195; /* Rho Blue */
+
+}
+
+/* Latest Blog Post */
+.blog-post {
+    display: inline-block;
+}
+.blog-post > h3 {
+    width: 100%;
+}
+.blog-post img {
+    max-width: 100%;
+}
+.blog-post__innards {
+    background: white;
+    border: 1px solid #999;
+    padding: 0.5em;
+}
+
+/* Latest Publications */
+
+ul.pubs{
+	display: block;
+	padding:0;
+}
+
+ul.pubs li.pub{
+	display:block;
+	list-style: none;
+	min-height:133px;
+}
+
+ul.pubs li.pub img{
+	height:100px;
+	width:133px;
+	float:left;
+	vertical-align:top;
+	padding:0.5em;
+	margin-right:1em;
+
+}
+
+ul.pubs li.pub .pub-wrap{
+padding:0.5em;
+}
+
+ul.pubs li.pub .pub-wrap p{
+ padding-bottom:0.5em;
+ margin:0;
+}
+
+ul.pubs li.pub .pub-wrap p.title{
+ font-weight: bold;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags{
+	list-style: none;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li{
+	display:inline-block;
+	margin-right:1.5em;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a{
+	color: rgb(0, 163, 239);
+	text-decoration: none;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a::before{
+	font-family: Fontawesome;
+	padding-right: .5em;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.slides::before{
+	content: "\f108";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.poster::before{
+	content: "\f022";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.related.tool::before{
+	content: "\f0a4";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.paper::before{
+	content: "\f0f6";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.abstract::before{
+	content: "\f016";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.github::before{
+	content: "\f09b";
+}
+
+/* Latest Releases */
+.releases .hidden{
+  display:none;
+}
+.releases h5{
+  margin-bottom:0;
+  font-weight: bold;
+}
+.release__body p{
+  margin-top:0;
+}

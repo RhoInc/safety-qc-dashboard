@@ -1,0 +1,767 @@
+<html>
+<head>
+    <title>hep-explorer - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">hep-explorer - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for hep-explorer. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/safetygraphics/hep-explorer/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h1 id="technicaldocumentation">Technical Documentation</h1>
+<p>This page contains various technical documentation for the library, starting with a set of Feature Tests.</p>
+<h2 id="featuretests">Feature Tests</h2>
+<p>These tests can be used to confirm that any given version of the chart is behaving as expected. The <a href="https://safetygraphics.github.io/hep-explorer/test-page/example1/">first example page</a> or <a href="https://rhoinc.github.io/CAT/">CAT</a>  can be used for testing unless otherwise noted. </p>
+<h3 id="chart">Chart</h3>
+<p>Feature tests for the main chart.</p>
+<ul>
+<li>Confirm that you can drag horizontal and vertical dotted reference lines, and that the Quadrant table below the chart, the percentages in the annotations in the corners of the chart, and the Reference Line controls update according to the new placement of the chart lines</li>
+<li>Confirm that hovering on a data point brings up a (1) tooltip that displays participant details (ID, Visit milestones, r ratio) and (2) small ticks on the x- and y-axis representing the participants measures at each visit. The circle shows the maximum value across all visits should be positioned accordingly relative to the ticks. </li>
+<li>Confirm that clicking on a data point makes the circle bold and draws a line between one or more points, depending on how many visits the participant has completed. Each new point has it’s own tool tip with visit-level details. </li>
+<li>Confirm that there is a button in the upper left corner, beside the Safety eDish header, labeled Raw Data;  and that clicking the button allows you to download the dataset used for the chart</li>
+<li>Confirm that boxplots summarizing the distribution of the are drawn to the top and right of the chart, and that hovering over each boxplot shows a tooltip with details.</li>
+</ul>
+<h3 id="participantdetails">Participant Details</h3>
+<p>Feature tests for the participant details section which appears when clicking a point in the main chart. </p>
+<ul>
+<li>Confirm that clicking a data point in the chart opens the Participant Details for the selected participant. Three new sections should appear:</li>
+<li>Participant Details – horizontal text-based list or participant characteristics</li>
+<li>Standardized Lab Values by Visit – Line chart showing key measures</li>
+<li>Raw Lab Values Summary Table – Table with small charts summarizing lab values</li>
+<li>R Ratio by Visit - Line chart showing R Ratio values for Study Day</li>
+<li>Confirm that the Standardized Lab Values by Visit chart has a Select Labs filter that is a multi-select box of labs. Confirm that all labs are selected by default and you can control click to select or deselect labs. Confirm that the chart only shows lines that correspond to the selected labs in the filter. </li>
+<li>Confirm that there is a Y-axis Display Type filter that is a drop down that allows you to select between different baseline or upper limit y-axis values.</li>
+<li>Confirm that hovering over a line in the Standardized Lab Values by Visit chart displays a reference line for that lab as a dotted line in the chart.</li>
+<li>Confirm that each measure in the Raw Lab Values Summary Table section has a sparkline (small chart) that can be clicked on to see an expanded view.</li>
+<li>Confirm that clicking the Clear button at the top of the Participant Details section closes the Participant Details view and the Quadrant table is again shown below the main chart.</li>
+<li>Using <a href="https://safetygraphics.github.io/hep-explorer/test-page/example3/">example 3</a>, confirm that an <a href="https://github.com/SafetyGraphics/hep-explorer/releases/tag/v0.17.0">exposure timeline</a> is shown under the "Standardized Lab Values by Visit" chart when data is provided.</li>
+</ul>
+<h3 id="messages">Messages</h3>
+<p>Feature tests for the Messages section in the sidebar.</p>
+<ul>
+<li>Confirm that there is a Message section at the top left of the chart, just under the header and download Raw Data button.</li>
+<li>Confirm that any relevant messages, such as a Caution message about how many rows were removed from the dataset sue to missing or non-numeric data; or a general caution message against using the chart as the sole determiner for clinical recommendations.</li>
+<li>Confirm that shorter summaries for each message are shown by default and that clicking the 3 white dots expands to show the whole message. </li>
+<li>Confirm that links to download csv data in messages indicating that data was excluded from the chart work as expected. </li>
+<li>Confirm that there is a Clear button that allows the user to clear the messages from display.</li>
+</ul>
+<h3 id="filters">Filters</h3>
+<p>Feature tests for the filters section in the sidebar.</p>
+<ul>
+<li>Confirm that there is a filter for R Ratio that includes minimum and maximum values along with a reset button.</li>
+<li>Confirm that the range is initially set between 0 and the maximum value found in the data. </li>
+<li>Confirm that increasing or decreasing the numbers in the boxes updates the chart accordingly to only display points that match the filter. </li>
+<li>Confirm that the values automatically sort when entering a min value greater than the max value (or vice versa)</li>
+<li>Confirm that the reset button returns the values to the default.</li>
+<li>Confirm that an warning is displayed in place of the chart when no participants are selected (e.g. when setting both values greater than the default max)</li>
+<li>Confirm that additional data-driven filters appear as specified, and show-hide points as expected.</li>
+<li>Confirm that the participant count (“xxx of xxx participants shown”) in the Filters header updates as expected. </li>
+<li>Confirm that the Filters section appears on the left side of the chart, below the Messages section</li>
+</ul>
+<h3 id="settings">Settings</h3>
+<p>Feature tests for the settings section in the sidebar </p>
+<ul>
+<li>Confirm that the Settings section appears on the left side of the chart, below the Filters section</li>
+<li>Confirm that there is a Group setting dropdown that allows you to change the grouping variable for the chart. When changed, the legend and point color should update accordingly. When ‘None’ is selected, all points should be the same color and the legend above the chart should be removed. (can use the settings object { "group_cols": "SEX" }) </li>
+<li>Confirm there is a Display Type setting, to set Relative or absolute axes, using a dropdown field that allows for the selection of either “Upper limit of normal adjusted (eDish)” (this is the default) or Baseline adjusted (mDish). Changing this setting should update the chart accordingly (test using settings object {
+"baseline": {
+    "value_col": "VISIT",
+    "values": [
+        "Visit 1"
+    ]
+}
+} ).</li>
+<li>Confirm there is an X-axis Measure setting dropdown field that allows the selection of either ALT, AST, or ALP, with each selection updating the x-axis of the chart, as well as the data points shown in the chart.</li>
+<li>Confirm there is are “[measure] Reference Line” settings  where [measure] is set to one of the key variables (typically TB, ALT, AST, or ASP) depending on the current variables used for the x- and y-axes. Confirm that this field is a box with a number that can be adjusted either by changing the number in the box, or by dragging the x-axis reference dotted line in the chart itself. Changing the number in the box should shift the line in the chart to the appropriate new spot on the x-axis, dragging the line in the chart should update the number in the box to show the axis point to which you dragged the line.</li>
+<li>Confirm there is a Point Size setting drop down field that allows for the selection of different measures in the chart to have a larger point radius to make them more visible. The default selection should be Uniform, with the other options being ALT, ASP, ALP, TB.</li>
+<li>Confirm there is an Axis Type setting drop down field that allows you to change the chart between linear or log Axes. The default selection should be linear.</li>
+<li>Confirm there is a Highlight Points Based on Timing setting number field that updates the chart’s fill points with max values less than X days apart. As you increase the setting number, you should see more points fill in in the chart. Confirm that the footnote regarding timing is shown below the main chart and that it updates when the control is changed (including good grammar for 0 and 1 days).</li>
+<li>Confirm that the x-axis measure  and Point Size options show the long name, not just the three letter abbreviation, (ex.: "Aminotransferase, alanine (ALT)", "Alkaline phosphatase (ALP)", etc.)</li>
+<li>Confirm there is a Reset Chart button at the bottom of the Settings section that resets the chart to its default view and default Filters and Settings.</li>
+<li>Confirm that all options should be shown for x and point size, but the y-axis control should be hidden by default since TB is the only option.</li>
+<li>Confirm that the add<em>measures setting adds additional options under the x-Axis and point size controls. settings = {add</em>measures:true}</li>
+<li>Confirm that the new "all" option works as expected for the axes and point-size controls, including for the y-axis, so that changing settings to {x<em>options:["ALT","ALP"],y</em>options:"all", point<em>size</em>options:["TB","AST"]} adds the Y-axis Measure dropdown.</li>
+<li>Confirm that the new "all" options works in tandem with {add_measures:true} as well.</li>
+<li>Confirm that changing the <em>default settings updates the default values for the given controls on initial load, and that the controls still work as expected. {settings = {x</em>default:"ALP",y<em>options:"all", y</em>default:"ALT", point<em>size</em>default:"rRatio"}}</li>
+<li>Confirm that updating the cuts object works as expected. With the settings below, TB should have its cut point set to 2, ALP should be 4, AST should be 5 and all other measures should be 6.
+{
+"add<em>measures": true,
+"cuts": {
+    "ALP": {
+        "relative</em>baseline": 4.8,
+        "relative<em>uln": 4
+    },
+    "AST": {
+        "relative</em>baseline": 5.8,
+        "relative<em>uln": 5
+    },
+    "defaults": {
+        "relative</em>baseline": 6.8,
+        "relative<em>uln": 6
+    }
+},
+"baseline": {
+    "value</em>col": "DY",
+    "values": [
+        1
+    ]
+}
+}</li>
+<li>Confirm that with the same settings in place as above, when you change Display Type to mDish, then TB should have its cut point set to 4.8, ALP should be 4.8, AST should be 5.8 and all other measures should be 6.8.</li>
+<li>Confirm that a single new measure can be added to the x axis and point size controls with the settings {measure<em>values:{ige:"IgE"}}. Adding add</em>measures:true to the settings should still add all measures.</li>
+</ul>
+<h3 id="plotstyle">Plot Style</h3>
+<ul>
+<li>Confirm that changing the plot style control shows/hides the study day slider under the chart.</li>
+<li>Confirm that changing the plot style control causes the the scatter plot points to update. Using the participants details view, confirm that the point position is correct. Selecting "Max Values" should show the point using max values across all visits, while selecting "By Study Day" should show the points using the most recent values collected on or before the selected study day.</li>
+<li>Confirm the study day slider defaults to the first non-negative study day in the data.</li>
+<li>Confirm that clicking a different value on the study day slider changes the position of the points</li>
+<li>Confirm that all controls (filters, point size, etc) and the participant profile (clicking a point) works in the expected way on the "By Study Day" view</li>
+<li>Confirm that clicking the play button starts an animation from the currently selected study day until the end of the study.</li>
+<li>Confirm that while the animation is running, a square stop icon is shown instead of the triangular play button.</li>
+<li>Confirm that clicking the stop button stops the animation on the current day</li>
+<li>Confirm that if the last study is selected on the study day slider, the play button changes to a circular "replay" arrow, and that clicking that button plays the animation from the first study day until the end of the study.</li>
+<li>Confirm that any user interaction involving control changes and point clicks while the animation is running, interrupt the animation and cause it to stop on the current date.</li>
+<li>Confirm that small points are shown during the animation when the study day is before or after a given participant's study enrollment (as described by the figures footnote).</li>
+<li>Confirm that footnotes regarding point size and fill change appropriately when changing plot style</li>
+<li>Confirm that point size changes appropriately over the course of the animation when an option other than "Uniform" is selected</li>
+</ul>
+<h3 id="rratio">R Ratio</h3>
+<ul>
+<li><p>Confirm that 'rRatio' has been added as an option under points size, and that the points are sized appropriately when it is clicked.</p></li>
+<li><p>Confirm that a new 'R Ratio by Visit' chart is visible in the participant details when the point is clicked. The chart should have the following features:</p>
+<ul>
+<li>Reference lines at 2 and 5, which should always be visible even when no R Ratio values &gt;2 are present</li>
+<li>Exact Study day and r ratio values shown on point mouseover.</li></ul></li>
+<li><p>Filter to id = 5090-02 and confirm that R ratio values (shown on point mouseover) are correct for each plot type. Use the clinical-trials\renderer-specific\allQuads.csv dataset and this settings object:
+{
+"max<em>width": 600,
+"value</em>col": "LBORRES",
+"measure<em>col": "TESTNAM",
+"visit</em>col": "VISIT",
+"studyday<em>col": "STUDYDAY",
+"normal</em>col<em>low": "LBORRESLO",
+"normal</em>col<em>high": "LBORRESHI",
+"id</em>col": "SUBJID",
+"group<em>cols": [
+"TRTA",
+"SEX"
+],
+"filters": [
+{
+"value</em>col": "TRTA",
+"label": "Treatment"
+},
+{
+"value<em>col": "SEX",
+"label": "Sex"
+},
+{
+"value</em>col": "SUBJID",
+"label": "ID"
+}
+],
+"measure<em>values": {
+"ALT": "ALT (SGPT)",
+"AST": "AST (SGOT)",
+"TB": "Total Bilirubin",
+"ALP": "Alkaline Phosphatase"
+},
+"baseline": {
+"value</em>col": "STUDYDAY",
+"values": [
+1
+]
+}
+}</p></li>
+<li><p>R ratio should be calculated based on the selected study day for the "by study day" view. Using the "R Ratio by Visit" chart as a guide, confirm that the R ratio value updates when study day changes.</p></li>
+<li><p>R ratio should be calculated using the timepoint when AST is maximized on the "max values view". This can be confirmed using id = 5090-02 in \example 2. For that participant, the summary R Ratio value (shown hovering over the point) should be 6.09 - from study day 84, when max ALT occurred. Note that this is not the maximal R Ratio, which was 9.12 from study day 14.</p></li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/safetygraphics/hep-explorer/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><h1 id="dataguidelines">Data Guidelines</h1>
+<p>The Safety eDish chart is initialized with JSON data files that match the format created by <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/CSV.md">d3.csv()</a>. The chart is specifically designed for clinical trial safety monitoring, and requires a datasets that contains one row per participant per time point per measure and includes the required columns and fields specified below.</p>
+<h2 id="datastandards">Data Standards</h2>
+<p>The chart expects an <a href="https://www.cdisc.org/standards/foundational/sdtm">SDTM-esque</a> data structure by default but  also easily supports the <a href="https://www.cdisc.org/system/files/members/standard/foundational/adam/analysis_data_model_v2.1.pdf">ADaM data standard</a> (Example : <a href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/blob/master/test/index.js#L14-L48">Settings</a>, <a href="https://asa-dia-interactivesafetygraphics.github.io/safety-eDISH/test/">eDish Graphic</a>). Other, non standard data can also be as long as the data is structured correctly. </p>
+<p>Required and optional columns and fields for the SDTM and ADaM data standard are given in the tables below</p>
+<h3 id="requireddatacolumnssettings">Required Data Columns Settings</h3>
+<p>Six variables are required to create an eDish plot: ID, Measure, Value, high and low normal range values and study day.  Details and suggested values for ADaM and SDTM are given below. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Settings Variable</th>
+<th style="text-align:left;">Description (type)</th>
+<th style="text-align:left;">SDTM (Default)</th>
+<th style="text-align:left;">ADaM</th>
+<th style="text-align:left;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">id_col</td>
+<td style="text-align:left;">Unique Subject Identifier (char)</td>
+<td style="text-align:left;">USUBJID</td>
+<td style="text-align:left;">USUBJID</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">measure_col</td>
+<td style="text-align:left;">Name of Measure or Test (chart)</td>
+<td style="text-align:left;">TEST</td>
+<td style="text-align:left;">PARAM</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">value_col</td>
+<td style="text-align:left;">Result or Finding (numeric)</td>
+<td style="text-align:left;">STRESN</td>
+<td style="text-align:left;">AVAL</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">normal<em>col</em>high</td>
+<td style="text-align:left;">Upper Limit of Normal (numeric)</td>
+<td style="text-align:left;">STNRHI</td>
+<td style="text-align:left;">ANRHI</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">normal<em>col</em>low</td>
+<td style="text-align:left;">Lower Limit of Normal (numeric)</td>
+<td style="text-align:left;">STNRLO</td>
+<td style="text-align:left;">ANRLO</td>
+<td style="text-align:left;">Y</td>
+</tr>
+<tr>
+<td style="text-align:left;">studyday_col</td>
+<td style="text-align:left;">Study Day (numeric)</td>
+<td style="text-align:left;">DY</td>
+<td style="text-align:left;">ADY</td>
+<td style="text-align:left;">Y</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optionaldatacolumnsettings">Optional Data Column Settings</h3>
+<p>Users may customize the chart with the additional data mappings given below. Note that these are not specified by default, and must be defined by the user.  Some suggested mappings for SDTM and ADaM are provided below for reference. See the settings object <a href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/blob/master/test/index.js">here</a> for an example of a customized chart.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Settings Variable</th>
+<th style="text-align:left;">Description</th>
+<th style="text-align:left;">SDTM</th>
+<th style="text-align:left;">ADaM</th>
+<th style="text-align:left;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">visitn_col</td>
+<td style="text-align:left;">Visit Number</td>
+<td style="text-align:left;">VISITNUM</td>
+<td style="text-align:left;">VISITNUM</td>
+<td style="text-align:left;">N</td>
+</tr>
+<tr>
+<td style="text-align:left;">visit_col</td>
+<td style="text-align:left;">Visit Name</td>
+<td style="text-align:left;">VISIT</td>
+<td style="text-align:left;">VISIT</td>
+<td style="text-align:left;">N</td>
+</tr>
+<tr>
+<td style="text-align:left;">filter[].value_col</td>
+<td style="text-align:left;">Visit-level filter(s)</td>
+<td style="text-align:left;">SEX, RACE, etc*</td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;">N</td>
+</tr>
+<tr>
+<td style="text-align:left;">details[].value_col</td>
+<td style="text-align:left;">Person-level descriptive(s)</td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;"></td>
+<td style="text-align:left;">N</td>
+</tr>
+<tr>
+<td style="text-align:left;">group<em>cols[].value</em>col</td>
+<td style="text-align:left;">Grouping variable(s)</td>
+<td style="text-align:left;">ACTARM*</td>
+<td style="text-align:left;">TRTA</td>
+<td style="text-align:left;">N</td>
+</tr>
+<tr>
+<td style="text-align:left;">baseline.value_col</td>
+<td style="text-align:left;">Baseline Visit definition</td>
+<td style="text-align:left;">DY</td>
+<td style="text-align:left;">ADY</td>
+<td style="text-align:left;">N</td>
+</tr>
+<tr>
+<td style="text-align:left;">analysisFlag.value_col</td>
+<td style="text-align:left;">Analysis Visit Flag</td>
+<td style="text-align:left;">EPOCH</td>
+<td style="text-align:left;">ANL01FL</td>
+<td style="text-align:left;">N</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>- merged from demographics data domain. </li>
+</ul>
+<h1 id="datafieldsettings">Data Field Settings</h1>
+<p>Field level data is used for identifying key measures for the eDish plot (see <code>settings.measure_details</code>) and identifying baseline visits (see <code>settings.baseline</code>). Suggested values (including the default SDTM values) are shown below, but the user should note that these are very likely to change from study to study. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Usage</th>
+<th style="text-align:left;">SDTM Column/Value (default)</th>
+<th style="text-align:left;">ADaM Column/Field Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">Define ALT key measure</td>
+<td style="text-align:left;">TEST / 'Aminotransferase, alanine (ALT)'</td>
+<td style="text-align:left;">PARAM / 'Alanine Aminotransferase (U/L)'</td>
+</tr>
+<tr>
+<td style="text-align:left;">Define AST key measure</td>
+<td style="text-align:left;">TEST / 'Aminotransferase, aspartate (AST)'</td>
+<td style="text-align:left;">PARAM / 'Aspartate Aminotransferase (U/L)'</td>
+</tr>
+<tr>
+<td style="text-align:left;">Define TB key measure</td>
+<td style="text-align:left;">TEST / 'Total Bilirubin'</td>
+<td style="text-align:left;">PARAM / 'Bilirubin (umol/L)'</td>
+</tr>
+<tr>
+<td style="text-align:left;">Define ALP key measure</td>
+<td style="text-align:left;">TEST / 'Alkaline phosphatase (ALP)'</td>
+<td style="text-align:left;">PARAM / 'Alkaline Phosphatase (U/L)'</td>
+</tr>
+<tr>
+<td style="text-align:left;">Define Baseline visit</td>
+<td style="text-align:left;">DY / 0</td>
+<td style="text-align:left;">ADY / 0</td>
+</tr>
+</tbody>
+</table></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/safetygraphics/hep-explorer/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="api">API</h1>
+<h1 id="hepexplorerelementsettings">hepexplorer(element, settings)</h1>
+<p>a factory to create a custom <a href="https://github.com/RhoInc/Webcharts/wiki/Chart">Webcharts chart</a> object</p>
+<p><strong>returns:</strong> <a href="https://github.com/RhoInc/Webcharts/wiki/Chart"><code>chart</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="events">Events</h1>
+<h2 id="participantsselected">participantsSelected</h2>
+<p>The custom <code>participantsSelected</code> event is dispatched to the overall chart wrapper (<code>chart.wrap</code>) whenever the details for a given participant are viewed (or cleared) by clicking on a point in the chart. The event has a custom <code>data</code> property holding an array with the selected ID when a new participant is selected (<code>["123-456-7"]</code>) or an empty array when participant details are cleared. </p></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/safetygraphics/hep-explorer/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><h1 id="configurationoverview">Configuration Overview</h1>
+<p>The most straightforward way to customize the Safety Outlier Explorer is by using a configuration object whose properties describe the behavior and appearance of the chart. Since the safety eDish is a Webcharts <code>chart</code> object, many default Webcharts settings are set in the <a href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/blob/master/src/defaultSettings.js">defaultSettings.js file</a> as <a href="#webcharts-settings">described below</a>. Refer to the <a href="https://github.com/RhoInc/Webcharts/wiki/Chart-Configuration">Webcharts documentation</a> for more details on these settings.</p>
+<p>In addition to the standard Webcharts settings several custom settings not available in the base Webcharts library have been added to facilitate data mapping and other custom functionality. These custom settings are described in detail below. All defaults can be overwritten by users.</p>
+<h1 id="rendererspecificsettings">Renderer-specific settings</h1>
+<h2 id="settingsid_col">settings.id_col</h2>
+<p><code>string</code></p>
+<p>Unique subject identifier variable name</p>
+<p><strong>default:</strong> <code>"USUBJID"</code></p>
+<h2 id="settingsvalue_col">settings.value_col</h2>
+<p><code>string</code></p>
+<p>result variable name</p>
+<p><strong>default:</strong> <code>"STRESN"</code></p>
+<h2 id="settingsmeasure_col">settings.measure_col</h2>
+<p><code>string</code></p>
+<p>measure variable name</p>
+<p><strong>default:</strong> <code>"TEST"</code></p>
+<h2 id="settingsunit_col">settings.unit_col</h2>
+<p><code>string</code></p>
+<p>measure unit variable name</p>
+<p><strong>default:</strong> <code>"STRESU"</code></p>
+<h2 id="settingsnormal_col_low">settings.normal<em>col</em>low</h2>
+<p><code>string</code></p>
+<p>LLN variable name</p>
+<p><strong>default:</strong> <code>"STNRLO"</code></p>
+<h2 id="settingsnormal_col_high">settings.normal<em>col</em>high</h2>
+<p><code>string</code></p>
+<p>ULN variable name</p>
+<p><strong>default:</strong> <code>"STNRHI"</code></p>
+<h2 id="settingsstudyday_col">settings.studyday_col</h2>
+<p><code>string</code></p>
+<p>Study day variable name</p>
+<p><strong>default:</strong> <code>"DY"</code></p>
+<h2 id="settingsvisit_col">settings.visit_col</h2>
+<p><code>string</code></p>
+<p>Visit variable name</p>
+<p><strong>default:</strong> <code>null</code></p>
+<h2 id="settingsvisitn_col">settings.visitn_col</h2>
+<p><code>string</code></p>
+<p>Visit number variable name</p>
+<p><strong>default:</strong> <code>null</code></p>
+<h2 id="settingsexposure_stdy_col">settings.exposure<em>stdy</em>col</h2>
+<p><code>string</code></p>
+<p>Exposure start day variable name. Note: setting is ignored if exposure data domain is not provided. </p>
+<p><strong>default:</strong> <code>'EXSTDY'</code></p>
+<h2 id="settingsexposure_endy_col">settings.exposure<em>endy</em>col</h2>
+<p><code>string</code></p>
+<p>Exposure end day variable name. Note: setting is ignored if exposure data domain is not provided. </p>
+<p><strong>default:</strong> <code>'EXENDY'</code></p>
+<h2 id="settingsexposure_trt_col">settings.exposure<em>trt</em>col</h2>
+<p><code>string</code></p>
+<p>Exposure treatment name variable name. Note: setting is ignored if exposure data domain is not provided. </p>
+<p><strong>default:</strong> <code>'EXTRT'</code></p>
+<h2 id="settingsexposure_dose_col">settings.exposure<em>dose</em>col</h2>
+<p><code>string</code></p>
+<p>Exposure dose variable name. Note: setting is ignored if exposure data domain is not provided. </p>
+<p><strong>default:</strong> <code>'EXDOSE'</code>    </p>
+<h2 id="settingsexposure_dosu_col">settings.exposure<em>dosu</em>col</h2>
+<p><code>string</code></p>
+<p>Exposure dose variable name. Note: setting is ignored if exposure data domain is not provided. </p>
+<p><strong>default:</strong> <code>'EXDOSU'</code> </p>
+<h2 id="settingsbaseline">settings.baseline</h2>
+<p><code>object</code></p>
+<p>Object defining the baseline visit of the study. </p>
+<h3 id="settingsbaselinevalue_col">settings.baseline.value_col</h3>
+<p><code>string</code></p>
+<p>Column containing the baseline visit data</p>
+<p><strong>default:</strong> <code>"DY"</code></p>
+<h3 id="settingsbaselinevalues">settings.baseline.values</h3>
+<p><code>array</code></p>
+<p>One or more values found in <code>settings.baseline.value_col</code> indicating that the record represents the baseline visit. </p>
+<p><strong>default:</strong> [0]</p>
+<h2 id="settingsfilters">settings.filters</h2>
+<p><code>array</code></p>
+<p>an array of filter variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfiltersvalue_col">settings.filters[].value_col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsfilterslabel">settings.filters[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsfilters_multiselect">settings.filters_multiselect</h2>
+<p><code>boolean</code></p>
+<p>If <code>true</code> filters are set up to allow multiple selections.</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h2 id="settingsdetails">settings.details</h2>
+<p><code>array</code></p>
+<p>an array of ID-level variables and associated metadata</p>
+<p><strong>default:</strong> Automatically uses values specified in <code>settings.id_col</code>, <code>settings.group_cols</code> and 
+<code>settings.filters</code></p>
+<h3 id="settingsdetailsvalue_col">settings.details[].value_col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> Automatically uses values specified in <code>settings.id_col</code>, <code>settings.group_cols</code> and 
+<code>settings.filters</code></p>
+<h3 id="settingsdetailslabel">settings.details[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> Automatically uses values specified in <code>settings.id_col</code>, <code>settings.group_cols</code> and 
+<code>settings.filters</code></p>
+<h2 id="settingsgroup_cols">settings.group_cols</h2>
+<p><code>array</code></p>
+<p>an array of grouping variables and associated metadata</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsgroup_colsvalue_col">settings.group<em>cols[].value</em>col</h3>
+<p><code>string</code></p>
+<p>Variable name</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsgroup_colslabel">settings.group_cols[].label</h3>
+<p><code>string</code></p>
+<p>Variable label</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsanalysisflag">settings.analysisFlag</h2>
+<p><code>object</code></p>
+<p>Flags records for use in the eDish and mDish calculations. </p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsanalysisflagvalue_col">settings.analysisFlag.value_col</h3>
+<p><code>string</code></p>
+<p>Indicates which column should be used to flag rows for inclusion eDish and mDish analysis </p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingsanalysisflagvalues">settings.analysisFlag.values</h3>
+<p><code>array</code> or <code>string</code></p>
+<p>Indicates which values should be used to flag rows for inclusion eDish and mDish analysis </p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingscalculate_palt">settings.calculate_palt</h2>
+<p><code>object</code></p>
+<p>Indicates whether P<sub>ALT</sub> should be calculated for participants flagged using <code>settings.paltFlag</code>.</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingspaltflag">settings.paltFlag</h2>
+<p><code>object</code></p>
+<p>Flags records for use in the P<sub>ALT</sub> calculations. Only used if <code>settings.calculate_palt</code> is <code>true</code>. </p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingspaltflagvalue_col">settings.paltFlag.value_col</h3>
+<p><code>string</code></p>
+<p>Indicates which column should be used to flag rows for P<sub>ALT</sub> analysis.</p>
+<p><strong>default:</strong> none</p>
+<h3 id="settingspaltflagvalues">settings.paltFlag.values</h3>
+<p><code>array</code> or <code>string</code></p>
+<p>Indicates which values should be used to flag rows for for P<sub>ALT</sub> analysis.</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsmeasure_values">settings.measure_values</h2>
+<p><code>object</code></p>
+<p>An object defining the data values from <code>measure_col</code> for the lab measures used in eDish evaluations. </p>
+<p><strong>default:</strong> </p>
+<pre><code>  {
+    ALT: 'Aminotransferase, alanine (ALT)',
+    AST: 'Aminotransferase, aspartate (AST)',
+    TB: 'Total Bilirubin',
+    ALP: 'Alkaline phosphatase (ALP)'
+  },
+</code></pre>
+<h2 id="settingsadd_measures">settings.add_measures</h2>
+<p><code>boolean</code></p>
+<p>If <code>true</code>, all unique values from <code>settings.measure_col</code> are automatically added to the <code>settings.measure_values</code> object. Can be paired with the <code>"all"</code> option for <code>settings.x_options</code>, <code>settings.y_options</code> and <code>settings.point_size_options</code> to allow for flexible interactive axis controls using all available data. Added in v1.2.</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsx_options">settings.x_options</h2>
+<p><code>array</code> or <code>string</code></p>
+<p>Specifies variable options for the x-axis using the key values from <code>settings.measure_values</code> (e.g. "ALT"). When multiple options are specified, a control allowing the user to interactively change the x variable is shown. Specifying <code>'all'</code> (added in v1.2) uses all options from <code>measure_values</code>. </p>
+<p><strong>default:</strong> <code>'all'</code></p>
+<h2 id="settingsx_default">settings.x_default</h2>
+<p><code>string</code></p>
+<p>String indicating the starting value for the x-axis when the chart is loaded. Must be an option from the <code>settings.x_options</code> array. First item in the <code>settings.x_options</code> array is used if an invalid option is specified. </p>
+<p><strong>default:</strong> <code>'ALT'</code></p>
+<h2 id="settingsy_options">settings.y_options</h2>
+<p><code>array</code> or <code>string</code></p>
+<p>See <code>settings.x_options</code>. </p>
+<p><strong>default:</strong> <code>['TB']</code></p>
+<h2 id="settingsy_default">settings.y_default</h2>
+<p><code>string</code></p>
+<p>See <code>settings.x_default</code>.</p>
+<p><strong>default:</strong> <code>'TB'</code></p>
+<h2 id="settingspoint_size_options">settings.point<em>size</em>options</h2>
+<p><code>array</code> or <code>string</code></p>
+<p>See <code>settings.x_options</code>. For point size, options for 'Uniform' (the default) and 'rRatio'  are automatically added to the control in addition to the users selections.</p>
+<p><strong>default:</strong> <code>'all'</code></p>
+<h2 id="settingspoint_size_default">settings.point<em>size</em>default</h2>
+<p><code>string</code></p>
+<p>See <code>settings.x_default</code>.</p>
+<p><strong>default:</strong> <code>"Uniform"</code></p>
+<h3 id="settingsimputation_methods">settings.imputation_methods</h3>
+<p><code>array</code> of <code>string</code></p>
+<p>Specifies how data should be imputed for each measure specified in <code>config.measure_values</code>. Valid options are:</p>
+<ul>
+<li><code>"data-driven"</code> is the default and it takes 0 values and sets them to 0.5 times the minimum value for the measure across all participants/time points</li>
+<li><code>"user-defined"</code> takes all values less than <code>config[key].imputation_value</code> and sets then to 0.5 times <code>config[key].imputation_value</code>. (The <code>config.imputation_value</code> option is ignored otherwise)</li>
+<li><code>"drop"</code> means all 0 values are dropped. </li>
+</ul>
+<p><strong>default:</strong> </p>
+<pre><code>{
+  ALT: 'data-driven',
+  AST: 'data-driven',
+  TB: 'data-driven',
+  ALP: 'data-driven'
+}
+</code></pre>
+<h2 id="settingsimputation_values">settings.imputation_values</h2>
+<p><code>number</code></p>
+<p>used as described above when <code>config.imputation_method</code> is set to "user-defined"</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingscuts">settings.cuts</h2>
+<p><code>object</code></p>
+<p>Object defining default cut-points for each measure defined in <code>config.measure_values</code> for each of the different types of supported eDish displays defined in <code>config.display</code>. If <code>config.measure_values</code> is customized to add additional key measures, then values from <code>cuts.defaults</code> are used unless the user provides values using the format shown below. </p>
+<p><strong>default:</strong></p>
+<pre><code>{
+  TB: {
+    relative_baseline: 4.8,
+    relative_uln: 2
+  },
+  ALP: {
+    relative_baseline: 3.8,
+    relative_uln: 1
+  }
+}
+</code></pre>
+<h3 id="settingscutsdefaults">settings.cuts.defaults</h3>
+<p><code>object</code></p>
+<p>Default cut values to be used when no user settings are provided. Added in v1.2.</p>
+<p><strong>default:</strong></p>
+<pre><code>{
+  relative_baseline: 3.8,
+  relative_uln: 3
+}
+</code></pre>
+<h2 id="settingsdisplay">settings.display</h2>
+<p><code>"string"</code></p>
+<p>Defines the display type used on the eDish scatter plot on initial view. Can be changed by the user once the chart is rendered. Valid options are: </p>
+<ul>
+<li><code>"relative_uln"</code> which shows the standard eDish view where values are scaled relative to the Upper Limit or Normal</li>
+<li><code>"relative_baseline"</code> which shows the mDish view where values are scaled relative to the participants baseline value</li>
+</ul>
+<p>Note: Support for an <code>"absolute"</code> option used to show the raw values for the measure was removed prior to the v1 release. </p>
+<h2 id="settingsdisplay_options">settings.display_options</h2>
+<p><code>array</code></p>
+<p>Defines nice labels for the different display options. </p>
+<p><strong>default:</strong> </p>
+<pre><code>  display_options: [
+        { label: 'Upper limit of normal adjusted (eDish)', value: 'relative_uln' },
+        { label: 'Baseline adjusted (mDish)', value: 'relative_baseline' }
+    ]
+</code></pre>
+<h2 id="settingsmeasurebounds">settings.measureBounds</h2>
+<p><code>array</code> of <code>number</code></p>
+<p>Sets upper and lower percentiles used for defining outlier in the "Lab Summary Table" in the participant details section.</p>
+<p><strong>default:</strong> <code>[0.01,0.99]</code></p>
+<h2 id="settingspopulationprofileurl">settings.populationProfileURL</h2>
+<p><code>string</code></p>
+<p>URL linking to additional charts related to population level analysis</p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsparticipantprofileurl">settings.participantProfileURL</h2>
+<p><code>string</code></p>
+<p>URL linking to additional charts related to population level analysis. Will need an update in a future release to allow dynamic links for different participants. </p>
+<p><strong>default:</strong> none</p>
+<h2 id="settingsvisit_window">settings.visit_window</h2>
+<p><code>number</code></p>
+<p>Default visit window used to highlight eDish points where x and y measures occurred within the specified number of days. Editable by user after render. </p>
+<p><strong>default:</strong> 30</p>
+<h2 id="settingsr_ratio_filter">settings.r<em>ratio</em>filter</h2>
+<p><code>boolean</code></p>
+<p>Specifies whether the R Ratio filter should be shown. R ratio is defined as: (ALT value/ULN for ALT) / (ALP value/ULN for ALP).</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h2 id="settingsr_ratio_cut">settings.r<em>ratio</em>cut</h2>
+<p><code>numeric</code></p>
+<p>Default cut point for R Ratio filter. Ignored when <code>r_ratio_filter</code> is <code>false</code>. User can update this setting via the UI when <code>r_ratio_filter</code> is <code>true</code>. </p>
+<p><strong>default:</strong> <code>0</code></p>
+<h2 id="settingstitle">settings.title</h2>
+<p><code>character</code></p>
+<p>Title to be drawn above the controls. Use an empty string or <code>NULL</code> if no title is desired. </p>
+<p><strong>default:</strong> <code>"Hepatic Safety Explorer"</code></p>
+<h2 id="settingswarningtext">settings.warningText</h2>
+<p><code>string</code></p>
+<p>Informational text to be displayed near the top of the controls (beneath the title, if any). No warning is displayed if <code>warningText</code> is false-y.</p>
+<p><strong>default:</strong> <code>'Caution: This interactive graphic is not validated. Any clinical recommendations based on this tool should be confirmed using your organizations standard operating procedures.'</code></p>
+<h1 id="webchartssettings">Webcharts settings</h1>
+<p>The object below contains the default Webcharts settings for the display.</p>
+<pre><code>  x: {
+        column: null, //set in onPreprocess/updateAxisSettings
+        label: null, // set in onPreprocess/updateAxisSettings,
+        type: 'linear',
+        behavior: 'raw',
+        format: '.2f'
+        //domain: [0, null]
+    },
+    y: {
+        column: null, // set in onPreprocess/updateAxisSettings,
+        label: null, // set in onPreprocess/updateAxisSettings,
+        type: 'linear',
+        behavior: 'raw',
+        format: '.2f'
+        //domain: [0, null]
+    },
+    marks: [
+        {
+            per: [], // set in syncSettings()
+            type: 'circle',
+            summarizeY: 'mean',
+            summarizeX: 'mean',
+            attributes: { 'fill-opacity': 0 }
+        }
+    ],
+    gridlines: 'xy',
+    color_by: null, //set in syncSettings
+    max_width: 900,
+    aspect: 1,
+    legend: { location: 'top' },
+    margin: { right: 25, top: 25, bottom: 75 }
+</code></pre></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>Not Found</th></tr></thead><tbody></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

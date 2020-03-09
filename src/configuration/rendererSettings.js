@@ -3,18 +3,17 @@ export default function rendererSettings() {
         sortable: false,
         searchable: false,
         exportable: false,
-        issue_data: null,
         metrics: [
             {
                 label: 'Repo',
                 text: function(d) {
-                    return d.name;
+                    return d.repo;
                 },
                 link: function(d) {
-                    return d.html_url;
+                    return d.raw.html_url;
                 },
                 title: function(d) {
-                    return d.description;
+                    return d.raw.description;
                 },
                 color: function(d) {
                     return null;
@@ -23,16 +22,16 @@ export default function rendererSettings() {
             {
                 label: 'Issues',
                 text: function(d) {
-                    return d.open_issues_count;
+                    return d.raw.open_issues_count;
                 },
                 link: function(d) {
-                    return d.html_url + '/issues';
+                    return d.raw.html_url + '/issues';
                 },
                 title: function(d) {
                     return null;
                 },
                 color: function(d) {
-                    return d.has_issues ? 'green' : 'red';
+                    return d.raw.has_issues ? 'green' : 'red';
                 }
             },
             {
@@ -41,7 +40,7 @@ export default function rendererSettings() {
                     return d.release_count;
                 },
                 link: function(d) {
-                    return d.html_url + '/releases';
+                    return d.raw.html_url + '/releases';
                 },
                 title: function(d) {
                     return null;
@@ -67,7 +66,7 @@ export default function rendererSettings() {
                     );
                 },
                 color: function(d) {
-                    return d.days_since_last_release < 365 ? 'green' : 'yellow';
+                    return d.days_since_last_release < 180 ? 'green' : 'yellow';
                 }
             },
             {

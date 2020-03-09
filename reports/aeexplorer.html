@@ -1,0 +1,577 @@
+<html>
+<head>
+    <title>aeexplorer - Quality Control Summary </title>
+    <meta http-equiv='Content-Type' content='text/html; charset = utf-8'>
+    <script type='text/javascript' src='https://d3js.org/d3.v3.min.js'></script>
+    <link type='text/css' rel='stylesheet' href='../index.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-bar rho-green w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+            <a href=".." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="." class="w3-bar-item w3-button w3-padding-large w3-white">Overview</a>
+            <a href="./ae-timelines.html" class="w3-bar-item w3-button w3-padding-large ">AE
+                Timelines</a>
+            <a href="./aeexplorer.html" class="w3-bar-item w3-button w3-padding-large">AE
+                Explorer</a>
+            <a href="./hep-explorer.html" class="w3-bar-item w3-button w3-padding-large">Hep
+                Explorer</a>
+            <a href="./safety-delta-delta.html" class="w3-bar-item w3-button w3-padding-large">Delta-Delta</a>
+            <a href="./safety-histogram.html" class="w3-bar-item w3-button w3-padding-large">Histogram</a>
+            <a href="./safety-outlier-explorer.html" class="w3-bar-item w3-button w3-padding-large">Outlier
+                Explorer</a>
+            <a href="./safety-results-over-time.html" class="w3-bar-item w3-button w3-padding-large">Results
+                Over Time</a>
+            <a href="https://github.com/RhoInc/safety-qc-dashboard/" class="w3-bar-item w3-button w3-padding-large"><i
+                    class="fa fa-github"></i></a>
+        </div>
+    </div>
+    <header class="w3-container rho-blue w3-center">
+        <h1 class="w3-margin">aeexplorer - Quality Control Details</h1>
+    </header>
+    
+    <div class='info'>This page provides a detailed report of the quality control documentation for aeexplorer. The source code for this page is available on <a href="https://github.com/RhoInc/safety-qc-dashboard">github</a>.</div>
+    <div id='container'><h2>Technical Specs </h2>
+
+        <div class="summary">Technical documentation including, functional specifications, regressions tests and risk assessments. <a href="https://www.github.com/rhoinc/aeexplorer/wiki/master/Technical-Documentation">see original</a> </div>
+
+        <div class="details"><h1 id="userrequirements">User Requirements</h1>
+<h2 id="filterbyprevalence">Filter by Prevalence</h2>
+<p>This is a text box feature which is used to filter out all adverse events below the percentage entered. The default is 0%, but the default value can be adjusted according to the user's needs. Users can type any alphanumeric value into this box. Values must be numeric for the filter to work. After hitting Enter or clicking outside the box, the Explorer will hide the data rows where the prevalence for all groups is below the threshold entered. If any group has a prevalence at or above the threshold entered, it will be displayed on screen with all nested categories shown. To return to the default view, the user must either refresh the page or enter 0 into the filter box and again hit Enter or click outside the box.</p>
+<h2 id="filterbyseriousevent">Filter by Serious Event</h2>
+<p>This menu is used to filter by whether or not an event is serious in the data set. The default is set to include all events. </p>
+<h2 id="filterbyseverity">Filter by Severity</h2>
+<p>This menu is used to filter by adverse event severity level in the data set. The current severity levels captured are mild, moderate, and severe. The default is to display all severity levels. </p>
+<h2 id="filterbyrelationship">Filter by Relationship</h2>
+<p>This menu is used to filter by the relatedness categories in the data set. The options included in the chart are not related, unlikely related, probably related, definitely related. The default is to display all relationships.</p>
+<h2 id="filterbyoutcome">Filter by Outcome</h2>
+<p>This menu is used to filter by the outcome categories in the data set. The options included in the chart are recovered; resolved without sequelae; resolved, recovered; and resolved with sequelae.  The default is to display all outcomes. </p>
+<h2 id="togglebetweenparticipantandeventsummaries">Toggle Between Participant and Event Summaries</h2>
+<p>This toggle option allows the user to view the adverse events data by participant or event. Summarizing AEs by participant presents the number of participants who experienced an AE of the corresponding category at least once by group. Summarizing AEs by event presents the number of events of the corresponding category by group. The chart defaults to display the participant data, which displays the adverse events. </p>
+<h2 id="search">Search</h2>
+<p>The Search box is used to search the category column of the table for terms of interest. Users can type any alphanumeric term into this box. After hitting Enter or clicking outside the box, the Safety Explorer will display only the categories that contain the search term entered. The search terms will also be highlighted in yellow within the category column. Text will also display next to the Search box indicating the number of categories returned with that search term. If there are no results matching the term entered, text will display next to the Search box indicating that no categories were returned with a matching search term. The table display will not change if there are no matches in the search.</p>
+<h2 id="resetsearch">Reset Search</h2>
+<p>To reset to the default Explorer view after conducting a search, users can click on the red X button in the alert bar which displays next to the Search box. Alternatively, users can clear the text in the Search box and hit Enter or click outside the box.</p>
+<h2 id="hover">Hover</h2>
+<p>By moving a mouse cursor over certain sections of the table, users can display metadata for some variables. Hovering over the ‘E’ superscript beside one of the filter labels will display an explanation of an event filter. Hovering the cursor over a particular row will highlight the row in gray. Hovering over a value in a treatment group will display the number of participants affected out of n.  Hovering over a colored data point in the AE Rate by Group column will present the percentage value for the group. Hovering over a diamond in the Difference Between Groups column will perform two actions:</p>
+<ul>
+<li>Display the raw data (numerator and denominator) used to calculate the adverse event prevalence percentage for each row in the table for the selected groups.</li>
+<li>Display the two treatments compared by percentage and the overall difference between them.</li>
+</ul>
+<h2 id="aeratebygroupcolumn">AE Rate by Group Column</h2>
+<p>The column following the Groups columns shows the rate of an adverse event by group. Each group is represented by a color-coded dot that corresponds to the color of the treatment group. The rate of the event for each group is shown on a scale by percentage. When hovering over a colored dot, the exact percentage appears for the group.</p>
+<h2 id="differencebetweengroupscolumn">Difference Between Groups Column</h2>
+<p>The column on the right-hand side of the table shows a graphical representation of the difference between groups in the data set. Group comparisons are represented with a color-coded diamond that corresponds to the colors of the treatment groups being compared. When hovering over a diamond, the ratios and percentages of occurrence for the event appears for the compared groups in addition to the difference between the two groups.</p>
+<h2 id="shownestedrowsforasinglecategory">Show nested rows for a single category</h2>
+<p>The preferred terms for a given system organ class are hidden on the default view. To show the hidden preferred terms rows, click on the '+' to the left of a given system organ class in the category column. This will expand the table to show the nested rows for this system organ class.</p>
+<h2 id="hidenestedrowsforasinglecategory">Hide nested rows for a single category</h2>
+<p>The preferred terms for a given system organ class are hidden on the default view. After a category has been expanded, you can hide the nested rows by clicking on the '-' to the left of a given system organ class in the category column. This will collapse the table to hide the nested rows for this system organ class.</p>
+<h2 id="showdetailsview">Show Details View</h2>
+<p>Clicking on a category or any of its preferred terms will open the Show Details view. This view displays the raw data for every adverse event under that system organ class and/or preferred term.</p>
+<h2 id="returntothesummaryview">Return to the Summary View</h2>
+<p>The Return to the Summary View button is only visible if users have clicked on a category or preferred term to show the details view. Clicking on this button returns users to the default Safety Explorer view.</p>
+<h2 id="filterbypreselectedcharacteristics">Filter by pre-selected characteristics</h2>
+<p>The chart can be configured to have any number of data filters. Each specified filter has a drop-down menu that is used to filter the visit data that is displayed in the chart.</p>
+<h2 id="viewtreatmentgroups">View Treatment Groups</h2>
+<p>The chart can be configured to show or hide any of the treatment groups found in the data. Showing only 1 treatment group will automatically hide the 'Difference Between Groups' column and the 'Total' column.</p>
+<h2 id="downloadthedata">Download the data</h2>
+<p>By entering the following settings {"validation": true}, users can download the data as a CSV. The CSV file will contain all of the data if no filters have been utilized. If filters have been used, the CSV file will contain the resulting data. The CSV download will be named using the following convention: major term-minor term-summary variable. The summary variable can either be 'Participant' or 'Event", depending on what the user summarized the data by using the toggle in the menu.</p>
+<h1 id="regressiontests">Regression Tests</h1>
+<h3 id="filtersandoptions">Filters and Options</h3>
+<ul>
+<li>Confirm that clicking on the "+" to the left of each category name expands the dataset</li>
+<li>Confirm that clicking on the “-“ to the left of each category name after it is expanded collapses the dataset</li>
+<li>Type a value into the search box and confirm that the table updates to only show the categories that match the search term. Matching terms should be highlighted in bold, regal orange.</li>
+<li>Confirm that the number of matching terms displays to the left of the search box</li>
+<li>Delete the entered value from the search bar and confirm that table resets</li>
+<li>Confirm that filters on events (e.g. Severity) are working as expected by filtering and then clicking on a category to display the underlying data listing to confirm that the data displayed matches the filtering</li>
+<li>Confirm that entering a minimum prevalence will filter the data based on the entered threshold</li>
+<li>Confirm that summarizing by 'participant' displays the number of participants who experienced an AE of the corresponding category by group</li>
+<li>Confirm that summarizing by 'event' displays the number of events of the corresponding category by group</li>
+<li>Ensure that the aeexplorer looks good in viz-library</li>
+<li>Confirm there is no column overlapping when bootstrap is toggled off/on</li>
+<li>Confirm that the "Filter by prevalence" field no longer accepts letters in the prevalence input, and that the up and down buttons work as expected</li>
+<li>Confirm that the graphic updates after each keystroke in the search and filter by prevalence inputs (instead of after focus leaves the input altogether)</li>
+<li>Confirm that if there are no AEs that match the current filters - the error message thrown says "Error: No AEs found for the current filters. Update the filters to see results."</li>
+</ul>
+<h3 id="hovering">Hovering</h3>
+<ul>
+<li>Hover over a value in a treatment group to see the number of participants affected out of n</li>
+<li>Hover over a value in ‘AE Rate by group’ to see the percentage of participants affected by group</li>
+<li>Hover over a value in ‘Difference Between Groups’ to see two treatments compared and the overall difference between them. This will also highlight the bar containing the value in gray and reveal the count and percentage of both groups under their treatment name</li>
+<li>Hover over the ‘E’ superscript beside one of the filter labels to display an explanation of an event filter</li>
+</ul>
+<h3 id="detailedlisting">Detailed Listing</h3>
+<ul>
+<li>Confirm that you can view a detailed listing of events by clicking on the category name of a given row in the table</li>
+<li>Confirm that the ‘Return to the Summary View’ button brings you back to the original summary view.</li>
+<li>Confirm that the section labeled ‘The listing is filtered as shown:’ displays the filters that were selected in the original summary view</li>
+<li>Confirm that there is a sentence in the header stating ‘Details for x category name records’ that displays both the correct ‘x’ value for the number of records in the listing and ‘category name’</li>
+<li>Ensure details listing appears as normal before adding anything.</li>
+<li>Add a details object, like in the example above, that has columns with and without a label and ensure that they show up by themselves and with the proper label when you view the details listing (see this issue for an example of labels: https://github.com/RhoInc/aeexplorer/issues/105)</li>
+<li>Confirm in CAT with the following settings: { defaults:{webchartsDetailTable:true}} that the detail table view (accessed by clicking the label of any row in the summary table), is rendered using a webcharts table, and that sort, search, pagination and export work as expected.</li>
+</ul>
+<h3 id="downloadingdata">Downloading Data</h3>
+<ul>
+<li>Confirm that entering the following settings in the CAT will show the option to download the data file: <code>{"validation": true}</code></li>
+<li>Confirm that when downloading a CSV, the file will save as major term - minor term - participant/event</li>
+<li>Confirm that when downloading a participant CSV, "participant" appears in the title</li>
+<li>Confirm that when downloading an event CSV, "event" appears in the title</li>
+<li>Confirm that filtering the data will appear as filtered in the CSV download</li>
+</ul>
+<h3 id="settings">Settings</h3>
+<ul>
+<li>Confirm that the following settings set the serious event filter to ‘Y’ and make it the only filter to be displayed by default:
+<code>{"validation": true
+,"variables":
+{"filters":
+[
+{"value_col": "AESER"
+,"label": "Srs?"
+,"type": "event"
+,"start": ["Y"]}
+]
+}
+}</code></li>
+<li>Confirm that the following settings summarize the data by participant on default:
+<code>{"validation": true
+,"defaults":
+{"summarizeBy": "participant"}
+}</code></li>
+<li>Confirm that the following settings summarize the data by event on default:
+<code>{"validation": true
+,"defaults":
+{"summarizeBy": "event"}
+}</code></li>
+<li>Confirm that the following setting only shows treatment group totals and hides the 'Difference Between Groups' column: 
+<code>{"defaults":{"totalCol":true,"groupCols":false}}</code></li>
+<li>Confirm that the following setting only shows the placebo group and hides the 'total' and 'Difference Between Groups' columns:
+<code>{"groups":["Placebo"]}</code></li>
+<li>Confirm that when grouping by RACE, yellow is no longer the color that appears</li>
+<li>Confirm that adding 2+ values to each component (id, major, minor and groups) of the variableOptions array adds a new control.</li>
+<li>Confirm that multiple filters are created if more than one variableOptions array is provided, and that they both work as expected.</li>
+<li>Confirm that the new variableOption controls work before and after filtering, searching, and changing the summarizeBy option.</li>
+<li>Confirm that the value for the default variable appears in the variable control even if it is not specified in config. That is, ARM appears in the groups control with these settings: 
+{
+variables:{group:"ARM"},
+variableOptions:{
+  group:["RACE","SEX"]
+},
+};</li>
+<li>Confirm in CAT that margins are drawn for the dot plot when plotSettings.margin is specified. Just tweak the following settings object, and confirm that the margin changes as expected: {plotSettings: {margin: {left: 40, right: 40}}}</li>
+</ul></div><h2>Data Guidelines </h2>
+
+        <div class="summary">Data Specifications for the charts. <a href="https://www.github.com/rhoinc/aeexplorer/wiki/master/Data-Guidelines">see original</a> </div>
+
+        <div class="details"><h1 id="dataguidelines">Data Guidelines</h1>
+<p>AE Explorers are initialized using JSON data files that match the format created by <a href="https://github.com/mbostock/d3/wiki/CSV">d3.csv()</a>. The chart requires a data set with one record per adverse event and optionally with placeholder rows for participants who didn't experience any adverse events over the course of the study. The chart uses column names from the ADAM data standard by default, but can be customized to work with any column names as long as the data structure is as expected. </p>
+<h1 id="defaultchart">Default Chart</h1>
+<p>The following table describes chart settings and data specifications required to create an AE Explorer. A sample chart using this configuration is found <a href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/ae-table/">here</a>.</p>
+<h2 id="dataspecification">Data Specification</h2>
+<table>
+<thead>
+<tr>
+<th>Settings Variable</th>
+<th>Variable</th>
+<th>Default</th>
+<th>Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>variables.id</td>
+<td>Participant ID</td>
+<td>USUBJID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.major</td>
+<td>Major Category</td>
+<td>AEBODSYS</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.minor</td>
+<td>Minor Category</td>
+<td>AEDECOD</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.group</td>
+<td>Group Variable</td>
+<td>ARM</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="settingsobject">Settings Object</h2>
+<p>No customization is needed to initialize a chart when the <code>data</code> object contains all default variables above. Just pass an empty object (<code>{}</code>) for <code>settings</code> and initialize the chart like so: <code>aeTable("body",{}).init(data)</code></p>
+<h1 id="customizedchartwithqueries">Customized Chart with Queries</h1>
+<p>The following data specs and chart settings can be used to create a chart with several custom filters, including Sex, Race and Query Status. A sample chart using this configuration is found <a href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/ae-table/">here</a>.</p>
+<h2 id="dataspecification-1">Data Specification</h2>
+<table>
+<thead>
+<tr>
+<th>Settings Variable</th>
+<th>Variable</th>
+<th>Default</th>
+<th>Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>variables.id</td>
+<td>Participant ID</td>
+<td>USUBJID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.major</td>
+<td>Major Category</td>
+<td>AEBODYSYS</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.minor</td>
+<td>Minor Category</td>
+<td>AEDECOD</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.group</td>
+<td>Group Variable</td>
+<td>ARM</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>AE Seriousness</td>
+<td>AESER</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>AE Severity</td>
+<td>AESEV</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>AE Relationship</td>
+<td>AEREL</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>AE Outcome</td>
+<td>AEOUT</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>Site ID</td>
+<td>SITEID</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>Treatment Arm</td>
+<td>ARM</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>Sex</td>
+<td>SEX</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>Race</td>
+<td>RACE</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>variables.filters</td>
+<td>Query Flag ("Y" for yes)</td>
+<td>QUERYFL</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="settingsobject-1">Settings Object</h2>
+<pre><code>const settings = {
+        'variables': {
+            'id': 'USUBJID',
+            'major': 'AEBODSYS',
+            'minor': 'AEDECOD',            
+            'group': 'ARM',
+            'filters': [
+                { 'value_col': 'AESER', 'label': 'Serious?', 'type': 'event' }, 
+                { 'value_col': 'AESEV', 'label': 'Severity','type': 'event' }, 
+                { 'value_col': 'AEREL', 'label': 'Relationship','type': 'event' }, 
+                { 'value_col': 'AEOUT','label': 'Outcome','type': 'event' }, 
+                { 'value_col': 'SITEID', 'label': 'Site ID','type': 'participant' }, 
+                { 'value_col': 'ARM', 'label': 'Arm','type': 'participant' },
+                { 'value_col': 'SEX', 'label': 'Sex','type': 'participant' },
+                { 'value_col': 'RACE', 'label': 'Race','type': 'participant' },
+                { 'value_col': 'QUERYFL','label': 'Open Query?','type': 'event' }
+            ]
+        },
+        'defaults': {
+            'placeholderFlag': {'value_col': "AEBODSYS", 'values': [""] },
+            'maxPrevalence': 10,
+            'maxGroups': 7,
+            'totalCol': true,
+            'diffCol': true,
+            'prefTerms': false 
+        },
+        'plotSettings': { 'h': 15,
+            'w': 200,
+            'margin': { 'left': 40, 'right': 40 },
+            'diffMargin': { "left": 5, "right": 5 },
+            'r': 7 }
+        };
+</code></pre></div><h2>API </h2>
+
+        <div class="summary">Technical specifications for API. <a href="https://www.github.com/rhoinc/aeexplorer/wiki/master/API">see original</a> </div>
+
+        <div class="details"><h1 id="aetableelementsettings">aeTable(element, settings)</h1>
+<p>A factory to create a custom <code>aeTable</code> object.</p>
+<p><strong>returns:</strong> <code>chart</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>element</td>
+<td><code>string</code></td>
+<td>CSS selector identifying the element in which to create the chart</td>
+</tr>
+<tr>
+<td>settings</td>
+<td><code>object</code></td>
+<td>settings object specifying options for how the chart is to appear and behave. Options defined here overwrite default values; see <a href="Configuration">Configuration</a></td>
+</tr>
+</tbody>
+</table></div><h2>Chart Configuration </h2>
+
+        <div class="summary">Technical specifications for chart configuration. <a href="https://www.github.com/rhoinc/aeexplorer/wiki/master/configuation">see original</a> </div>
+
+        <div class="details"><h1 id="overview">Overview</h1>
+<p>The most straightforward way to customize an AE Explorer is by using a settings object whose properties describe the chart's behavior and appearance. Parameters for the <code>settings</code> object are described in detail below. All defaults can be over-written by users when creating an AE Explorer. </p>
+<h1 id="settings">settings</h1>
+<p><code>object</code></p>
+<p>Objects passed to <code>aeTable()</code> which controls the settings and appearance of the output. </p>
+<h2 id="settingsvariables">settings.variables</h2>
+<p><code>object</code></p>
+<p>Objects that specify how to map columns from the data file to the chart settings.</p>
+<h3 id="variablesid">variables.id</h3>
+<p><code>string</code></p>
+<p>Participant ID variable name</p>
+<p><strong>default:</strong> <code>'USUBJID'</code></p>
+<h3 id="variablesmajor">variables.major</h3>
+<p><code>string</code></p>
+<p>Higher-level term variable name</p>
+<p><strong>default:</strong> <code>'AEBODSYS'</code></p>
+<h3 id="variablesminor">variables.minor</h3>
+<p><code>string</code></p>
+<p>Lower-level term variable name</p>
+<p><strong>default:</strong> <code>'AEDECOD'</code></p>
+<h3 id="variablesgroup">variables.group</h3>
+<p><code>string</code></p>
+<p>Group variable name, each value of which displays in its own column in the AE Explorer unless <a href="https://github.com/RhoInc/aeexplorer/wiki/Configuration#settingsgroups"><code>settings.groups</code></a> is defined  </p>
+<p><strong>default:</strong> <code>'ARM'</code></p>
+<h3 id="variablesdetails">variables.details</h3>
+<p><code>array</code> of <code>objects</code></p>
+<p>An array listing each variable to display in the detail listing; if empty or unspecified, all variables in input data file will appear in detail listing</p>
+<p><strong>default:</strong> <code>[]</code></p>
+<h4 id="detailsvalue_col">details[].value_col</h4>
+<p><code>character</code></p>
+<p>Field in the <code>data</code> object to be in the details table</p>
+<h3 id="detailslabel">details[].label</h3>
+<p><code>character</code></p>
+<p>Label for the details table header  </p>
+<h3 id="variablesfilters">variables.filters</h3>
+<p><code>array of objects</code></p>
+<p>An array listing each variable with which to filter the data</p>
+<p><strong>default:</strong> </p>
+<pre><code>[   
+  {
+    'value_col': 'AESER',
+     'label': 'Serious?',
+     'type':'event',
+     'start':[]
+  },
+  {
+    'value_col': 'AESEV',
+    'label': 'Severity',
+    'type':'event',
+    'start':[]
+  },
+  {
+    'value_col': 'AEREL',
+    'label': 'Relationship',
+    'type':'event',
+    'start':[]
+  },
+  {
+    'value_col': 'AEOUT',
+    'label': 'Outcome',
+    'type':'event',
+    'start':[]
+  }
+]
+</code></pre>
+<h4 id="filtersvalue_col">filters[].value_col</h4>
+<p><code>character</code></p>
+<p>Field in the <code>data</code> object to be used for the filter; all values treated as categorical </p>
+<h4 id="filterslabel">filters[].label</h4>
+<p><code>character</code></p>
+<p>Label for the filter  </p>
+<h4 id="filterstype">filters[].type</h4>
+<p><code>character</code></p>
+<p>Variable type, event-level or participant-level, e.g.</p>
+<pre><code>var settings = 
+filters: [
+  {'value_col': 'SITEID','label': 'Site ID','type': 'participant' },
+  {'value_col': 'AESER','label': 'Serious AE?','type': 'event' }
+]
+</code></pre>
+<h4 id="filtersstart">filters[].start</h4>
+<p><code>array</code> of <code>characters</code></p>
+<p>Initial values on which the input sata will be filtered; no values are filtered and all values are shown if start is empty or false-y  </p>
+<h2 id="settingsvariableoptions">settings.variableOptions</h2>
+<p><code>object</code></p>
+<p>Allows users to specify options for the 4 key data mapping settings (<code>id</code>, <code>major</code>, <code>minor</code>, <code>group</code>) defined in the <code>variable</code> object above. Whenever more than one option is specified for a setting, an interactive control is added allowing users to update the chart after it is drawn. Added in v3.3.0.</p>
+<p><strong>default:</strong></p>
+<pre><code> variableOptions: {
+        id: [],
+        major: [],
+        minor: [],
+        group: []
+    },
+</code></pre>
+<h2 id="settingsgroups">settings.groups</h2>
+<p><code>array</code> of <code>objects</code> or <code>strings</code></p>
+<p>An array specifying which levels of <code>settings.variables.group</code> will appear as columns in the AE Explorer. If more levels are specified than <code>config.defaults.maxGroups</code> levels, the chart will throw an error and will not render. The array elements should be formatted as either strings (e.g. <code>["Placebo", "Treatment A"]</code>) or objects with a key value matching the group level (e.g. <code>[{key:"Placebo"},{"key":"Treatment A"}]</code>)</p>
+<p><strong>default:</strong> <code>[]</code> (all possible levels are used)</p>
+<h2 id="settingsdefaults">settings.defaults</h2>
+<p>An object containing default settings affecting the appearance of the tables and defining other miscellaneous settings</p>
+<h3 id="defaultsmaxprevalence">defaults.maxPrevalence</h3>
+<p><code>number</code></p>
+<p>Filters out any higher- and lower-level rows without at least one group rate above specified value</p>
+<p><strong>default:</strong> <code>0</code></p>
+<h3 id="defaultsdiffcol">defaults.diffCol</h3>
+<p><code>boolean</code></p>
+<p>Specifies whether or not to render a column of graphical incidence differences</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h3 id="defaultstotalcol">defaults.totalCol</h3>
+<p><code>boolean</code></p>
+<p>Specifies whether or not to render a column of overall rates across all groups </p>
+<p><strong>default:</strong> <code>true</code></p>
+<h3 id="defaultsgroupcols">defaults.groupCols</h3>
+<p><code>boolean</code></p>
+<p>Specifies whether or not to render columns for each group</p>
+<p><strong>default:</strong> <code>true</code></p>
+<h3 id="defaultsprefterms">defaults.prefTerms</h3>
+<p><code>boolean</code></p>
+<p>Specifies whether or not to initially display all lower-level rows</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h3 id="defaultsmaxgroups">defaults.maxGroups</h3>
+<p><code>number</code></p>
+<p>Maximum number of group levels allowed; display gets ugly with more than a handful of columns and browser performance deteriorates quickly (and may lock up) after a few dozen levels </p>
+<p><strong>default:</strong> <code>6</code></p>
+<h3 id="defaultsplaceholderflag">defaults.placeholderFlag</h3>
+<p><code>object</code></p>
+<p>Object that specifies how to identify placeholder rows for participants with no AEs </p>
+<p><strong>default:</strong> <code>{'value_col':"AEBODSYS", 'values':["NA"]}</code></p>
+<h3 id="defaultssummarizeby">defaults.summarizeBy</h3>
+<p><code>character</code></p>
+<p>Specifies whether to show "participant" rates or "event" rates by default</p>
+<p><strong>default:</strong> <code>"participant"</code></p>
+<h3 id="defaultswebchartsdetailtable">defaults.webchartsDetailTable</h3>
+<p><code>boolean</code></p>
+<p>Specifies whether to renderer the details table using a webcharts table with search and sort capabilities (as opposed to the simple default table without interactivity). Added in v3.3.0.</p>
+<p><strong>default:</strong> <code>false</code></p>
+<h2 id="settingsplotsettings">settings.plotSettings</h2>
+<p><code>object</code></p>
+<p>Object to specify the appearance of the plots embedded in the table rows</p>
+<h3 id="plotsettingsh">plotSettings.h</h3>
+<p><code>number</code></p>
+<p>Height of the plot svg in pixels </p>
+<p><strong>default:</strong> <code>15</code></p>
+<h3 id="plotsettingsw">plotSettings.w</h3>
+<p><code>number</code></p>
+<p>Width of the plot svg in pixels </p>
+<p><strong>default:</strong> <code>200</code></p>
+<h3 id="plotsettingsr">plotSettings.r</h3>
+<p><code>number</code></p>
+<p>Radius of the plotted points in pixels </p>
+<p><strong>default:</strong> <code>7</code></p>
+<h3 id="plotsettingsmargin">plotSettings.margin</h3>
+<p><code>object</code></p>
+<p>Object specifying the dot plot margins</p>
+<p><strong>default:</strong> <code>{'left':40, 'right':40}</code></p>
+<h3 id="plotsettingsdiffmargin">plotSettings.diffMargin</h3>
+<p><code>object</code></p>
+<p>Object specifying the margins for the difference diamonds plot</p>
+<p><strong>default:</strong> <code>{'left':5, 'right':5}</code></p>
+<h2 id="settingsvalidation">settings.validation</h2>
+<p><code>boolean</code></p>
+<p>Adds a link to download the summarized data in a comma-separated format, which exports a file named "<code>settings.variables.major</code>-<code>settings.variables.minor</code>-[current value of Summarize by control].csv"</p>
+<p><strong>default:</strong>  <code>false</code></p></div><h2>Testing Logs </h2>
+
+        <div class="summary">Interactive log of QC for all code updates. Includes code reviews, feature testing and regression testing for all releases. <a href="null">see original</a> </div>
+
+        <div class="details"><table id='pull-table'><thead><tr><th>PullRequest</th><th>Requester</th><th>DateRequested</th><th>Branch</th><th>Target</th><th>Title</th><th>ReviewID</th><th>Reviewer</th><th>ReviewDate</th><th>ReviewStatus</th><th>MergedBy</th><th>DateMerged</th><th>ReviewComments</th></tr></thead><tbody><tr><td>0014</td><td>jwildfire</td><td>2016-06-28T20:25:17Z</td><td>no-xhr</td><td>master</td><td>v2.0</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-06-28T20:25:33Z</td><td></td></tr><tr><td>0015</td><td>jwildfire</td><td>2016-06-28T21:01:42Z</td><td>no-xhr</td><td>master</td><td>No xhr</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-06-28T21:01:49Z</td><td></td></tr><tr><td>0022</td><td>jwildfire</td><td>2016-07-01T19:33:05Z</td><td>group-order-fix</td><td>master</td><td>hotfixes for v2.0.1</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-07-01T19:33:10Z</td><td></td></tr><tr><td>0023</td><td>jwildfire</td><td>2016-07-01T19:37:02Z</td><td>version-patch</td><td>master</td><td>update version number</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2016-07-01T19:37:11Z</td><td></td></tr><tr><td>0024</td><td>jwildfire</td><td>2016-07-06T12:56:04Z</td><td>detailtable-all</td><td>master</td><td>linked details table for summary row. closes #16</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td></td><td></td></tr><tr><td>0025</td><td>samussiah</td><td>2016-08-02T23:43:39Z</td><td>refactor</td><td>master</td><td>Refactor</td><td></td><td></td><td></td><td>NONE</td><td>Spencer</td><td></td><td></td></tr><tr><td>0029</td><td>samussiah</td><td>2016-09-18T15:29:21Z</td><td>refactor</td><td>master</td><td>AE Explorer V3.0.0</td><td>15423571</td><td>jwildfire</td><td>2017-01-06T00:51:35Z</td><td>DISMISSED</td><td>jwildfire</td><td>2017-02-20T16:51:45Z</td><td>Just getting started on the review, but going to go ahead and make a commit that binds some additional things to the root `chart` object and should allow us to greatly reduce the number of parameters being passed around. Ideally we can get to the point where we are only passing a single `chart` object. ;;would it be more clear sense to call this `selector`?;;Lets move the settings checks to a separate method in a follow up release. Created #33.;;or perhaps `canvas` (which is used elsewhere). Idea is to differentiate between the css selector (which is a string) and the d3 selection (which is a fairly complex object);;or perhaps we should just follow the webcharts paradigm and go with `wrap` - I also want to bind the raw data to the root object. Going to cut this code review short and make some commits. </td></tr><tr><td>0040</td><td>jwildfire</td><td>2017-01-11T15:40:18Z</td><td>v3-filters</td><td>refactor</td><td>Add new required filter.type</td><td>16172651</td><td>samussiah</td><td>2017-01-11T16:13:13Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-14T15:21:37Z</td><td>Those values are filtered out on line 63, no?</td></tr><tr><td>0040</td><td>jwildfire</td><td>2017-01-11T15:40:18Z</td><td>v3-filters</td><td>refactor</td><td>Add new required filter.type</td><td>16189239</td><td>samussiah</td><td>2017-01-11T17:22:15Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-01-14T15:21:37Z</td><td>Everything checks out.  Filtering the population-level data to produce the event-level data is a great idea!  My one suggestion would be to differentiate event-level and ID-level controls in the controls container.  Laypeople probably won't immediately register the difference.</td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17019388</td><td>samussiah</td><td>2017-01-17T15:40:42Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td>stray</td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17020854</td><td>samussiah</td><td>2017-01-17T15:46:02Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td>I like this.</td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17021114</td><td>samussiah</td><td>2017-01-17T15:46:55Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td>Smart.</td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17021419</td><td>samussiah</td><td>2017-01-17T15:55:59Z</td><td>CHANGES_REQUESTED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td>It would be a good idea to include filter variables here as well.;;Add filters to chart.config.variables above, mapped to keep only the `value_col` property.;;Curious, how'd you arrive 6?;;Interesting.  Applies only to the rate plots?</td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17053323</td><td>jwildfire</td><td>2017-01-17T17:58:05Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td>No good reason, just seemed about right. Would probably be better to make this a setting actually  `config.defaults.maxGroups` - will make that change. </td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17053500</td><td>jwildfire</td><td>2017-01-17T17:58:53Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td>I'm on board. will move `settings.filters` to `settings.variables.filters`</td></tr><tr><td>0041</td><td>jwildfire</td><td>2017-01-12T23:24:40Z</td><td>settings-sync</td><td>refactor</td><td>New Process to merge user settings and default settings</td><td>17085106</td><td>samussiah</td><td>2017-01-17T20:22:11Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-01-17T20:31:52Z</td><td></td></tr><tr><td>0042</td><td>jwildfire</td><td>2017-01-14T15:22:56Z</td><td>refactor</td><td>settings-sync</td><td>Updating feature branch with new filter functionality. </td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-01-14T15:44:59Z</td><td></td></tr><tr><td>0044</td><td>jwildfire</td><td>2017-01-17T21:55:13Z</td><td>refactor</td><td>detail-filters</td><td>Update detail-filters branch</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-01-17T21:59:42Z</td><td></td></tr><tr><td>0045</td><td>jwildfire</td><td>2017-01-18T00:30:06Z</td><td>detail-filters</td><td>refactor</td><td>Filters now apply to detail view. </td><td>17604586</td><td>samussiah</td><td>2017-01-20T02:59:00Z</td><td>CHANGES_REQUESTED</td><td>jwildfire</td><td>2017-01-24T00:49:35Z</td><td>Everything looks great!  I'd just make sure `placeholderFlag` doesn't appear in the detail listing.;;placeholderFlag is showing up in the detail listing.;;I almost had a heart attack!;;Nice.;;Love it!  ;;Awesome.</td></tr><tr><td>0051</td><td>jwildfire</td><td>2017-02-15T00:36:48Z</td><td>detail-filters</td><td>refactor</td><td>Transpile to ES2015 for IE-compatibility.</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-02-15T00:37:37Z</td><td></td></tr><tr><td>0055</td><td>jwildfire</td><td>2017-03-07T01:40:01Z</td><td>v3.0.1</td><td>master</td><td>V3.0.1</td><td>25648762</td><td>samussiah</td><td>2017-03-07T22:23:55Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-03-13T23:18:45Z</td><td>Assuming `d.values` already contains distinct values of `d.value_col`.</td></tr><tr><td>0055</td><td>jwildfire</td><td>2017-03-07T01:40:01Z</td><td>v3.0.1</td><td>master</td><td>V3.0.1</td><td>25648844</td><td>samussiah</td><td>2017-03-07T22:24:14Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-03-13T23:18:45Z</td><td></td></tr><tr><td>0055</td><td>jwildfire</td><td>2017-03-07T01:40:01Z</td><td>v3.0.1</td><td>master</td><td>V3.0.1</td><td>25823283</td><td>jwildfire</td><td>2017-03-08T16:56:15Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-03-13T23:18:45Z</td><td>yup ;)</td></tr><tr><td>0057</td><td>jwildfire</td><td>2017-03-21T15:52:30Z</td><td>v3.0.2</td><td>master</td><td>V3.0.2</td><td>28162619</td><td>samussiah</td><td>2017-03-21T16:28:42Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-03-21T21:34:39Z</td><td></td></tr><tr><td>0071</td><td>samussiah</td><td>2017-06-28T13:38:52Z</td><td>v3.1.0-dev</td><td>master</td><td>V3.1.0 dev</td><td>50432024</td><td>brittsikora</td><td>2017-07-17T20:08:08Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-07-17T23:14:17Z</td><td></td></tr><tr><td>0072</td><td>samussiah</td><td>2017-06-28T16:54:01Z</td><td>csv-improvement</td><td>v3.1.0-dev</td><td>optimize .csv download, add compatibility with IE, and handle embedde…</td><td>47154400</td><td>jwildfire</td><td>2017-06-29T15:04:41Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-06-29T15:04:47Z</td><td>👍 👍 ;; ;; Nice and concise. Quick QC in chrome went well. </td></tr><tr><td>0073</td><td>samussiah</td><td>2017-06-28T20:19:28Z</td><td>summarize-by-default</td><td>v3.1.0-dev</td><td>add summarizeBy default</td><td>47167427</td><td>jwildfire</td><td>2017-06-29T15:44:56Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-06-29T15:52:57Z</td><td>Looks great. Merged in csv improvements. Can you do a quick QC and merge? </td></tr><tr><td>0074</td><td>samussiah</td><td>2017-06-28T20:53:34Z</td><td>filter-defaults</td><td>v3.1.0-dev</td><td>add ability to filter on ae-table initilization</td><td>47170702</td><td>jwildfire</td><td>2017-06-29T15:55:27Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-06-29T16:01:18Z</td><td></td></tr><tr><td>0081</td><td>jwildfire</td><td>2017-07-18T14:49:31Z</td><td>json-schema</td><td>v3.2.0-dev</td><td>Json schema</td><td>50685555</td><td>samussiah</td><td>2017-07-18T17:31:55Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-07-18T17:32:07Z</td><td>Looks good, only comment is some arrays don't work as expected:;; ;; ![image](https://user-images.githubusercontent.com/5428548/28330978-75333e48-6bbd-11e7-923f-cf5f93147ac4.png);; </td></tr><tr><td>0084</td><td>jwildfire</td><td>2017-07-18T16:40:17Z</td><td>group-col-options</td><td>v3.2.0-dev</td><td>Group col options</td><td>50690298</td><td>samussiah</td><td>2017-07-18T17:48:50Z</td><td>CHANGES_REQUESTED</td><td>Spencer Childress</td><td>2017-07-18T19:49:13Z</td><td>Fails not so gracefully when user specifies a non-existent group value:;; ;; ![image](https://user-images.githubusercontent.com/5428548/28331644-d3486c54-6bbf-11e7-8d6b-60248e9934d3.png);; </td></tr><tr><td>0084</td><td>jwildfire</td><td>2017-07-18T16:40:17Z</td><td>group-col-options</td><td>v3.2.0-dev</td><td>Group col options</td><td>50722954</td><td>samussiah</td><td>2017-07-18T19:49:08Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2017-07-18T19:49:13Z</td><td>Very nice and most timely!</td></tr><tr><td>0085</td><td>jwildfire</td><td>2017-07-18T16:44:31Z</td><td>v3.2.0-dev</td><td>master</td><td>v3.2.0 Development Branch</td><td>51035934</td><td>brittsikora</td><td>2017-07-19T20:46:20Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-07-24T14:32:19Z</td><td>All regression tests pass</td></tr><tr><td>0089</td><td>samussiah</td><td>2017-07-24T17:20:33Z</td><td>v3.2.1</td><td>master</td><td>fix table row sort to sort by descending overall frequency then alpha…</td><td></td><td></td><td></td><td>NONE</td><td>jwildfire</td><td>2017-07-24T22:41:31Z</td><td></td></tr><tr><td>0092</td><td>saranaqvi</td><td>2017-10-11T18:11:34Z</td><td>master</td><td>master</td><td>named changed</td><td></td><td></td><td></td><td>NONE</td><td>saranaqvi</td><td></td><td></td></tr><tr><td>0093</td><td>mhickle</td><td>2017-10-17T15:23:46Z</td><td>css-files</td><td>v3.2.6-dev</td><td>Overlap Changes</td><td>70241630</td><td>jwildfire</td><td>2017-10-18T14:57:06Z</td><td>CHANGES_REQUESTED</td><td>mhickle</td><td>2018-03-28T14:01:10Z</td><td>Need to update js in `/src` folder where these classes are assigned. </td></tr><tr><td>0093</td><td>mhickle</td><td>2017-10-17T15:23:46Z</td><td>css-files</td><td>v3.2.6-dev</td><td>Overlap Changes</td><td>106290429</td><td>pburnsdata</td><td>2018-03-22T20:31:53Z</td><td>CHANGES_REQUESTED</td><td>mhickle</td><td>2018-03-28T14:01:10Z</td><td>Saw a few of the old classes in the build, I'll try and find them in src and request Spencer's review</td></tr><tr><td>0093</td><td>mhickle</td><td>2017-10-17T15:23:46Z</td><td>css-files</td><td>v3.2.6-dev</td><td>Overlap Changes</td><td>106296062</td><td>pburnsdata</td><td>2018-03-22T20:48:40Z</td><td>COMMENTED</td><td>mhickle</td><td>2018-03-28T14:01:10Z</td><td>@samussiah I don't understand this update, so wanted to draw your attention to it - this isn't on the list in the pr comment and the class row-fluid still remains below</td></tr><tr><td>0093</td><td>mhickle</td><td>2017-10-17T15:23:46Z</td><td>css-files</td><td>v3.2.6-dev</td><td>Overlap Changes</td><td>106947465</td><td>samussiah</td><td>2018-03-26T15:14:17Z</td><td>COMMENTED</td><td>mhickle</td><td>2018-03-28T14:01:10Z</td><td>Doesn't look like we need it, although it is a bootstrap class.  Go ahead and remove row-fluid, wc-row-fluid, and form-inline.  They're not referenced anywhere else.</td></tr><tr><td>0093</td><td>mhickle</td><td>2017-10-17T15:23:46Z</td><td>css-files</td><td>v3.2.6-dev</td><td>Overlap Changes</td><td>107033854</td><td>pburnsdata</td><td>2018-03-26T19:05:45Z</td><td>COMMENTED</td><td>mhickle</td><td>2018-03-28T14:01:10Z</td><td>@samussiah Sounds good, removed those classes</td></tr><tr><td>0093</td><td>mhickle</td><td>2017-10-17T15:23:46Z</td><td>css-files</td><td>v3.2.6-dev</td><td>Overlap Changes</td><td>107101270</td><td>samussiah</td><td>2018-03-26T22:52:42Z</td><td>APPROVED</td><td>mhickle</td><td>2018-03-28T14:01:10Z</td><td>Much obliged.</td></tr><tr><td>0095</td><td>jwildfire</td><td>2017-10-24T00:47:16Z</td><td>v3.2.3-dev</td><td>master</td><td>V3.2.3 dev</td><td>71898258</td><td>samussiah</td><td>2017-10-25T15:09:03Z</td><td>COMMENTED</td><td>jwildfire</td><td>2017-10-24T00:47:29Z</td><td>Fix makes sense and works.</td></tr><tr><td>0098</td><td>jwildfire</td><td>2017-11-06T17:56:37Z</td><td>v3.2.4-dev</td><td>master</td><td>V3.2.4 dev</td><td>74504729</td><td>samussiah</td><td>2017-11-06T17:57:31Z</td><td>APPROVED</td><td>jwildfire</td><td>2017-11-06T17:59:30Z</td><td></td></tr><tr><td>0103</td><td>jwildfire</td><td>2018-01-11T16:12:17Z</td><td>v3.2.5-dev</td><td>master</td><td>AE Explorer v3.2.5</td><td>88222092</td><td>samussiah</td><td>2018-01-11T16:30:14Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-01-18T23:49:23Z</td><td>Works for me.</td></tr><tr><td>0103</td><td>jwildfire</td><td>2018-01-11T16:12:17Z</td><td>v3.2.5-dev</td><td>master</td><td>AE Explorer v3.2.5</td><td>89505701</td><td>dschwentker</td><td>2018-01-17T16:34:07Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-01-18T23:49:23Z</td><td>Prevalence filter tested and confirmed fixed when group columns are hidden.</td></tr><tr><td>0109</td><td>pburnsdata</td><td>2018-03-22T15:27:53Z</td><td>v3.2.6-dev</td><td>master</td><td>AE Explorer - v3.2.6</td><td>117712154</td><td>danedexF5</td><td>2018-05-04T18:20:43Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-05-04T19:56:42Z</td><td>Passed, approved.</td></tr><tr><td>0110</td><td>pburnsdata</td><td>2018-03-22T15:42:41Z</td><td>removeheight</td><td>v3.2.6-dev</td><td>Removeheight</td><td>106921041</td><td>samussiah</td><td>2018-03-26T14:16:44Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-03-26T14:16:52Z</td><td>To the point.</td></tr><tr><td>0111</td><td>pburnsdata</td><td>2018-03-22T17:56:26Z</td><td>custom-labels</td><td>v3.2.6-dev</td><td>Add label functionality for details table</td><td>106928421</td><td>samussiah</td><td>2018-03-26T14:33:34Z</td><td>COMMENTED</td><td>Spencer Childress</td><td>2018-03-26T14:33:46Z</td><td>Nice logic!</td></tr><tr><td>0111</td><td>pburnsdata</td><td>2018-03-22T17:56:26Z</td><td>custom-labels</td><td>v3.2.6-dev</td><td>Add label functionality for details table</td><td>106928448</td><td>samussiah</td><td>2018-03-26T14:33:38Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-03-26T14:33:46Z</td><td></td></tr><tr><td>0114</td><td>samussiah</td><td>2018-04-02T17:17:46Z</td><td>add-test-page</td><td>v3.2.6-dev</td><td>add test page and update settings schema</td><td>109025182</td><td>pburnsdata</td><td>2018-04-03T16:36:45Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-04-30T19:50:57Z</td><td></td></tr><tr><td>0117</td><td>brittsikora</td><td>2018-05-01T19:27:06Z</td><td>brittsikora-patch-1</td><td>master</td><td>Updating example link</td><td>116673939</td><td>samussiah</td><td>2018-05-01T19:29:44Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-05-01T19:29:48Z</td><td>¡increible!</td></tr><tr><td>0119</td><td>rtbailey</td><td>2018-08-09T19:47:39Z</td><td>rtbailey-patch-1</td><td>v3.3.0-dev</td><td>Update LICENSE.md</td><td>148181952</td><td>jwildfire</td><td>2018-08-21T18:04:06Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-08-21T18:04:14Z</td><td></td></tr><tr><td>0122</td><td>jwildfire</td><td>2018-08-21T18:25:48Z</td><td>v3.3-hotfixes</td><td>v3.3.0-dev</td><td>V3.3 hotfixes</td><td>149806118</td><td>samussiah</td><td>2018-08-27T17:30:33Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:22:50Z</td><td>noice</td></tr><tr><td>0122</td><td>jwildfire</td><td>2018-08-21T18:25:48Z</td><td>v3.3-hotfixes</td><td>v3.3.0-dev</td><td>V3.3 hotfixes</td><td>153787607</td><td>danedexF5</td><td>2018-09-10T14:00:50Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:22:50Z</td><td>Approved</td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>149807181</td><td>samussiah</td><td>2018-08-27T17:33:33Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>gotta change this back to absolute URL at some point</td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>149807217</td><td>samussiah</td><td>2018-08-27T17:33:40Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>gotta change this back to absolute URL at some point</td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>149808585</td><td>samussiah</td><td>2018-08-27T17:37:20Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>This needs to be a unique selector, such as `chart.detailTable.wrap.node()` or something.</td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>149809512</td><td>samussiah</td><td>2018-08-27T17:39:51Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>works for meeee!</td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>149875815</td><td>jwildfire</td><td>2018-08-27T20:42:03Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>oops - forgot to fix this. We should make that update before releasing. @samussiah you have time to put in a fix? </td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>150159729</td><td>samussiah</td><td>2018-08-28T14:44:44Z</td><td>COMMENTED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>Updated.</td></tr><tr><td>0123</td><td>jwildfire</td><td>2018-08-22T20:04:43Z</td><td>webchart-detail-table</td><td>v3.3.0-dev</td><td>Webchart detail table</td><td>153092126</td><td>danedexF5</td><td>2018-09-06T19:47:42Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:23:09Z</td><td>approved</td></tr><tr><td>0124</td><td>jwildfire</td><td>2018-08-25T16:27:05Z</td><td>group-control</td><td>v3.3.0-dev</td><td>Group control</td><td>149868565</td><td>samussiah</td><td>2018-08-27T20:21:53Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:52:38Z</td><td>Love it, nice modularization, clean code, 100%!</td></tr><tr><td>0124</td><td>jwildfire</td><td>2018-08-25T16:27:05Z</td><td>group-control</td><td>v3.3.0-dev</td><td>Group control</td><td>153091999</td><td>danedexF5</td><td>2018-09-06T19:47:20Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:52:38Z</td><td>Approved</td></tr><tr><td>0125</td><td>jwildfire</td><td>2018-08-26T01:42:40Z</td><td>update-null-settings</td><td>v3.3.0-dev</td><td>Update null settings</td><td>149870999</td><td>samussiah</td><td>2018-08-27T20:28:31Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:54:56Z</td><td>Can't argue with your logic.</td></tr><tr><td>0125</td><td>jwildfire</td><td>2018-08-26T01:42:40Z</td><td>update-null-settings</td><td>v3.3.0-dev</td><td>Update null settings</td><td>153091148</td><td>danedexF5</td><td>2018-09-06T19:44:51Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:54:56Z</td><td>No testing needed on this according to the notes, so...approved.</td></tr><tr><td>0128</td><td>jwildfire</td><td>2018-09-05T20:13:28Z</td><td>color-fix</td><td>v3.3.0-dev</td><td>Color fix</td><td>153118605</td><td>danedexF5</td><td>2018-09-06T20:57:20Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-10T14:56:33Z</td><td>Yellow has been removed, approved.</td></tr><tr><td>0129</td><td>jwildfire</td><td>2018-09-10T14:57:06Z</td><td>v3.3.0-dev</td><td>master</td><td>V3.3.0 dev</td><td>157845291</td><td>danedexF5</td><td>2018-09-21T20:21:07Z</td><td>APPROVED</td><td>jwildfire</td><td>2018-09-24T15:46:58Z</td><td>Approved</td></tr><tr><td>0134</td><td>jwildfire</td><td>2018-10-03T14:29:34Z</td><td>v3.3.1-dev</td><td>master</td><td>AE Explorer v3.3.1</td><td>162530019</td><td>pburnsdata</td><td>2018-10-08T15:39:13Z</td><td>APPROVED</td><td>Preston Burns</td><td>2018-10-26T20:46:27Z</td><td>Looks good! Does the version need to be updated anywhere other than package? @jwildfire I'll also note the final group column was grey in CAT for some reason when I set the group to RACE in variables object. Not sure if it has to do with the settings schema or something. Looked good locally though and code seemed fine so not sure what was going on there. Nothing to worry about if it works for you in CAT.</td></tr><tr><td>0134</td><td>jwildfire</td><td>2018-10-03T14:29:34Z</td><td>v3.3.1-dev</td><td>master</td><td>AE Explorer v3.3.1</td><td>168895735</td><td>rchronowic</td><td>2018-10-26T16:09:31Z</td><td>APPROVED</td><td>Preston Burns</td><td>2018-10-26T20:46:27Z</td><td>All feature testing passed. Skimmed through settings regression tests and all looked good. Team decided on no full regression testing.</td></tr><tr><td>0137</td><td>jwildfire</td><td>2018-10-11T13:00:59Z</td><td>add-none-group-option</td><td>v3.3.1-dev</td><td>Sync Group Control with config.defaults.groupCols</td><td>164385295</td><td>pburnsdata</td><td>2018-10-12T19:47:53Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-10-23T19:13:07Z</td><td>Who needs groups anyways!</td></tr><tr><td>0137</td><td>jwildfire</td><td>2018-10-11T13:00:59Z</td><td>add-none-group-option</td><td>v3.3.1-dev</td><td>Sync Group Control with config.defaults.groupCols</td><td>167523218</td><td>rchronowic</td><td>2018-10-23T16:38:53Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-10-23T19:13:07Z</td><td>Tested both issue 135 and 136 and they were functioning properly in both Chrome and Firefox. </td></tr><tr><td>0140</td><td>jwildfire</td><td>2018-10-31T20:58:39Z</td><td>v3.3.2-dev</td><td>master</td><td>V3.3.2 dev</td><td>170789200</td><td>samussiah</td><td>2018-11-01T17:18:32Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2018-11-01T17:19:04Z</td><td>this checks out.  code-reviewed and tested in all three browsers</td></tr><tr><td>0141</td><td>jwildfire</td><td>2019-03-27T20:01:28Z</td><td>dev-v3.3.3</td><td>master</td><td>Dev v3.3.3</td><td>220063067</td><td>samussiah</td><td>2019-03-28T14:39:02Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-03-28T14:39:06Z</td><td></td></tr><tr><td>0142</td><td>jwildfire</td><td>2019-04-05T13:49:23Z</td><td>dev-v3.3.4</td><td>master</td><td>Dev v3.3.4</td><td>223320081</td><td>samussiah</td><td>2019-04-05T14:51:25Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-05T14:51:30Z</td><td></td></tr><tr><td>0143</td><td>jwildfire</td><td>2019-04-05T14:57:55Z</td><td>dev-v3.3.5</td><td>master</td><td>Dev v3.3.5</td><td>223328923</td><td>samussiah</td><td>2019-04-05T15:06:51Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-04-05T15:07:00Z</td><td></td></tr><tr><td>0145</td><td>dependabot[bot]</td><td>2019-07-11T11:14:40Z</td><td>dependabot/npm_and_yarn/lodash-4.17.14</td><td>master</td><td>Bump lodash from 4.17.11 to 4.17.14</td><td>261295908</td><td>samussiah</td><td>2019-07-12T14:36:09Z</td><td>APPROVED</td><td>Spencer Childress</td><td>2019-07-12T14:37:35Z</td><td></td></tr><tr><td></td></tr></tbody></table></div></div>
+    
+</body>
+<script>
+     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+    tableBuilt: function () {
+    }})
+                table.hideColumn("reviewid");
+                table.hideColumn("mergedby");
+                             table.hideColumn("datemerged");
+                                                          table.hideColumn("reviewdate");
+
+
+
+     console.log(table.getColumnDefinitions())
+</script>
+</html>

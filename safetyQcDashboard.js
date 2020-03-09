@@ -154,18 +154,17 @@
             sortable: false,
             searchable: false,
             exportable: false,
-            issue_data: null,
             metrics: [
                 {
                     label: 'Repo',
                     text: function text(d) {
-                        return d.name;
+                        return d.repo;
                     },
                     link: function link(d) {
-                        return d.html_url;
+                        return d.raw.html_url;
                     },
                     title: function title(d) {
-                        return d.description;
+                        return d.raw.description;
                     },
                     color: function color(d) {
                         return null;
@@ -174,16 +173,16 @@
                 {
                     label: 'Issues',
                     text: function text(d) {
-                        return d.open_issues_count;
+                        return d.raw.open_issues_count;
                     },
                     link: function link(d) {
-                        return d.html_url + '/issues';
+                        return d.raw.html_url + '/issues';
                     },
                     title: function title(d) {
                         return null;
                     },
                     color: function color(d) {
-                        return d.has_issues ? 'green' : 'red';
+                        return d.raw.has_issues ? 'green' : 'red';
                     }
                 },
                 {
@@ -192,7 +191,7 @@
                         return d.release_count;
                     },
                     link: function link(d) {
-                        return d.html_url + '/releases';
+                        return d.raw.html_url + '/releases';
                     },
                     title: function title(d) {
                         return null;
@@ -218,7 +217,7 @@
                         );
                     },
                     color: function color(d) {
-                        return d.days_since_last_release < 365 ? 'green' : 'yellow';
+                        return d.days_since_last_release < 180 ? 'green' : 'yellow';
                     }
                 },
                 {
@@ -269,13 +268,17 @@
 
     function prepReleases() {
         var chart = this;
-        console.log(chart.config.releases);
+        console.log(this.data.raw);
         //merge data from different metrics
         this.data.releases = d3
-            .merge(chart.config.releases) // raw releases is an array of arrays
+            .merge(
+                this.data.raw.map(function(m) {
+                    return m.raw.releases;
+                })
+            ) // raw releases is an array of arrays
             .map(function(release) {
                 release.date = new Date(release.created_at);
-                release.name = release.url.split('/')[5];
+                release.repo = release.url.split('/')[5];
                 release.repo_url = 'https://github.com/RhoInc/' + release.repo;
                 // release.html = converter.makeHtml(release.body);
                 return release;
@@ -284,7 +287,7 @@
         this.data.raw.forEach(function(d) {
             d.releases = chart.data.releases
                 .filter(function(r) {
-                    return d.name == r.name;
+                    return d.repo == r.repo;
                 })
                 .sort(function(a, b) {
                     return b.date.getTime() - a.date.getTime();
@@ -319,10 +322,14 @@
         var chart = this;
         //merge data from different metrics
         this.data.pulls = d3
-            .merge(this.config.pulls) // raw pull is an array of arrays
+            .merge(
+                this.data.raw.map(function(m) {
+                    return m.raw.pulls;
+                })
+            ) // raw pulls is an array of arrays
             .map(function(pull) {
                 pull.date = new Date(pull.created_at);
-                pull.name = pull.url.split('/')[5];
+                pull.repo = pull.url.split('/')[5];
                 pull.repo_url = 'https://github.com/RhoInc/' + pull.repo;
                 // release.html = converter.makeHtml(release.body);
                 return pull;
@@ -331,7 +338,7 @@
         this.data.raw.forEach(function(d) {
             d.pulls = chart.data.pulls
                 .filter(function(r) {
-                    return d.name == r.name;
+                    return d.repo == r.repo;
                 })
                 .sort(function(a, b) {
                     return b.date.getTime() - a.date.getTime();
