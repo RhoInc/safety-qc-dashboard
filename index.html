@@ -67,7 +67,7 @@
 
   const chart = safetyQcDashboard('#container', {});
 
-  d3.json('../../data/allRepos.json', function (repos) {
+  d3.json('./data/allRepos.json', function (repos) {
     let renderers = repos.map(m=>m.repo)
     chart.init(repos);
   })

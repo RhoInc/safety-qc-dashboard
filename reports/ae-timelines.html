@@ -541,16 +541,16 @@ Just pass an empty object (<code>{}</code>) for <code>settings</code> and initia
     
 </body>
 <script>
-     var table = new Tabulator("#pull-table", {layout: "fitColumns",
+     var table = new Tabulator("#pull-table", {
     tableBuilt: function () {
     }})
-                table.hideColumn("reviewid");
-                table.hideColumn("mergedby");
-                             table.hideColumn("datemerged");
-                                                          table.hideColumn("reviewdate");
 
-
-
-     console.log(table.getColumnDefinitions())
+    let config = table.getColumnDefinitions()
+    config[12].formatter = "textArea"
+    table.setColumns(config)
+    table.hideColumn("reviewid");
+    table.hideColumn("mergedby");
+    table.hideColumn("datemerged");
+    table.hideColumn("reviewdate");
 </script>
 </html>
