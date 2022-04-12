@@ -38,7 +38,7 @@
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-json": "^4.0.0",
         "rollup-plugin-node-resolve": "^5.2.0",
-        "simple-git": "^1.131.0",
+        "simple-git": "^3.5.0",
         "showdown": "^1.9.1",
         "html-pdf": "^2.2.0"
     },
